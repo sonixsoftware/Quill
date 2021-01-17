@@ -117,20 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tenor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tenor.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="quill-digital-logo-alizarin-crimson-white1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\quill-digital-logo-alizarin-crimson-white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="quill-digital-logo-alizarin-crimson-white - Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\quill-digital-logo-alizarin-crimson-white - Copy.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="quill-digital-logo-alizarin-crimson-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\quill-digital-logo-alizarin-crimson-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="quill-digital-logo-burnt-sienna-alizarin-crimson" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\quill-digital-logo-burnt-sienna-alizarin-crimson.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="Phrase.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Precision.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Word.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAGAPAABgDwAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAP///z3///89////Pf///z3///89////Pf///z3///89////Pf///z3///89////Pf//
+        /z3///89////Pf///z3+/v/1/v7/9f////X////17uzt9ezr6/X39vb18/Ly9ero6fX19PT1+fj49fX0
+        9fX7+vr18/Lz9enn6PX49/f19fP+//Du/f///////Pz8/9fT1f/g3d7/xsDD/9HMzv/Y1NX/xb/C/+Dd
+        3v/Z1db/ysTH/8O8v//Z1df/+vn5//n4/v/Nxfn/+fj+//z8/P/Y1Nb/5OHi/8S+wP/RzM7/4+Di/9TP
+        0f/V0dP/2tfY/8vGyP/Uz9H/6ebn////////////s6f1/8nB+P//////5uPk/9PO0P/o5eb/3tvc/93a
+        2//l4+T/1NDS/9XQ0v/m4+T/9vb2//r5+f///////////7uw9v9/bO//5uL5/6yjpv9xYWf/gnV6/4p9
+        gv+QhIn/hXd9/5OHjP+FeH3/0s7Q///////////////////////MxPn/bFbt/4p46v+ShpD/m5CU/29f
+        Zf+km5//eGpv/3BhZ/++t7r/oZeb//v7+///////////////////////5OD8/3Fc7v9dROz/inrS/722
+        uf/Y1Nb/39vc/87Jy//Lxcj/5+Xm/93Z2//+/v7///////////////////////z7//+Jd/H/YUns/1E2
+        6//Bt/r/////////////////////////////////////////////////////////////////5OD8/6qd
+        9P+Gc/D/bljt/9jS+v/////////////////////////////////////////////////////1////9f//
+        //X////1+vn+9enl/PXs6v31////9f////X////1////9f////X////1////9f////X////1////Pf//
+        /z3///89////Pf///z3///89////Pf///z3///89////Pf///z3///89////Pf///z3///89////PQAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAA//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAD//wAA//8AAA==
+</value>
   </data>
 </root>

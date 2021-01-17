@@ -1,14 +1,8 @@
 ﻿using QuillDigital.QuillWebServices;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.ServiceModel.Description;
 using System.Windows.Forms;
 
 namespace QuillDigital
@@ -40,6 +34,23 @@ namespace QuillDigital
             }
             ((BasicHttpBinding)servRef.Endpoint.Binding).MaxReceivedMessageSize = int.MaxValue;
             ((BasicHttpBinding)servRef.Endpoint.Binding).MaxBufferSize = int.MaxValue;
+            foreach (OperationDescription op in servRef.Endpoint.Contract.Operations)
+            {
+                var dataContractBehavior = op.Behaviors.Find<DataContractSerializerOperationBehavior>();
+                if (dataContractBehavior != null)
+                {
+                    dataContractBehavior.MaxItemsInObjectGraph = int.MaxValue;
+                }
+            }
+            servRef.Endpoint.Binding.SendTimeout = new TimeSpan(0, 30, 0);
+            if (string.IsNullOrEmpty(textBox1.Text.Trim()))
+            {
+                textBox1.Select();
+            }
+            else
+            {
+                maskedTextBox1.Select();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

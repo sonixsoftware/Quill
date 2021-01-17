@@ -63,9 +63,39 @@ namespace QuillDigital.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap quill_digital_logo_alizarin_crimson_white {
+            get {
+                object obj = ResourceManager.GetObject("quill-digital-logo-alizarin-crimson-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap quill_digital_logo_alizarin_crimson_white___Copy {
             get {
                 object obj = ResourceManager.GetObject("quill-digital-logo-alizarin-crimson-white - Copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quill_digital_logo_alizarin_crimson_white1 {
+            get {
+                object obj = ResourceManager.GetObject("quill-digital-logo-alizarin-crimson-white1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quill_digital_logo_burnt_sienna_alizarin_crimson {
+            get {
+                object obj = ResourceManager.GetObject("quill-digital-logo-burnt-sienna-alizarin-crimson", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

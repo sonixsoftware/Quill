@@ -1,4 +1,5 @@
-﻿using QuillDigital.QuillWebServices;
+﻿using PInvoke;
+using QuillDigital.QuillWebServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +16,10 @@ namespace QuillDigital
 {
     public partial class FrmHome : Form
     {
+       
+        bool cancelMain = false;
+        public BackgroundWorker main = new BackgroundWorker();
+        public string translationlang = string.Empty;
         public string clientID;
         public string secret;
         WebServiceSoapClient servRef;
@@ -34,6 +40,11 @@ namespace QuillDigital
 
         private void FrmHome_Load(object sender, EventArgs e)
         {
+            Loading ld = new Loading();
+            ld.Show();
+            ld.Activate();
+           
+
             DataTable languageTable = servRef.GetLanguages(clientID, secret);
             languages.Items.Add("NONE");
             foreach (DataRow langRow in languageTable.Rows)
@@ -57,6 +68,10 @@ namespace QuillDigital
             ocrtype.Items.Add("Google Cloud");
             ocrtype.Items.Add("Quill Cloud");
             ocrtype.Text = "Microsoft Cloud";
+            string pages = servRef.GetPagesLeft(clientID, secret);
+            label7.Text = "Pages left: " + pages;
+            extractFields.Checked = true;
+            ld.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,6 +112,9 @@ namespace QuillDigital
                 DialogResult run = MessageBox.Show("Run Quill?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (run == DialogResult.Yes)
                 {
+                    cancelMain = false;
+                    translationlang = languages.Text.Trim();
+                    languages.Enabled = false;
                     meta = metatoll.Text.Trim();
                     dpi = DPI.Text.Trim();
                     lineRemoval = grayscale.Checked;
@@ -121,10 +139,16 @@ namespace QuillDigital
                     {
                         ocrType = "0";
                     }
-                    BackgroundWorker main = new BackgroundWorker();
+                    button2.Enabled = false;
+                    progressBar.Visible = true;
+                    button3.Enabled = true;
+
                     main.DoWork += Main_Run_DoWork;
                     main.RunWorkerCompleted += Main_Run_RunWorkerCompleted;
-                    main.RunWorkerAsync();
+                    main.WorkerSupportsCancellation = true;
+                    main.WorkerReportsProgress = true;
+                   
+                    main.RunWorkerAsync(); 
                 }
                 else
                 {
@@ -139,6 +163,7 @@ namespace QuillDigital
                 return;
             }
         }
+       
         private delegate void UpdateProgressTextDelegate(string message);
         public void ProgressLabel(string Message)
         {
@@ -153,25 +178,52 @@ namespace QuillDigital
 
             status.Text = Message;
         }
+        private delegate void UpdateStatusProgressDelegate(int percent);
+        public void Progress(int percent)
+        {
+            progressBar.Value = percent;
+        }
         private void Main_Run_DoWork(object sender, DoWorkEventArgs e)
         {
-            string[] docList = Directory.GetFiles(folderPath.Text.Trim(), "*.*");
+           
+            //Make sure thread does not send PC to sleep
+            Kernel32.SetThreadExecutionState(Kernel32.EXECUTION_STATE.ES_CONTINUOUS |
+                                           Kernel32.EXECUTION_STATE.ES_SYSTEM_REQUIRED |
+                                           Kernel32.EXECUTION_STATE.ES_AWAYMODE_REQUIRED);
+            string[] docList = null;
+            try
+            {
+                docList = Directory.GetFiles(folderPath.Text.Trim(), "*.*");
+            }
+            catch
+            {
+                MessageBox.Show("Unable to find directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+                return;
+            }
 
             //Prepare Run
             string prepare = servRef.PrepareRun(clientID, secret, Globals.sqlCon);
             if (!prepare.ToUpper().Equals("SUCCESS"))
             {
                 MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
                 return;
             }
 
             foreach (string file in docList)
             {
+                if (cancelMain == true)
+                {
+                   
+                    break;
+                }
+                UpdateStatusProgressDelegate UpdateProgress = Progress;
                 UpdateProgressTextDelegate UpdateText = ProgressLabel;
                 UpdateStatusTextDelegate UpdateStatus = StatusLabel;
                 string fileName = Path.GetFileName(file);
+                Invoke(UpdateProgress, 0);
                 Invoke(UpdateText, "Working on file: " + fileName);
-
                 Invoke(UpdateStatus, "Transmitting File..");
 
                 //Convert to Bytes
@@ -185,49 +237,163 @@ namespace QuillDigital
                 fs.Dispose();
                 Invoke(UpdateStatus, "Getting File ID");
                 //Transmit File
+                Invoke(UpdateProgress, 10);
+                if (cancelMain == true)
+                {
+                    
+                    return;
+                }
                 string transmit = servRef.SaveClientFile(fileArray, file, clientID, secret);
                 if (!transmit.ToUpper().Equals("SUCCESS"))
                 {
-                    MessageBox.Show("Oops. Something went wrong." + Environment.NewLine + transmit, "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cancelMain = true;
                     break;
                 }
-
+                if (cancelMain == true)
+                {
+                    
+                    break;
+                }
                 string fileID = servRef.GetFileID(fileName, clientID, secret);
-
+                Invoke(UpdateProgress, 20);
                 //Get Native
                 Invoke(UpdateStatus, "Native Check..");
                 string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, meta);
-
+                Invoke(UpdateProgress, 30);
                 //Digitise
                 string fullText = string.Empty;
 
                 if (native.ToUpper().Equals("TRUE"))
                 {
+                    if (cancelMain == true)
+                    {
+                        
+                        break;
+                    }
                     Invoke(UpdateStatus, "Getting Text..");
                     fullText = servRef.GetFullTextByID(fileID, clientID, secret);
+                    Invoke(UpdateProgress, 40);
                 }
                 else
                 {
                     Invoke(UpdateStatus, "Digitising..");
                     try
                     {
-                        string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, ocrType, strLineRemoval, dpi, "1");
-                        MessageBox.Show(digitise);
+                        if (cancelMain == true)
+                        {
+                            
+                            break;
+                        }
+                        Invoke(UpdateProgress, 40);
+                        string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, ocrType, strLineRemoval, dpi, "0");
+                        
                     }catch(Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       
+                        break;
                     }
+                    Invoke(UpdateProgress, 50);
+                    Invoke(UpdateStatus, "Getting Text..");
+                    if (cancelMain == true)
+                    {
+                       
+                        break;
+                    }
+                    fullText = servRef.GetFullTextByID(fileID, clientID, secret);
+                   
+                }
+                string translated = string.Empty;
+                Invoke(UpdateProgress, 50);
+                //Translate
+                if (!translationlang.ToUpper().Trim().Equals("NONE"))
+                {
+                    Invoke(UpdateProgress, 60);
+                    Invoke(UpdateStatus, "Translating..");
+                    if (cancelMain == true)
+                    {
+                        
+                        break;
+                    }
+                    translated = servRef.Translate(clientID, secret, Globals.sqlCon, fullText, translationlang);
 
                 }
-
-               
-
-
+                string fields = string.Empty;
+                //extract fields
+               if(extractFields.Checked == true)
+                {
+                    Invoke(UpdateProgress, 60);
+                    Invoke(UpdateStatus, "Getting Field Names..");
+                    if (cancelMain == true)
+                    {
+                        
+                        break;
+                    }
+                    fields = servRef.GetFieldNames(Globals.sqlCon, clientID, secret);
+                    //No Fields set up
+                    if (fields.Equals("0"))
+                    {
+                        Invoke(UpdateProgress, 70);
+                        Invoke(UpdateStatus, "No Field Names..");
+                    }
+                    else
+                    {
+                        Invoke(UpdateProgress, 70);
+                        if (cancelMain == true)
+                        {
+                           
+                            break;
+                        }
+                        fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", fields, "0");
+                    }
+                   
+                }
+                if (cancelMain == true)
+                {
+                    
+                    break;
+                }
+                string clausesFound = string.Empty;
+                string tags = string.Empty;
+                if (clauses.Checked == true)
+                {
+                    DataTable clauses = servRef.GetClauses(clientID, secret, Globals.sqlCon, string.Empty);
+                    if (clauses.Rows.Count > 0)
+                    {
+                        foreach(DataRow row in clauses.Rows)
+                        {
+                            string tagOne = row["TagOne"].ToString();
+                            tags = tags + ","+tagOne;
+                           
+                        }
+                    }
+                    tags = tags.TrimStart(',').TrimEnd(',');
+                    clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, tags);
+                }
             }
         }
         private void Main_Run_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            button3.Enabled = false;
+            UpdateProgressTextDelegate UpdateText = ProgressLabel;
+            UpdateStatusTextDelegate UpdateStatus = StatusLabel;
+            UpdateStatusProgressDelegate UpdateProgress = Progress;
+            if (main.IsBusy)
+            {
+                Invoke(UpdateText, "Stopping..");
+                Invoke(UpdateStatus, "Stopping..");
+            }
+            Invoke(UpdateText, "Complete.");
+            Invoke(UpdateStatus, "");
+            button2.Enabled = true;
+            Invoke(UpdateProgress, 0);
+            string pages = servRef.GetPagesLeft(clientID, secret);
+            label7.Text = "Pages left: " + pages;
+            languages.Enabled = true;
+            progressBar.Visible = false;
+            
+            
         }
 
         private void grayscale_CheckedChanged(object sender, EventArgs e)
@@ -240,6 +406,51 @@ namespace QuillDigital
             {
 
             }
+        }
+
+        private void folderPath_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(folderPath.Text.Trim()))
+            {
+                button2.Enabled = true;
+            }
+            else
+            {
+                button2.Enabled = false;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            DialogResult stop = MessageBox.Show("Stop Quill?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(DialogResult.Yes == stop)
+            {
+                button3.Enabled = false;
+                try
+                {
+                    
+                    string stopOps = servRef.AbortOperation(clientID, secret);
+                }
+                catch
+                {
+                    //this is OK - if fails, abort has been logged
+                }
+                
+                UpdateProgressTextDelegate UpdateText = ProgressLabel;
+                UpdateStatusTextDelegate UpdateStatus = StatusLabel;
+                UpdateStatusProgressDelegate UpdateProgress = Progress;
+                
+                Invoke(UpdateText, "Stopping...");
+                Invoke(UpdateStatus, "Stopping...");
+               
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FrmFieldExtraction extraction = new FrmFieldExtraction(clientID,secret,servRef);
+            extraction.Show();
         }
     }
 }
