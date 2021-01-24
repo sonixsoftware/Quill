@@ -31,47 +31,47 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMyFields));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvWords = new System.Windows.Forms.DataGridView();
-            this.dgvPhrases = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.Fields = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.findAll = new System.Windows.Forms.CheckBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.dgvWords = new System.Windows.Forms.DataGridView();
+            this.dgvPhrases = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.types = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.precisionIn = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pBack = new System.Windows.Forms.ComboBox();
             this.pForward = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.types = new System.Windows.Forms.ComboBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Backward = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Phrase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button6 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -116,49 +116,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 218);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // dgvWords
-            // 
-            this.dgvWords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvWords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Word,
-            this.Forward,
-            this.Backward});
-            this.dgvWords.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvWords.Enabled = false;
-            this.dgvWords.Location = new System.Drawing.Point(3, 227);
-            this.dgvWords.Name = "dgvWords";
-            this.dgvWords.Size = new System.Drawing.Size(394, 220);
-            this.dgvWords.TabIndex = 1;
-            // 
-            // dgvPhrases
-            // 
-            this.dgvPhrases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPhrases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Phrase,
-            this.Precision});
-            this.dgvPhrases.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPhrases.Location = new System.Drawing.Point(403, 227);
-            this.dgvPhrases.Name = "dgvPhrases";
-            this.dgvPhrases.Size = new System.Drawing.Size(394, 220);
-            this.dgvPhrases.TabIndex = 2;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(403, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.61468F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.38532F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(394, 218);
-            this.tableLayoutPanel3.TabIndex = 3;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
@@ -201,9 +158,83 @@
             this.label2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 205);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(205, 13);
+            this.label2.Size = new System.Drawing.Size(206, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Words";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white1;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 42);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(206, 145);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // findAll
+            // 
+            this.findAll.AutoSize = true;
+            this.findAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.findAll.Location = new System.Drawing.Point(215, 3);
+            this.findAll.Name = "findAll";
+            this.findAll.Size = new System.Drawing.Size(176, 33);
+            this.findAll.TabIndex = 3;
+            this.findAll.Text = "Find All";
+            this.findAll.UseVisualStyleBackColor = true;
+            this.findAll.CheckedChanged += new System.EventHandler(this.FindAll_CheckedChanged);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(215, 42);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(176, 145);
+            this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "";
+            // 
+            // dgvWords
+            // 
+            this.dgvWords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvWords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Word,
+            this.Forward,
+            this.Backward});
+            this.dgvWords.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvWords.Location = new System.Drawing.Point(3, 227);
+            this.dgvWords.Name = "dgvWords";
+            this.dgvWords.Size = new System.Drawing.Size(394, 220);
+            this.dgvWords.TabIndex = 1;
+            // 
+            // dgvPhrases
+            // 
+            this.dgvPhrases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPhrases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Phrase,
+            this.Precision});
+            this.dgvPhrases.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPhrases.Location = new System.Drawing.Point(403, 227);
+            this.dgvPhrases.Name = "dgvPhrases";
+            this.dgvPhrases.Size = new System.Drawing.Size(394, 220);
+            this.dgvPhrases.TabIndex = 2;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(403, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.61468F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.38532F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(394, 218);
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
             // label3
             // 
@@ -215,38 +246,6 @@
             this.label3.Size = new System.Drawing.Size(191, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Phrases";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white1;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(205, 145);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // findAll
-            // 
-            this.findAll.AutoSize = true;
-            this.findAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.findAll.Location = new System.Drawing.Point(214, 3);
-            this.findAll.Name = "findAll";
-            this.findAll.Size = new System.Drawing.Size(177, 33);
-            this.findAll.TabIndex = 3;
-            this.findAll.Text = "Find All";
-            this.findAll.UseVisualStyleBackColor = true;
-            this.findAll.CheckedChanged += new System.EventHandler(this.FindAll_CheckedChanged);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(214, 42);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(177, 145);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
             // 
             // tableLayoutPanel5
             // 
@@ -272,21 +271,25 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(191, 184);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
-            // tableLayoutPanel6
+            // types
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.424084F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.57591F));
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 1, 1);
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel8, 1, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(200, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.3913F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.6087F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(191, 184);
-            this.tableLayoutPanel6.TabIndex = 4;
+            this.types.Dock = System.Windows.Forms.DockStyle.Top;
+            this.types.FormattingEnabled = true;
+            this.types.Location = new System.Drawing.Point(74, 3);
+            this.types.Name = "types";
+            this.types.Size = new System.Drawing.Size(114, 21);
+            this.types.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Type";
             // 
             // precisionIn
             // 
@@ -296,7 +299,6 @@
             this.precisionIn.Name = "precisionIn";
             this.precisionIn.Size = new System.Drawing.Size(114, 21);
             this.precisionIn.TabIndex = 0;
-            this.precisionIn.SelectedIndexChanged += new System.EventHandler(this.precision_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -349,6 +351,22 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Forward";
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.424084F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.57591F));
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel8, 1, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(200, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.3913F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.6087F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(191, 184);
+            this.tableLayoutPanel6.TabIndex = 4;
+            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 2;
@@ -367,25 +385,15 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(168, 101);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
-            // button1
+            // button4
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 44);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Add Word";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(87, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(78, 44);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Add Phrase";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Location = new System.Drawing.Point(87, 53);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(78, 45);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Delete Fields";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -397,15 +405,25 @@
             this.button3.Text = "Delete Row";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // button2
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(87, 53);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(78, 45);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Delete Fields";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Location = new System.Drawing.Point(87, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(78, 44);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Add Phrase";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 44);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Add Word";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel8
             // 
@@ -433,51 +451,6 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Type";
-            // 
-            // types
-            // 
-            this.types.Dock = System.Windows.Forms.DockStyle.Top;
-            this.types.FormattingEnabled = true;
-            this.types.Location = new System.Drawing.Point(74, 3);
-            this.types.Name = "types";
-            this.types.Size = new System.Drawing.Size(114, 21);
-            this.types.TabIndex = 7;
-            // 
-            // Word
-            // 
-            this.Word.HeaderText = "Word";
-            this.Word.Name = "Word";
-            // 
-            // Forward
-            // 
-            this.Forward.HeaderText = "Forward";
-            this.Forward.Name = "Forward";
-            // 
-            // Backward
-            // 
-            this.Backward.HeaderText = "Backward";
-            this.Backward.Name = "Backward";
-            // 
-            // Phrase
-            // 
-            this.Phrase.HeaderText = "Phrase";
-            this.Phrase.Name = "Phrase";
-            // 
-            // Precision
-            // 
-            this.Precision.HeaderText = "Precision";
-            this.Precision.Name = "Precision";
-            // 
             // button6
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -487,6 +460,36 @@
             this.button6.TabIndex = 1;
             this.button6.Text = "Save";
             this.button6.UseVisualStyleBackColor = true;
+            // 
+            // Word
+            // 
+            this.Word.HeaderText = "Word";
+            this.Word.Name = "Word";
+            this.Word.ReadOnly = true;
+            // 
+            // Forward
+            // 
+            this.Forward.HeaderText = "Forward";
+            this.Forward.Name = "Forward";
+            this.Forward.ReadOnly = true;
+            // 
+            // Backward
+            // 
+            this.Backward.HeaderText = "Backward";
+            this.Backward.Name = "Backward";
+            this.Backward.ReadOnly = true;
+            // 
+            // Phrase
+            // 
+            this.Phrase.HeaderText = "Phrase";
+            this.Phrase.Name = "Phrase";
+            this.Phrase.ReadOnly = true;
+            // 
+            // Precision
+            // 
+            this.Precision.HeaderText = "Precision";
+            this.Precision.Name = "Precision";
+            this.Precision.ReadOnly = true;
             // 
             // FrmMyFields
             // 
@@ -502,13 +505,13 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
@@ -550,11 +553,11 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox types;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word;
         private System.Windows.Forms.DataGridViewTextBoxColumn Forward;
         private System.Windows.Forms.DataGridViewTextBoxColumn Backward;
         private System.Windows.Forms.DataGridViewTextBoxColumn Phrase;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precision;
-        private System.Windows.Forms.Button button6;
     }
 }

@@ -69,14 +69,15 @@ namespace QuillDigital
             {
                 Fields.Items.Add(fieldIn);
             }
-            Fields.SelectedIndex = 0;
+           
             dtFields  = servRef.GetFields(Globals.sqlCon, clientid, secret);
+            if(dtFields.Rows.Count == 0 || dtFields == null)
+            {
+                MessageBox.Show("No Fields set up yet.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            Fields.SelectedIndex = 0;
             ld.Close();
-
-        }
-
-        private void precision_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -109,7 +110,32 @@ namespace QuillDigital
             ld.Show();
 
             string field = Fields.Text;
-
+           //get data from master table
+            foreach(DataRow words in dtFields.Rows)
+            {
+                if (field.ToUpper().Trim().Equals(words["Field_Name"].ToString().ToUpper().Trim()))
+                {
+                    if (words["Check_All"].ToString().Trim().Equals("1"))
+                    {
+                        findAll.Checked = true;
+                        types.Text = words["Field_Type"].ToString().Trim();
+                        pForward.Enabled = false;
+                        pBack.Enabled = false;
+                        precisionIn.Enabled = false;
+                        richTextBox1.Text = "";
+                        richTextBox1.Enabled = false;
+                        button1.Enabled = false;
+                        button2.Enabled = false;
+                        button3.Enabled = false;
+                        return;
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+               
+            }
 
 
             ld.Close();
