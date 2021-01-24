@@ -450,7 +450,13 @@ namespace QuillDigital
         private void button4_Click(object sender, EventArgs e)
         {
             FrmFieldExtraction extraction = new FrmFieldExtraction(clientID,secret,servRef);
-            extraction.Show();
+            extraction.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FrmMyFields myFields = new FrmMyFields(clientID, secret, servRef);
+            myFields.ShowDialog();
         }
     }
 }
