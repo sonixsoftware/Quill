@@ -330,7 +330,7 @@ namespace QuillDigital
                         
                         break;
                     }
-                    fields = servRef.GetFieldNames(Globals.sqlCon, clientID, secret);
+                   
                     //No Fields set up
                     if (fields.Equals("0"))
                     {
@@ -345,7 +345,7 @@ namespace QuillDigital
                            
                             break;
                         }
-                        fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", fields, "0");
+                        fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", Globals.fieldsToExtract, "0");
                     }
                    
                 }
@@ -457,6 +457,18 @@ namespace QuillDigital
         {
             FrmMyFields myFields = new FrmMyFields(clientID, secret, servRef);
             myFields.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FrmFieldsToExtract fieldstoextract = new FrmFieldsToExtract(clientID, secret, servRef);
+            fieldstoextract.ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            FrmChangeSecret secretChange = new FrmChangeSecret(clientID, secret, servRef);
+            secretChange.ShowDialog();
         }
     }
 }

@@ -476,6 +476,7 @@ namespace QuillDigital
         {
             if (regex.Checked == true)
             {
+                MessageBox.Show("Regex is a powerful tool, but may have unexpected outputs if an invalid regex is put in.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strRegex.Visible = true;
             }
             else

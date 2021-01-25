@@ -76,6 +76,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="FrmChangeSecret.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChangeSecret.Designer.cs">
+      <DependentUpon>FrmChangeSecret.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="FrmFieldExtraction.Designer.cs">
       <DependentUpon>FrmFieldExtraction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFieldsToExtract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFieldsToExtract.Designer.cs">
+      <DependentUpon>FrmFieldsToExtract.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmFolderBrowser.cs">
       <SubType>Form</SubType>
@@ -116,11 +128,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmChangeSecret.resx">
+      <DependentUpon>FrmChangeSecret.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmConfiguration.resx">
       <DependentUpon>FrmConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFieldExtraction.resx">
       <DependentUpon>FrmFieldExtraction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFieldsToExtract.resx">
+      <DependentUpon>FrmFieldsToExtract.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFolderBrowser.resx">
       <DependentUpon>FrmFolderBrowser.cs</DependentUpon>
