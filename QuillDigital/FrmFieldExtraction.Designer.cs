@@ -38,18 +38,28 @@
             this.label2 = new System.Windows.Forms.Label();
             this.types = new System.Windows.Forms.ComboBox();
             this.findAll = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.regex = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvPhrases = new System.Windows.Forms.DataGridView();
             this.Phrase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precision = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvWords = new System.Windows.Forms.DataGridView();
+            this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Backward = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.pForward = new System.Windows.Forms.ComboBox();
+            this.pBack = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,29 +67,22 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.precisionIn = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.pForward = new System.Windows.Forms.ComboBox();
-            this.pBack = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Backward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.strRegex = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -108,7 +111,7 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.findAll, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel12, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -126,16 +129,17 @@
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(148, 100);
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.31343F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.68657F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(148, 113);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 53);
+            this.textBox1.Location = new System.Drawing.Point(3, 28);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(142, 20);
             this.textBox1.TabIndex = 0;
@@ -145,7 +149,7 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 31);
+            this.label1.Location = new System.Drawing.Point(3, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 19);
             this.label1.TabIndex = 1;
@@ -198,16 +202,31 @@
             this.findAll.UseVisualStyleBackColor = true;
             this.findAll.CheckedChanged += new System.EventHandler(this.findAll_CheckedChanged);
             // 
-            // label3
+            // tableLayoutPanel12
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(157, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 119);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Field Extraction";
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Controls.Add(this.regex, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.strRegex, 0, 1);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(157, 3);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 2;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.77876F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.22124F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(149, 113);
+            this.tableLayoutPanel12.TabIndex = 4;
+            // 
+            // regex
+            // 
+            this.regex.AutoSize = true;
+            this.regex.Location = new System.Drawing.Point(3, 3);
+            this.regex.Name = "regex";
+            this.regex.Size = new System.Drawing.Size(79, 17);
+            this.regex.TabIndex = 0;
+            this.regex.Text = "Add Regex";
+            this.regex.UseVisualStyleBackColor = true;
+            this.regex.CheckedChanged += new System.EventHandler(this.regex_CheckedChanged);
             // 
             // tableLayoutPanel5
             // 
@@ -280,6 +299,24 @@
             this.dgvWords.Size = new System.Drawing.Size(303, 239);
             this.dgvWords.TabIndex = 0;
             // 
+            // Word
+            // 
+            this.Word.HeaderText = "Word";
+            this.Word.Name = "Word";
+            this.Word.ReadOnly = true;
+            // 
+            // Forward
+            // 
+            this.Forward.HeaderText = "Forward";
+            this.Forward.Name = "Forward";
+            this.Forward.ReadOnly = true;
+            // 
+            // Backward
+            // 
+            this.Backward.HeaderText = "Backward";
+            this.Backward.Name = "Backward";
+            this.Backward.ReadOnly = true;
+            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 2;
@@ -341,6 +378,58 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // pForward
+            // 
+            this.pForward.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pForward.Enabled = false;
+            this.pForward.FormattingEnabled = true;
+            this.pForward.Location = new System.Drawing.Point(3, 23);
+            this.pForward.Name = "pForward";
+            this.pForward.Size = new System.Drawing.Size(103, 21);
+            this.pForward.TabIndex = 2;
+            this.pForward.SelectedIndexChanged += new System.EventHandler(this.pForward_SelectedIndexChanged);
+            // 
+            // pBack
+            // 
+            this.pBack.Enabled = false;
+            this.pBack.FormattingEnabled = true;
+            this.pBack.Location = new System.Drawing.Point(112, 23);
+            this.pBack.Name = "pBack";
+            this.pBack.Size = new System.Drawing.Size(103, 21);
+            this.pBack.TabIndex = 3;
+            this.pBack.SelectedIndexChanged += new System.EventHandler(this.pBack_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 20);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "forward precision";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(112, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 20);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "backward precision";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white___Copy;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(226, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(218, 147);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 2;
@@ -357,6 +446,18 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.7619F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(217, 85);
             this.tableLayoutPanel9.TabIndex = 4;
+            // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button6.Enabled = false;
+            this.button6.Location = new System.Drawing.Point(3, 49);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(102, 33);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "Delete Rows";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
@@ -437,86 +538,15 @@
             this.precisionIn.Size = new System.Drawing.Size(124, 21);
             this.precisionIn.TabIndex = 1;
             // 
-            // button6
+            // strRegex
             // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(3, 49);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(102, 33);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Delete Rows";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // pForward
-            // 
-            this.pForward.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pForward.Enabled = false;
-            this.pForward.FormattingEnabled = true;
-            this.pForward.Location = new System.Drawing.Point(3, 23);
-            this.pForward.Name = "pForward";
-            this.pForward.Size = new System.Drawing.Size(103, 21);
-            this.pForward.TabIndex = 2;
-            this.pForward.SelectedIndexChanged += new System.EventHandler(this.pForward_SelectedIndexChanged);
-            // 
-            // pBack
-            // 
-            this.pBack.Enabled = false;
-            this.pBack.FormattingEnabled = true;
-            this.pBack.Location = new System.Drawing.Point(112, 23);
-            this.pBack.Name = "pBack";
-            this.pBack.Size = new System.Drawing.Size(103, 21);
-            this.pBack.TabIndex = 3;
-            this.pBack.SelectedIndexChanged += new System.EventHandler(this.pBack_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 20);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "forward precision";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(112, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 20);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "backward precision";
-            // 
-            // Word
-            // 
-            this.Word.HeaderText = "Word";
-            this.Word.Name = "Word";
-            this.Word.ReadOnly = true;
-            // 
-            // Forward
-            // 
-            this.Forward.HeaderText = "Forward";
-            this.Forward.Name = "Forward";
-            this.Forward.ReadOnly = true;
-            // 
-            // Backward
-            // 
-            this.Backward.HeaderText = "Backward";
-            this.Backward.Name = "Backward";
-            this.Backward.ReadOnly = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white___Copy;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(226, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(218, 147);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.strRegex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strRegex.Location = new System.Drawing.Point(3, 30);
+            this.strRegex.Name = "strRegex";
+            this.strRegex.Size = new System.Drawing.Size(143, 80);
+            this.strRegex.TabIndex = 1;
+            this.strRegex.Text = "";
+            this.strRegex.Visible = false;
             // 
             // FrmFieldExtraction
             // 
@@ -536,6 +566,8 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel12.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -543,11 +575,11 @@
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -570,7 +602,6 @@
         private System.Windows.Forms.CheckBox findAll;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgvPhrases;
         private System.Windows.Forms.DataGridView dgvWords;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
@@ -591,5 +622,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Word;
         private System.Windows.Forms.DataGridViewTextBoxColumn Forward;
         private System.Windows.Forms.DataGridViewTextBoxColumn Backward;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.CheckBox regex;
+        private System.Windows.Forms.RichTextBox strRegex;
     }
 }

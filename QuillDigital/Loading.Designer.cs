@@ -43,6 +43,7 @@
             this.label1.Size = new System.Drawing.Size(100, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "Please Wait...";
+            this.label1.UseWaitCursor = true;
             // 
             // pictureBox1
             // 
@@ -53,6 +54,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(262, 70);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.UseWaitCursor = true;
             // 
             // Loading
             // 
@@ -60,11 +62,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(265, 104);
+            this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Loading";
+            this.ShowInTaskbar = false;
             this.Text = "Loading";
+            this.TopMost = true;
+            this.UseWaitCursor = true;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

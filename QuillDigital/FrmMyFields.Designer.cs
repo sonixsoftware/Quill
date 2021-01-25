@@ -35,11 +35,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Fields = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.findAll = new System.Windows.Forms.CheckBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.dgvWords = new System.Windows.Forms.DataGridView();
+            this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Backward = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvPhrases = new System.Windows.Forms.DataGridView();
+            this.Phrase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precision = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -60,15 +64,12 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Backward = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phrase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.regex = new System.Windows.Forms.CheckBox();
+            this.strRegex = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
@@ -76,6 +77,7 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -103,9 +105,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.19289F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.findAll, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.richTextBox1, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel9, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -162,17 +164,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Words";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white1;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(206, 145);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // findAll
             // 
             this.findAll.AutoSize = true;
@@ -207,6 +198,24 @@
             this.dgvWords.Size = new System.Drawing.Size(394, 220);
             this.dgvWords.TabIndex = 1;
             // 
+            // Word
+            // 
+            this.Word.HeaderText = "Word";
+            this.Word.Name = "Word";
+            this.Word.ReadOnly = true;
+            // 
+            // Forward
+            // 
+            this.Forward.HeaderText = "Forward";
+            this.Forward.Name = "Forward";
+            this.Forward.ReadOnly = true;
+            // 
+            // Backward
+            // 
+            this.Backward.HeaderText = "Backward";
+            this.Backward.Name = "Backward";
+            this.Backward.ReadOnly = true;
+            // 
             // dgvPhrases
             // 
             this.dgvPhrases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -218,6 +227,18 @@
             this.dgvPhrases.Name = "dgvPhrases";
             this.dgvPhrases.Size = new System.Drawing.Size(394, 220);
             this.dgvPhrases.TabIndex = 2;
+            // 
+            // Phrase
+            // 
+            this.Phrase.HeaderText = "Phrase";
+            this.Phrase.Name = "Phrase";
+            this.Phrase.ReadOnly = true;
+            // 
+            // Precision
+            // 
+            this.Precision.HeaderText = "Precision";
+            this.Precision.Name = "Precision";
+            this.Precision.ReadOnly = true;
             // 
             // tableLayoutPanel3
             // 
@@ -249,6 +270,8 @@
             // 
             // tableLayoutPanel5
             // 
+            this.tableLayoutPanel5.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white1;
+            this.tableLayoutPanel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.17278F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.82722F));
@@ -319,6 +342,7 @@
             this.pBack.Name = "pBack";
             this.pBack.Size = new System.Drawing.Size(114, 21);
             this.pBack.TabIndex = 2;
+            this.pBack.SelectedIndexChanged += new System.EventHandler(this.pBack_SelectedIndexChanged);
             // 
             // pForward
             // 
@@ -328,6 +352,7 @@
             this.pForward.Name = "pForward";
             this.pForward.Size = new System.Drawing.Size(114, 21);
             this.pForward.TabIndex = 3;
+            this.pForward.SelectedIndexChanged += new System.EventHandler(this.pForward_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -392,8 +417,9 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(78, 45);
             this.button4.TabIndex = 3;
-            this.button4.Text = "Delete Fields";
+            this.button4.Text = "Delete Field";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -404,6 +430,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Delete Row";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -414,6 +441,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Add Phrase";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -424,6 +452,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Add Word";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -460,36 +489,45 @@
             this.button6.TabIndex = 1;
             this.button6.Text = "Save";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // Word
+            // tableLayoutPanel9
             // 
-            this.Word.HeaderText = "Word";
-            this.Word.Name = "Word";
-            this.Word.ReadOnly = true;
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.19418F));
+            this.tableLayoutPanel9.Controls.Add(this.strRegex, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.regex, 0, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 42);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 121F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(206, 145);
+            this.tableLayoutPanel9.TabIndex = 5;
             // 
-            // Forward
+            // regex
             // 
-            this.Forward.HeaderText = "Forward";
-            this.Forward.Name = "Forward";
-            this.Forward.ReadOnly = true;
+            this.regex.AutoSize = true;
+            this.regex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.regex.Location = new System.Drawing.Point(3, 3);
+            this.regex.Name = "regex";
+            this.regex.Size = new System.Drawing.Size(200, 18);
+            this.regex.TabIndex = 0;
+            this.regex.Text = "Regex";
+            this.regex.UseVisualStyleBackColor = true;
+            this.regex.CheckedChanged += new System.EventHandler(this.regex_CheckedChanged);
             // 
-            // Backward
+            // strRegex
             // 
-            this.Backward.HeaderText = "Backward";
-            this.Backward.Name = "Backward";
-            this.Backward.ReadOnly = true;
-            // 
-            // Phrase
-            // 
-            this.Phrase.HeaderText = "Phrase";
-            this.Phrase.Name = "Phrase";
-            this.Phrase.ReadOnly = true;
-            // 
-            // Precision
-            // 
-            this.Precision.HeaderText = "Precision";
-            this.Precision.Name = "Precision";
-            this.Precision.ReadOnly = true;
+            this.strRegex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strRegex.Location = new System.Drawing.Point(3, 27);
+            this.strRegex.Name = "strRegex";
+            this.strRegex.Size = new System.Drawing.Size(200, 115);
+            this.strRegex.TabIndex = 1;
+            this.strRegex.Text = "";
+            this.strRegex.Visible = false;
             // 
             // FrmMyFields
             // 
@@ -507,7 +545,6 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -517,6 +554,8 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -530,7 +569,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox Fields;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox findAll;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.DataGridView dgvPhrases;
@@ -559,5 +597,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Backward;
         private System.Windows.Forms.DataGridViewTextBoxColumn Phrase;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precision;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.CheckBox regex;
+        private System.Windows.Forms.RichTextBox strRegex;
     }
 }

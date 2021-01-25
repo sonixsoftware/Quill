@@ -113,6 +113,13 @@ namespace QuillDigital
                     Loading ld = new Loading();
                     ld.Show();
                     string add = servRef.AddField(Globals.sqlCon, fieldName, fieldType, temp, clientid, secret);
+                    if (regex.Checked == true)
+                    {
+                        if (!string.IsNullOrEmpty(strRegex.Text.Trim()))
+                        {
+                            servRef.UpdateFieldRegex(Globals.sqlCon, fieldName, strRegex.Text.Trim(), clientid, secret);
+                        }
+                    }
                     ld.Close();
                     MessageBox.Show("Field: " + fieldName + " Added.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -171,7 +178,12 @@ namespace QuillDigital
                             }
                         }
                     }
-
+                    if (regex.Checked == true)
+                    {
+                        if (!string.IsNullOrEmpty(strRegex.Text.Trim())){
+                            servRef.UpdateFieldRegex(Globals.sqlCon, fieldName, strRegex.Text.Trim(), clientid, secret);
+                        }
+                    }
                     ld.Close();
                     MessageBox.Show("Field Added.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
@@ -281,21 +293,7 @@ namespace QuillDigital
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            DialogResult deleteConfirm = MessageBox.Show("Delete Selected Rows?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (deleteConfirm == DialogResult.Yes)
-            {
-                foreach (DataGridViewRow row in dgvWords.SelectedRows)
-                {
-                    dgvWords.Rows.RemoveAt(row.Index);
-                }
-                foreach (DataGridViewRow row in dgvPhrases.SelectedRows)
-                {
-                    dgvPhrases.Rows.RemoveAt(row.Index);
-                }
-            }
-        }
+       
 
         private void types_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -325,7 +323,7 @@ namespace QuillDigital
                         //assume cant be updated
                     }
                 }
-            }
+            }     
         }
 
         private void pBack_SelectedIndexChanged(object sender, EventArgs e)
@@ -351,6 +349,35 @@ namespace QuillDigital
                         //assume cant be updated
                     }
                 }
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DialogResult deleteConfirm = MessageBox.Show("Delete Selected Rows?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (deleteConfirm == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in dgvWords.SelectedRows)
+                {
+                    dgvWords.Rows.RemoveAt(row.Index);
+                }
+                foreach (DataGridViewRow row in dgvPhrases.SelectedRows)
+                {
+                    dgvPhrases.Rows.RemoveAt(row.Index);
+                }
+            }
+        }
+
+        private void regex_CheckedChanged(object sender, EventArgs e)
+        {
+            if(regex.Checked == true)
+            {
+                strRegex.Visible = true;
+            }
+            else
+            {
+                strRegex.Visible = false;
+                strRegex.Text = "";
             }
         }
     }
