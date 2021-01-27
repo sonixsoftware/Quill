@@ -11,13 +11,15 @@ using System.Windows.Forms;
 
 namespace QuillDigital
 {
-    public partial class FrmFieldsToExtract : Form
+    public partial class FrmClausesToExtract : Form
     {
+
         WebServiceSoapClient servRef;
         string clientid = string.Empty;
         string secret = string.Empty;
-        
-        public FrmFieldsToExtract(string ClientID, string Secret, WebServiceSoapClient ServRef)
+        DataTable clauses = null;
+
+        public FrmClausesToExtract(string ClientID, string Secret, WebServiceSoapClient ServRef)
         {
             InitializeComponent();
             servRef = ServRef;
@@ -30,43 +32,42 @@ namespace QuillDigital
             this.Close();
         }
 
-        private void FrmFieldsToExtract_Load(object sender, EventArgs e)
+        private void FrmClausesToExtract_Load(object sender, EventArgs e)
         {
             Loading ld = new Loading();
             ld.Show();
-            string fields = servRef.GetFieldNames(Globals.sqlCon, clientid, secret);
-            if(fields.Length == 0)
+            clauses = servRef.GetClauses(clientid, secret, Globals.sqlCon, string.Empty);
+            if(clauses.Rows.Count <=0 || clauses == null)
             {
-                MessageBox.Show("No Fields to show..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No Clauses to show..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ld.Close();
-                
+
                 this.Close();
                 return;
             }
-            string[] fieldArr = fields.Split(',');
-
-            foreach(string field in fieldArr)
+            foreach(DataRow row in clauses.Rows)
             {
-                FieldsToExtract.Items.Add(field);
+                ClausesToExtract.Items.Add(row["TagOne"].ToString());
             }
+
             ld.Close();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked == true)
+            if (checkBox1.Checked == true)
             {
-                for (int i = 0; i < FieldsToExtract.Items.Count; i++)
+                for (int i = 0; i < ClausesToExtract.Items.Count; i++)
                 {
-                    FieldsToExtract.SetItemChecked(i, true);
+                    ClausesToExtract.SetItemChecked(i, true);
                 }
             }
             else
             {
 
-                for (int i = 0; i < FieldsToExtract.Items.Count; i++)
+                for (int i = 0; i < ClausesToExtract.Items.Count; i++)
                 {
-                    FieldsToExtract.SetItemChecked(i, false);
+                    ClausesToExtract.SetItemChecked(i, false);
                 }
             }
         }
@@ -74,15 +75,15 @@ namespace QuillDigital
         private void button1_Click(object sender, EventArgs e)
         {
             string checkedFields = string.Empty;
-            for (int i = 0; i <= (FieldsToExtract.Items.Count - 1); i++)
+            for (int i = 0; i <= (ClausesToExtract.Items.Count - 1); i++)
             {
-                if (FieldsToExtract.GetItemChecked(i))
+                if (ClausesToExtract.GetItemChecked(i))
                 {
-                    checkedFields = checkedFields + FieldsToExtract.Items[i].ToString()+",";
+                    checkedFields = checkedFields + ClausesToExtract.Items[i].ToString() + ",";
                 }
             }
-            checkedFields  = checkedFields.TrimStart(',').TrimEnd(',');
-            Globals.fieldsToExtract = checkedFields;
+            checkedFields = checkedFields.TrimStart(',').TrimEnd(',');
+            Globals.clausesToExtract = checkedFields;
             this.Close();
         }
     }

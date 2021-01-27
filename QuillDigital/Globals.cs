@@ -10,5 +10,8 @@ namespace QuillDigital
     {
         public static string sqlCon = "DEFAULT";
         public static string fieldsToExtract = string.Empty;
+        public static string clausesToExtract = string.Empty;
+
     }
+     
 }

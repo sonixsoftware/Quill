@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace QuillDigital
 {
     public partial class FrmHome : Form
     {
-       
+
         bool cancelMain = false;
         public BackgroundWorker main = new BackgroundWorker();
         public string translationlang = string.Empty;
@@ -43,9 +44,23 @@ namespace QuillDigital
             Loading ld = new Loading();
             ld.Show();
             ld.Activate();
-           
+            DataTable languageTable = null;
+            try
+            {
+                languageTable = servRef.GetLanguages(clientID, secret);
+            }
+            catch (Exception exe)
+            {
+                if (exe.ToString().Contains("Document Limit Reached"))
+                {
+                    MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.Close();
+                    Application.Exit();
+                    return;
+                }
+            }
 
-            DataTable languageTable = servRef.GetLanguages(clientID, secret);
+
             languages.Items.Add("NONE");
             foreach (DataRow langRow in languageTable.Rows)
             {
@@ -69,8 +84,9 @@ namespace QuillDigital
             ocrtype.Items.Add("Quill Cloud");
             ocrtype.Text = "Microsoft Cloud";
             string pages = servRef.GetPagesLeft(clientID, secret);
-            label7.Text = "Pages left: " + pages;
+            label8.Text = "Pages left: " + pages;
             extractFields.Checked = true;
+            savePath.Text = GetConfiguration.GetConfigurationValueSaveLocation();
             ld.Close();
         }
 
@@ -107,18 +123,64 @@ namespace QuillDigital
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+
             if (!string.IsNullOrEmpty(folderPath.Text))
             {
                 DialogResult run = MessageBox.Show("Run Quill?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (run == DialogResult.Yes)
                 {
+                    try
+                    {
+                        File.WriteAllText(Path.Combine(savePath.Text.Trim(), "#QUILL#_OUTPUTS.txt"), "");
+                        File.Delete(Path.Combine(savePath.Text.Trim(), "#QUILL#_OUTPUTS.txt"));
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Unable to write to the Save directory.. Please choose a folder that you have write access to..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(savePath.Text.Trim()))
+                    {
+                        MessageBox.Show("Please enter a Save directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(folderPath.Text.Trim()))
+                    {
+                        MessageBox.Show("Please enter a Run directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        return;
+                    }
+                    if (savePath.Text.Trim().ToUpper().Equals(folderPath.Text.ToUpper().Trim()))
+                    {
+                        MessageBox.Show("The run folder and save folder are the same. You need to create a save folder or browse to a different location", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        button3.Enabled = false;
+                        button2.Enabled = true;
+                        button5.Enabled = true;
+                        button9.Enabled = true;
+                        folderPath.ReadOnly = false;
+                        button11.Enabled = true;
+                        button12.Enabled = true;
+                        savePath.ReadOnly = false;
+                        button12.PerformClick();
+                        return;
+
+                    }
                     cancelMain = false;
                     translationlang = languages.Text.Trim();
                     languages.Enabled = false;
                     meta = metatoll.Text.Trim();
                     dpi = DPI.Text.Trim();
                     lineRemoval = grayscale.Checked;
-                    if(lineRemoval == true)
+                    button5.Enabled = false;
+                    button9.Enabled = false;
+                    button3.Enabled = false;
+                    button12.Enabled = false;
+                    savePath.ReadOnly = true;
+                    folderPath.ReadOnly = true;
+
+                    if (lineRemoval == true)
                     {
                         strLineRemoval = "1";
                     }
@@ -127,7 +189,7 @@ namespace QuillDigital
                         strLineRemoval = "0";
                     }
                     ocrType = ocrtype.Text.Trim();
-                    if(ocrType.Equals("Microsoft Cloud"))
+                    if (ocrType.Equals("Microsoft Cloud"))
                     {
                         ocrType = "1";
                     }
@@ -140,15 +202,75 @@ namespace QuillDigital
                         ocrType = "0";
                     }
                     button2.Enabled = false;
+                    button11.Enabled = false;
                     progressBar.Visible = true;
                     button3.Enabled = true;
-
+                    if (extractFields.Checked == true)
+                    {
+                        if (Globals.fieldsToExtract.Equals(string.Empty))
+                        {
+                            DialogResult extract = MessageBox.Show("You have not selected any fields to extract.. Click Fields To Extract to choose saved fields, or OK to continue with no extraction.", "Quill", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                            if (DialogResult.Cancel == extract)
+                            {
+                                button3.Enabled = false;
+                                button2.Enabled = true;
+                                button5.Enabled = true;
+                                button9.Enabled = true;
+                                folderPath.ReadOnly = false;
+                                button11.Enabled = true;
+                                button12.Enabled = true;
+                                savePath.ReadOnly = false;
+                                button6.PerformClick();
+                                return;
+                            }
+                            else
+                            {
+                                extractFields.Checked = false;
+                                button2.Enabled = false;
+                                button3.Enabled = true;
+                                button5.Enabled = false;
+                                button9.Enabled = false;
+                                button12.Enabled = false;
+                                savePath.ReadOnly = true;
+                            }
+                        }
+                    }
+                    if (clauses.Checked == true)
+                    {
+                        if (Globals.clausesToExtract.Equals(string.Empty))
+                        {
+                            DialogResult extract = MessageBox.Show("You have not selected any clauses to extract.. Click Clauses To Extract to choose saved clauses, or OK to continue with no extraction.", "Quill", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                            if (DialogResult.Cancel == extract)
+                            {
+                                button3.Enabled = false;
+                                button5.Enabled = true;
+                                button9.Enabled = true;
+                                button2.Enabled = true;
+                                folderPath.ReadOnly = false;
+                                button11.Enabled = true;
+                                button12.Enabled = true;
+                                savePath.ReadOnly = false;
+                                button10.PerformClick();
+                                return;
+                            }
+                            else
+                            {
+                                clauses.Checked = false;
+                                button2.Enabled = false;
+                                button3.Enabled = true;
+                                button5.Enabled = false;
+                                button9.Enabled = false;
+                                button12.Enabled = false;
+                                savePath.ReadOnly = true;
+                            }
+                        }
+                    }
                     main.DoWork += Main_Run_DoWork;
                     main.RunWorkerCompleted += Main_Run_RunWorkerCompleted;
                     main.WorkerSupportsCancellation = true;
                     main.WorkerReportsProgress = true;
-                   
-                    main.RunWorkerAsync(); 
+
+                    main.RunWorkerAsync();
                 }
                 else
                 {
@@ -163,7 +285,7 @@ namespace QuillDigital
                 return;
             }
         }
-       
+
         private delegate void UpdateProgressTextDelegate(string message);
         public void ProgressLabel(string Message)
         {
@@ -185,7 +307,14 @@ namespace QuillDigital
         }
         private void Main_Run_DoWork(object sender, DoWorkEventArgs e)
         {
-           
+            DataTable finishedRun = new DataTable();
+            finishedRun.Columns.Add("Digitised Text");
+            finishedRun.Columns.Add("Translated Text");
+            finishedRun.Columns.Add("Fields Found");
+            finishedRun.Columns.Add("Clauses Found");
+            DataRow toInsert = finishedRun.NewRow();
+            finishedRun.Rows.Add(toInsert);
+
             //Make sure thread does not send PC to sleep
             Kernel32.SetThreadExecutionState(Kernel32.EXECUTION_STATE.ES_CONTINUOUS |
                                            Kernel32.EXECUTION_STATE.ES_SYSTEM_REQUIRED |
@@ -197,8 +326,21 @@ namespace QuillDigital
             }
             catch
             {
-                MessageBox.Show("Unable to find directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
+                MessageBox.Show("Unable to find Run directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            if (!Directory.Exists(savePath.Text.Trim()))
+            {
+                MessageBox.Show("Unable to find Save directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+            if (docList.Length <= 0)
+            {
+                MessageBox.Show("Unable to find any files in the Run directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
@@ -207,15 +349,16 @@ namespace QuillDigital
             if (!prepare.ToUpper().Equals("SUCCESS"))
             {
                 MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
                 return;
             }
-
+            string lastFile = docList[docList.Length - 1];
             foreach (string file in docList)
             {
+
                 if (cancelMain == true)
                 {
-                   
+
                     break;
                 }
                 UpdateStatusProgressDelegate UpdateProgress = Progress;
@@ -240,7 +383,7 @@ namespace QuillDigital
                 Invoke(UpdateProgress, 10);
                 if (cancelMain == true)
                 {
-                    
+
                     return;
                 }
                 string transmit = servRef.SaveClientFile(fileArray, file, clientID, secret);
@@ -252,7 +395,7 @@ namespace QuillDigital
                 }
                 if (cancelMain == true)
                 {
-                    
+
                     break;
                 }
                 string fileID = servRef.GetFileID(fileName, clientID, secret);
@@ -260,6 +403,11 @@ namespace QuillDigital
                 //Get Native
                 Invoke(UpdateStatus, "Native Check..");
                 string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, meta);
+                if (native.Contains("QuillException: Document Limit Reached"))
+                {
+                    MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 Invoke(UpdateProgress, 30);
                 //Digitise
                 string fullText = string.Empty;
@@ -268,11 +416,18 @@ namespace QuillDigital
                 {
                     if (cancelMain == true)
                     {
-                        
+
                         break;
                     }
                     Invoke(UpdateStatus, "Getting Text..");
                     fullText = servRef.GetFullTextByID(fileID, clientID, secret);
+                    if (fullText.Contains("QuillException: Document Limit Reached"))
+                    {
+                        MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
+                  
                     Invoke(UpdateProgress, 40);
                 }
                 else
@@ -282,27 +437,40 @@ namespace QuillDigital
                     {
                         if (cancelMain == true)
                         {
-                            
+
                             break;
                         }
                         Invoke(UpdateProgress, 40);
                         string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, ocrType, strLineRemoval, dpi, "0");
-                        
-                    }catch(Exception ex)
+                        if (digitise.Contains("QuillException: Document Limit Reached"))
+                        {
+                            MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                    }
+                    catch (Exception ex)
                     {
                         MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                       
+
                         break;
                     }
                     Invoke(UpdateProgress, 50);
                     Invoke(UpdateStatus, "Getting Text..");
                     if (cancelMain == true)
                     {
-                       
+
                         break;
                     }
                     fullText = servRef.GetFullTextByID(fileID, clientID, secret);
-                   
+                    if (fullText.Contains("QuillException: Document Limit Reached"))
+                    {
+                        MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
+                  
+
                 }
                 string translated = string.Empty;
                 Invoke(UpdateProgress, 50);
@@ -313,69 +481,132 @@ namespace QuillDigital
                     Invoke(UpdateStatus, "Translating..");
                     if (cancelMain == true)
                     {
-                        
+
                         break;
                     }
                     translated = servRef.Translate(clientID, secret, Globals.sqlCon, fullText, translationlang);
-
+                    if (translated.Contains("QuillException: Document Limit Reached"))
+                    {
+                        MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    translated = Regex.Replace(translated, @"(\r\n){2,}", Environment.NewLine);
+                   
+                    
                 }
                 string fields = string.Empty;
                 //extract fields
-               if(extractFields.Checked == true)
+                if (extractFields.Checked == true)
                 {
-                    Invoke(UpdateProgress, 60);
-                    Invoke(UpdateStatus, "Getting Field Names..");
+
                     if (cancelMain == true)
                     {
-                        
+
                         break;
                     }
-                   
-                    //No Fields set up
-                    if (fields.Equals("0"))
+
+
+
+                    Invoke(UpdateProgress, 70);
+                    Invoke(UpdateStatus, "Extracting Fields..");
+
+
+
+                    if (cancelMain == true)
                     {
-                        Invoke(UpdateProgress, 70);
-                        Invoke(UpdateStatus, "No Field Names..");
+
+                        break;
                     }
-                    else
+                    fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", Globals.fieldsToExtract, "0");
+                    if (fields.Contains("QuillException: Document Limit Reached"))
                     {
-                        Invoke(UpdateProgress, 70);
-                        if (cancelMain == true)
-                        {
-                           
-                            break;
-                        }
-                        fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", Globals.fieldsToExtract, "0");
+                        MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
-                   
+                    fields = Regex.Replace(fields, @"(\r\n){1,}", Environment.NewLine);
+                  
+
+
                 }
                 if (cancelMain == true)
                 {
-                    
+
                     break;
                 }
                 string clausesFound = string.Empty;
-                string tags = string.Empty;
+
                 if (clauses.Checked == true)
                 {
-                    DataTable clauses = servRef.GetClauses(clientID, secret, Globals.sqlCon, string.Empty);
-                    if (clauses.Rows.Count > 0)
+                    Invoke(UpdateProgress, 80);
+                    Invoke(UpdateStatus, "Extracting Clauses..");
+                    clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, Globals.clausesToExtract);
+                    if (clausesFound.Contains("QuillException: Document Limit Reached"))
                     {
-                        foreach(DataRow row in clauses.Rows)
-                        {
-                            string tagOne = row["TagOne"].ToString();
-                            tags = tags + ","+tagOne;
-                           
-                        }
+                        MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
-                    tags = tags.TrimStart(',').TrimEnd(',');
-                    clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, tags);
+                    DataTable dtclausesFound = servRef.GetFoundClausesByID(clientID, secret, Globals.sqlCon, fileID);
+                    clausesFound = Regex.Replace(clausesFound, @"(\r\n){2,}", Environment.NewLine);
+                   //need to extract clauses
+                }
+                string saveCSVPath = Path.Combine(savePath.Text.Trim(), fileName + ".csv");
+                Invoke(UpdateProgress, 90);
+                Invoke(UpdateStatus, "Writing Report..");
+               
+                
+                string xmlDoc = Path.GetFileNameWithoutExtension(file) + ".xml";
+                WriteXML(fullText, translated, fields, clausesFound,fileName,DateTime.Now.ToString(), translationlang, Path.Combine(savePath.Text, xmlDoc));
+                if (file.ToUpper().Trim().Equals(lastFile.ToUpper().Trim()))
+                {
+                    break;
                 }
             }
+            MessageBox.Show("Run Complete.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
         }
+
+        public class Run
+        {
+            public String DigitisedText;
+            public String TranslatedText;
+            public String FieldsFound;
+            public String ClausesFound;
+            public String FileName;
+            public String DateTime;
+            public String Language;
+        }
+        public static void WriteXML(String DigitisedText, String TranslatedText, String FieldsFound, String ClausesFound,String FileName, String DateTime,String Language, string SavePath)
+        {
+            Run overview = new Run();
+            overview.DigitisedText = DigitisedText;
+            overview.TranslatedText = TranslatedText;
+            overview.DateTime = Language;
+            overview.FieldsFound = FieldsFound;
+            overview.ClausesFound = ClausesFound;
+            overview.FileName = FileName;
+            overview.DateTime = DateTime;
+            
+            System.Xml.Serialization.XmlSerializer writer =
+                new System.Xml.Serialization.XmlSerializer(typeof(Run));
+
+            var path = SavePath;
+            
+            System.IO.FileStream file = System.IO.File.Create(path);
+
+            writer.Serialize(file, overview);
+            file.Close();
+        }
+
         private void Main_Run_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             button3.Enabled = false;
+            button5.Enabled = true;
+            button9.Enabled = true;
+            button2.Enabled = true;
+            folderPath.ReadOnly = false;
+            button11.Enabled = true;
+            button12.Enabled = true;
+            savePath.ReadOnly = false;
             UpdateProgressTextDelegate UpdateText = ProgressLabel;
             UpdateStatusTextDelegate UpdateStatus = StatusLabel;
             UpdateStatusProgressDelegate UpdateProgress = Progress;
@@ -386,14 +617,14 @@ namespace QuillDigital
             }
             Invoke(UpdateText, "Complete.");
             Invoke(UpdateStatus, "");
-            button2.Enabled = true;
+
             Invoke(UpdateProgress, 0);
             string pages = servRef.GetPagesLeft(clientID, secret);
-            label7.Text = "Pages left: " + pages;
+            label8.Text = "Pages left: " + pages;
             languages.Enabled = true;
             progressBar.Visible = false;
-            
-            
+            folderPath.Text = "";
+
         }
 
         private void grayscale_CheckedChanged(object sender, EventArgs e)
@@ -422,34 +653,34 @@ namespace QuillDigital
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
             DialogResult stop = MessageBox.Show("Stop Quill?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(DialogResult.Yes == stop)
+            if (DialogResult.Yes == stop)
             {
                 button3.Enabled = false;
                 try
                 {
-                    
+
                     string stopOps = servRef.AbortOperation(clientID, secret);
                 }
                 catch
                 {
                     //this is OK - if fails, abort has been logged
                 }
-                
+
                 UpdateProgressTextDelegate UpdateText = ProgressLabel;
                 UpdateStatusTextDelegate UpdateStatus = StatusLabel;
                 UpdateStatusProgressDelegate UpdateProgress = Progress;
-                
+
                 Invoke(UpdateText, "Stopping...");
                 Invoke(UpdateStatus, "Stopping...");
-               
+
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            FrmFieldExtraction extraction = new FrmFieldExtraction(clientID,secret,servRef);
+            FrmFieldExtraction extraction = new FrmFieldExtraction(clientID, secret, servRef);
             extraction.ShowDialog();
         }
 
@@ -469,6 +700,51 @@ namespace QuillDigital
         {
             FrmChangeSecret secretChange = new FrmChangeSecret(clientID, secret, servRef);
             secretChange.ShowDialog();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            FrmClauseFinder clauseFinder = new FrmClauseFinder(clientID, secret, servRef);
+            clauseFinder.ShowDialog();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            FrmMyClauses myClauses = new FrmMyClauses(clientID, secret, servRef);
+            myClauses.ShowDialog();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            FrmClausesToExtract clausesToExtract = new FrmClausesToExtract(clientID, secret, servRef);
+            clausesToExtract.ShowDialog();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog openFileDialog = new FolderBrowserDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                savePath.Text = openFileDialog.SelectedPath;
+                GetConfiguration.ConfigurationValueSaveLocation(openFileDialog.SelectedPath);
+            }
+        }
+
+       
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+           
+          
+            FrmReport report = new FrmReport(GetConfiguration.GetConfigurationValueSaveLocation());
+            report.ShowDialog();
+
         }
     }
 }

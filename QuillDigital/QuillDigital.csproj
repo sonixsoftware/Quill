@@ -82,6 +82,18 @@
     <Compile Include="FrmChangeSecret.Designer.cs">
       <DependentUpon>FrmChangeSecret.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmClauseFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmClauseFinder.Designer.cs">
+      <DependentUpon>FrmClauseFinder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmClausesToExtract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmClausesToExtract.Designer.cs">
+      <DependentUpon>FrmClausesToExtract.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,11 +124,23 @@
     <Compile Include="FrmHome.Designer.cs">
       <DependentUpon>FrmHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMyClauses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMyClauses.Designer.cs">
+      <DependentUpon>FrmMyClauses.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMyFields.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMyFields.Designer.cs">
       <DependentUpon>FrmMyFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReport.Designer.cs">
+      <DependentUpon>FrmReport.cs</DependentUpon>
     </Compile>
     <Compile Include="GetConfiguration.cs" />
     <Compile Include="Globals.cs" />
@@ -130,6 +154,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmChangeSecret.resx">
       <DependentUpon>FrmChangeSecret.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmClauseFinder.resx">
+      <DependentUpon>FrmClauseFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmClausesToExtract.resx">
+      <DependentUpon>FrmClausesToExtract.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmConfiguration.resx">
       <DependentUpon>FrmConfiguration.cs</DependentUpon>
@@ -146,8 +176,14 @@
     <EmbeddedResource Include="FrmHome.resx">
       <DependentUpon>FrmHome.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmMyClauses.resx">
+      <DependentUpon>FrmMyClauses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMyFields.resx">
       <DependentUpon>FrmMyFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReport.resx">
+      <DependentUpon>FrmReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
