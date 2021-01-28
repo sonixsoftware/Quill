@@ -51,8 +51,9 @@ namespace QuillDigital
             {
                 maskedTextBox1.Select();
             }
+         
         }
-
+      
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -216,6 +217,14 @@ namespace QuillDigital
             textBox4.Text = string.Empty;
             textBox5.Text = string.Empty;
             maskedTextBox1.Text = string.Empty;
+        }
+
+        private void maskedTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSave.PerformClick();
+            }
         }
     }
 }
