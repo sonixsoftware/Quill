@@ -51,7 +51,9 @@
             this.button12 = new System.Windows.Forms.Button();
             this.savePath = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.folderPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,12 +75,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.message = new System.Windows.Forms.Label();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Main_Run = new System.ComponentModel.BackgroundWorker();
             this.Cancel_Main = new System.ComponentModel.BackgroundWorker();
-            this.button13 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -361,6 +361,18 @@
             this.label8.Size = new System.Drawing.Size(160, 38);
             this.label8.TabIndex = 0;
             // 
+            // button13
+            // 
+            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.button13.Location = new System.Drawing.Point(3, 3);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(54, 32);
+            this.button13.TabIndex = 3;
+            this.button13.Text = "Report";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
@@ -385,6 +397,22 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.66667F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white___Copy;
+            this.tableLayoutPanel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 66);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(230, 323);
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
             // tableLayoutPanel8
             // 
@@ -643,6 +671,17 @@
             this.tableLayoutPanel13.Size = new System.Drawing.Size(320, 57);
             this.tableLayoutPanel13.TabIndex = 12;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_burnt_sienna_alizarin_crimson;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Location = new System.Drawing.Point(217, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 51);
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -657,45 +696,6 @@
             // Main_Run
             // 
             this.Main_Run.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Main_Run_DoWork);
-            // 
-            // button13
-            // 
-            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.button13.Location = new System.Drawing.Point(3, 3);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(54, 32);
-            this.button13.TabIndex = 3;
-            this.button13.Text = "Report";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_alizarin_crimson_white___Copy;
-            this.tableLayoutPanel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 66);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(230, 323);
-            this.tableLayoutPanel3.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::QuillDigital.Properties.Resources.quill_digital_logo_burnt_sienna_alizarin_crimson;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Location = new System.Drawing.Point(217, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 51);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
             // 
             // FrmHome
             // 

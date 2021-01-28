@@ -161,5 +161,51 @@ namespace QuillDigital
         {
             System.Diagnostics.Process.Start("https://www.quilldigital.co.uk");
         }
+
+      
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string temp = Clipboard.GetText();
+            if (!string.IsNullOrEmpty(temp.Trim()))
+            {
+                if (temp.Contains("-"))
+                {
+                    
+                    string[] split = temp.Split('-');
+                    int count = split.Length;
+                    if (count == 1)
+                    {
+                        textBox1.Text = temp;
+                    }
+                    if (count == 2)
+                    {
+                        textBox1.Text = split[0];
+                        textBox2.Text = split[1];
+                    }
+                    if (count == 3)
+                    {
+                        textBox1.Text = split[0];
+                        textBox2.Text = split[1];
+                        textBox3.Text = split[2];
+                    }
+                    if (count == 4)
+                    {
+                        textBox1.Text = split[0];
+                        textBox2.Text = split[1];
+                        textBox3.Text = split[2];
+                        textBox4.Text = split[3];
+                    }
+                    if (count == 5)
+                    {
+                        textBox1.Text = split[0];
+                        textBox2.Text = split[1];
+                        textBox3.Text = split[2];
+                        textBox4.Text = split[3];
+                        textBox5.Text = split[4];
+                    }
+                }
+            }
+        }
     }
 }

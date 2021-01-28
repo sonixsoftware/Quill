@@ -47,9 +47,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -134,6 +135,7 @@
             this.tableLayoutPanel2.Controls.Add(this.maskedTextBox1, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button3, 4, 2);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(120, 26);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
@@ -205,6 +207,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(75, 20);
             this.textBox1.TabIndex = 5;
+           
             // 
             // tableLayoutPanel3
             // 
@@ -266,9 +269,16 @@
             this.label4.Size = new System.Drawing.Size(0, 23);
             this.label4.TabIndex = 14;
             // 
-            // backgroundWorker1
+            // button2
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.Location = new System.Drawing.Point(3, 120);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(111, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Register";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -281,16 +291,21 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "No Client ID? Register below";
             // 
-            // button2
+            // backgroundWorker1
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(3, 120);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(111, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Register";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(322, 53);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(76, 32);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Paste ClientID";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // FrmConfiguration
             // 
@@ -342,5 +357,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button3;
     }
 }

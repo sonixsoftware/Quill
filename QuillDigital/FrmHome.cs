@@ -546,6 +546,7 @@ namespace QuillDigital
                         return;
                     }
                     DataTable dtclausesFound = servRef.GetFoundClausesByID(clientID, secret, Globals.sqlCon, fileID);
+
                     clausesFound = Regex.Replace(clausesFound, @"(\r\n){2,}", Environment.NewLine);
                    //need to extract clauses
                 }
