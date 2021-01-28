@@ -111,8 +111,9 @@ namespace QuillDigital
                 login = servRef.CheckKeyInfo(clientID, secret);
                 
             }
-            catch
+            catch(Exception exe)
             {
+                MessageBox.Show(exe.ToString());
                 TimeOut = true;
                 return;
             }
@@ -154,6 +155,11 @@ namespace QuillDigital
         private void FrmConfiguration_Shown(object sender, EventArgs e)
         {
             ld = new Loading();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.quilldigital.co.uk");
         }
     }
 }
