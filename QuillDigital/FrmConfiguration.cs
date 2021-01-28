@@ -207,5 +207,15 @@ namespace QuillDigital
                 }
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+            textBox3.Text = string.Empty;
+            textBox4.Text = string.Empty;
+            textBox5.Text = string.Empty;
+            maskedTextBox1.Text = string.Empty;
+        }
     }
 }

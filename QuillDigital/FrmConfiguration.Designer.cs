@@ -42,6 +42,7 @@
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
@@ -50,7 +51,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -136,6 +137,7 @@
             this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button3, 4, 2);
+            this.tableLayoutPanel2.Controls.Add(this.button4, 3, 2);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(120, 26);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
@@ -207,7 +209,18 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(75, 20);
             this.textBox1.TabIndex = 5;
-           
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(322, 53);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(76, 32);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Paste ClientID";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -295,17 +308,16 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // button3
+            // button4
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(322, 53);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(76, 32);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Paste ClientID";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(242, 53);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(74, 32);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Clear";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // FrmConfiguration
             // 
@@ -358,5 +370,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
