@@ -61,6 +61,11 @@ namespace QuillDigital
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(maskedTextBox1.Text.Trim()))
+            {
+                MessageBox.Show("Please enter your Client Secret.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 ld.Show();
@@ -83,8 +88,8 @@ namespace QuillDigital
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-           
 
+            
             clientID = string.Empty;
             secret = maskedTextBox1.Text.Trim();
             LoggedIn = false;
