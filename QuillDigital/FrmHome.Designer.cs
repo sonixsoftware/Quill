@@ -339,7 +339,7 @@
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(54, 33);
             this.button12.TabIndex = 1;
-            this.button12.Text = "Save Folder";
+            this.button12.Text = "Report Folder";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 

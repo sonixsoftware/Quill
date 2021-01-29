@@ -231,5 +231,10 @@ namespace QuillDigital
                 btnSave.PerformClick();
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.quilldigital.co.uk/Account/Reset");
+        }
     }
 }

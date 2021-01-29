@@ -60,6 +60,7 @@ namespace QuillDigital
                 int i = 0;
                 string digitisedText = string.Empty;
                 string translatedText = string.Empty;
+                string language = string.Empty;
                 FileStream fs = new FileStream(xmlPath, FileMode.Open, FileAccess.Read);
                 xmldoc.Load(fs);
                 xmlnode = xmldoc.GetElementsByTagName("Run");
@@ -72,6 +73,7 @@ namespace QuillDigital
                     TranslatedText.Text = translatedText;
                     Fields.Text = xmlnode[i].ChildNodes.Item(2).InnerText.Trim();
                     Clauses.Text = xmlnode[i].ChildNodes.Item(3).InnerText.Trim();
+                    label3.Text = "Language: "+xmlnode[i].ChildNodes.Item(6).InnerText.Trim();
                     string type = Path.GetExtension(xmlnode[i].ChildNodes.Item(4).InnerText.Trim());
                     label8.Text = "File Extension: " + type + " Date Run: " + xmlnode[i].ChildNodes.Item(5).InnerText.Trim();
 
@@ -80,7 +82,7 @@ namespace QuillDigital
             }
             catch
             {
-                MessageBox.Show("Unable to load report..", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to load report..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
