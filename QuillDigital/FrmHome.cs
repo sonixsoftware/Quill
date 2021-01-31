@@ -17,9 +17,8 @@ namespace QuillDigital
 {
     public partial class FrmHome : Form
     {
-
+        BackgroundWorker main = new BackgroundWorker();
         bool cancelMain = false;
-        public BackgroundWorker main = new BackgroundWorker();
         public string translationlang = string.Empty;
         public string clientID;
         public string secret;
@@ -208,7 +207,7 @@ namespace QuillDigital
                     button3.Enabled = true;
                     if (extractFields.Checked == true)
                     {
-                        if (Globals.fieldsToExtract.Equals(string.Empty))
+                        if (GetConfiguration.GetConfigurationValueFields().Equals(string.Empty))
                         {
                             DialogResult extract = MessageBox.Show("You have not selected any fields to extract.. Click Fields To Extract to choose saved fields, or OK to continue with no extraction.", "Quill", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                             if (DialogResult.Cancel == extract)
@@ -240,7 +239,7 @@ namespace QuillDigital
                     }
                     if (clauses.Checked == true)
                     {
-                        if (Globals.clausesToExtract.Equals(string.Empty))
+                        if (GetConfiguration.GetConfigurationValueClauses().Equals(string.Empty))
                         {
                             DialogResult extract = MessageBox.Show("You have not selected any clauses to extract.. Click Clauses To Extract to choose saved clauses, or OK to continue with no extraction.", "Quill", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                             if (DialogResult.Cancel == extract)
@@ -269,6 +268,7 @@ namespace QuillDigital
                             }
                         }
                     }
+                    main = new BackgroundWorker();
                     main.DoWork += Main_Run_DoWork;
                     main.RunWorkerCompleted += Main_Run_RunWorkerCompleted;
                     main.WorkerSupportsCancellation = true;
@@ -533,7 +533,7 @@ namespace QuillDigital
 
                         break;
                     }
-                    fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", Globals.fieldsToExtract, "0");
+                    fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", GetConfiguration.GetConfigurationValueFields(), "0");
                     if (fields.Contains("QuillException: Document Limit Reached"))
                     {
                         MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -556,7 +556,7 @@ namespace QuillDigital
                 {
                     Invoke(UpdateProgress, 80);
                     Invoke(UpdateStatus, "Extracting Clauses..");
-                    clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, Globals.clausesToExtract);
+                    clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, GetConfiguration.GetConfigurationValueClauses());
                     if (clausesFound.Contains("QuillException: Document Limit Reached"))
                     {
                         MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);

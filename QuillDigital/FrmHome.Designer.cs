@@ -54,6 +54,7 @@
             this.button13 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.button14 = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.folderPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -79,7 +80,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Main_Run = new System.ComponentModel.BackgroundWorker();
             this.Cancel_Main = new System.ComponentModel.BackgroundWorker();
-            this.button14 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -417,6 +417,16 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(230, 323);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(118, 164);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(70, 46);
+            this.button14.TabIndex = 0;
+            this.button14.Text = "Upgrade License";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 1;
@@ -699,16 +709,6 @@
             // Main_Run
             // 
             this.Main_Run.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Main_Run_DoWork);
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(118, 164);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(70, 46);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Upgrade License";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // FrmHome
             // 

@@ -137,7 +137,6 @@
             this.ClientSize = new System.Drawing.Size(296, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "FrmFieldsToExtract";
             this.Text = "Fields To Extract";
             this.Load += new System.EventHandler(this.FrmFieldsToExtract_Load);

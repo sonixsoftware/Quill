@@ -50,6 +50,23 @@ namespace QuillDigital
                 ClausesToExtract.Items.Add(row["TagOne"].ToString());
             }
 
+            if (!string.IsNullOrEmpty(GetConfiguration.GetConfigurationValueClauses()))
+            {
+                string[] split = GetConfiguration.GetConfigurationValueClauses().Split(',');
+                foreach (string clause in split)
+                {
+
+                    for (int i = 0; i < ClausesToExtract.Items.Count; i++)
+                    {
+                        string strItem = ClausesToExtract.Items[i].ToString();
+                        if (strItem.Equals(clause))
+                        {
+                            ClausesToExtract.SetItemChecked(i, true);
+                        }
+
+                    }
+                }
+            }
             ld.Close();
         }
 
@@ -83,7 +100,8 @@ namespace QuillDigital
                 }
             }
             checkedFields = checkedFields.TrimStart(',').TrimEnd(',');
-            Globals.clausesToExtract = checkedFields;
+           
+            GetConfiguration.ConfigurationValueClauses(checkedFields);
             this.Close();
         }
     }

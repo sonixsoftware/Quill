@@ -49,6 +49,24 @@ namespace QuillDigital
             {
                 FieldsToExtract.Items.Add(field);
             }
+           
+            if (!string.IsNullOrEmpty(GetConfiguration.GetConfigurationValueFields()))
+            {
+                string[] split = GetConfiguration.GetConfigurationValueFields().Split(',');
+                foreach(string field in split)
+                {
+                   
+                    for (int i = 0; i < FieldsToExtract.Items.Count; i++)
+                    {
+                        string strItem = FieldsToExtract.Items[i].ToString();
+                        if (strItem.Equals(field))
+                        {
+                            FieldsToExtract.SetItemChecked(i, true);
+                        }
+                        
+                    }
+                }
+            }
             ld.Close();
         }
 
@@ -82,7 +100,7 @@ namespace QuillDigital
                 }
             }
             checkedFields  = checkedFields.TrimStart(',').TrimEnd(',');
-            Globals.fieldsToExtract = checkedFields;
+            GetConfiguration.ConfigurationValueFields(checkedFields);
             this.Close();
         }
     }

@@ -12,6 +12,20 @@ namespace QuillDigital
 
             return id;
         }
+        public static string GetConfigurationValueClauses()
+
+        {
+            string id = ConfigurationManager.AppSettings["ClausesToExtract"];
+
+            return id;
+        }
+        public static string GetConfigurationValueFields()
+
+        {
+            string id = ConfigurationManager.AppSettings["FieldsToExtract"];
+
+            return id;
+        }
 
         public static string GetConfigurationValueSaveLocation()
 
@@ -33,6 +47,28 @@ namespace QuillDigital
             ConfigurationManager.RefreshSection("appSettings");
         }
 
+        public static void ConfigurationValueClauses(string ClausesToExtract)
+
+        {
+            var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            configuration.AppSettings.Settings["ClausesToExtract"].Value = ClausesToExtract;
+
+            configuration.Save(ConfigurationSaveMode.Modified);
+
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+        public static void ConfigurationValueFields(string FieldsToExtract)
+
+        {
+            var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            configuration.AppSettings.Settings["FieldsToExtract"].Value = FieldsToExtract;
+
+            configuration.Save(ConfigurationSaveMode.Modified);
+
+            ConfigurationManager.RefreshSection("appSettings");
+        }
         public static void ConfigurationValueSaveLocation(string SaveLocation)
 
         {
