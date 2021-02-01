@@ -101,7 +101,15 @@ namespace QuillDigital
                     }
                 }
                 files.Items.Remove(fileName);
-                files.SelectedIndex = 0;
+                try
+                {
+                    files.SelectedIndex = 0;
+                }
+                catch
+                {
+                    this.Close();
+                }
+
             }
             
 

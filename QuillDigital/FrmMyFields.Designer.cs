@@ -37,6 +37,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.findAll = new System.Windows.Forms.CheckBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.strRegex = new System.Windows.Forms.RichTextBox();
+            this.regex = new System.Windows.Forms.CheckBox();
             this.dgvWords = new System.Windows.Forms.DataGridView();
             this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,12 +67,10 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.regex = new System.Windows.Forms.CheckBox();
-            this.strRegex = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
@@ -77,7 +78,6 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -184,6 +184,44 @@
             this.richTextBox1.Size = new System.Drawing.Size(176, 145);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.19418F));
+            this.tableLayoutPanel9.Controls.Add(this.strRegex, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.regex, 0, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 42);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 121F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(206, 145);
+            this.tableLayoutPanel9.TabIndex = 5;
+            // 
+            // strRegex
+            // 
+            this.strRegex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strRegex.Location = new System.Drawing.Point(3, 27);
+            this.strRegex.Name = "strRegex";
+            this.strRegex.Size = new System.Drawing.Size(200, 115);
+            this.strRegex.TabIndex = 1;
+            this.strRegex.Text = "";
+            this.strRegex.Visible = false;
+            // 
+            // regex
+            // 
+            this.regex.AutoSize = true;
+            this.regex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.regex.Location = new System.Drawing.Point(3, 3);
+            this.regex.Name = "regex";
+            this.regex.Size = new System.Drawing.Size(200, 18);
+            this.regex.TabIndex = 0;
+            this.regex.Text = "Regex";
+            this.regex.UseVisualStyleBackColor = true;
+            this.regex.CheckedChanged += new System.EventHandler(this.regex_CheckedChanged);
             // 
             // dgvWords
             // 
@@ -491,44 +529,6 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.19418F));
-            this.tableLayoutPanel9.Controls.Add(this.strRegex, 0, 1);
-            this.tableLayoutPanel9.Controls.Add(this.regex, 0, 0);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 42);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 2;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 121F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(206, 145);
-            this.tableLayoutPanel9.TabIndex = 5;
-            // 
-            // regex
-            // 
-            this.regex.AutoSize = true;
-            this.regex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.regex.Location = new System.Drawing.Point(3, 3);
-            this.regex.Name = "regex";
-            this.regex.Size = new System.Drawing.Size(200, 18);
-            this.regex.TabIndex = 0;
-            this.regex.Text = "Regex";
-            this.regex.UseVisualStyleBackColor = true;
-            this.regex.CheckedChanged += new System.EventHandler(this.regex_CheckedChanged);
-            // 
-            // strRegex
-            // 
-            this.strRegex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.strRegex.Location = new System.Drawing.Point(3, 27);
-            this.strRegex.Name = "strRegex";
-            this.strRegex.Size = new System.Drawing.Size(200, 115);
-            this.strRegex.TabIndex = 1;
-            this.strRegex.Text = "";
-            this.strRegex.Visible = false;
-            // 
             // FrmMyFields
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,6 +545,8 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -554,8 +556,6 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
             this.ResumeLayout(false);
 
         }

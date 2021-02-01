@@ -130,12 +130,16 @@ namespace QuillDigital
                         richTextBox1.Text = "";
                         richTextBox1.Enabled = false;
                         button1.Enabled = false;
-                        button2.Enabled = false;
-                        button3.Enabled = false;
-                        if (!string.IsNullOrEmpty(words["Regex"].ToString().Trim()))
+                        button2.Enabled = false; 
+ 
+                         button3.Enabled = false;
+                        if (!words["Regex"].ToString().Trim().Contains("No Regex found for"))
                         {
-                            regex.Checked = true;
-                            strRegex.Text = words["Regex"].ToString().Trim();
+                            if (!string.IsNullOrEmpty(words["Regex"].ToString().Trim()))
+                            {
+                                regex.Checked = true;
+                                strRegex.Text = words["Regex"].ToString().Trim();
+                            }
                         }
                         ld.Close();
                         return;
@@ -393,11 +397,11 @@ namespace QuillDigital
                 string delete = servRef.DeleteField(Globals.sqlCon, clientid, secret, fieldName);
                 
                 bool findAllIn = findAll.Checked;
-                string temp = "OFF";
+                string temp = "FALSE";
                 string fieldType = types.Text.Trim();
                 if (findAllIn == true)
                 {
-                    temp = "ON";
+                    temp = "TRUE";
                 }
                 if (findAllIn == true)
                 {
