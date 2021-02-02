@@ -279,8 +279,7 @@ namespace QuillDigital
             finishedRun.Columns.Add("Translated Text");
             finishedRun.Columns.Add("Fields Found");
             finishedRun.Columns.Add("Clauses Found");
-            DataRow toInsert = finishedRun.NewRow();
-            finishedRun.Rows.Add(toInsert);
+          
             Globals.dpi = GetConfiguration.GetConfigurationValueDPI();
             Globals.meta = GetConfiguration.GetConfigurationValueMeta();
             Globals.ocrType = GetConfiguration.GetConfigurationValueOCR();
