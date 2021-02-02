@@ -79,12 +79,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="FrmChangeSecret.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmChangeSecret.Designer.cs">
-      <DependentUpon>FrmChangeSecret.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmClauseFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +139,12 @@
     <Compile Include="FrmReport.Designer.cs">
       <DependentUpon>FrmReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="GetConfiguration.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Loading.cs">
@@ -155,9 +155,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmChangeSecret.resx">
-      <DependentUpon>FrmChangeSecret.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmClauseFinder.resx">
       <DependentUpon>FrmClauseFinder.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmReport.resx">
       <DependentUpon>FrmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>

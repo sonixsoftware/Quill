@@ -25,12 +25,19 @@ namespace QuillDigital
             string clientID = GetConfiguration.GetConfigurationValueClientID();
             if (!string.IsNullOrEmpty(clientID.Trim()))
             {
-                string[] clientidArr = clientID.Split('-');
-                textBox1.Text = clientidArr[0];
-                textBox2.Text = clientidArr[1];
-                textBox3.Text = clientidArr[2];
-                textBox4.Text = clientidArr[3];
-                textBox5.Text = clientidArr[4];
+                try
+                {
+                    string[] clientidArr = clientID.Split('-');
+                    textBox1.Text = clientidArr[0];
+                    textBox2.Text = clientidArr[1];
+                    textBox3.Text = clientidArr[2];
+                    textBox4.Text = clientidArr[3];
+                    textBox5.Text = clientidArr[4];
+                }
+                catch
+                {
+                    //assume no client id
+                }
             }
             ((BasicHttpBinding)servRef.Endpoint.Binding).MaxReceivedMessageSize = int.MaxValue;
             ((BasicHttpBinding)servRef.Endpoint.Binding).MaxBufferSize = int.MaxValue;

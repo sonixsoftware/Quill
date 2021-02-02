@@ -23,11 +23,9 @@ namespace QuillDigital
         public string clientID;
         public string secret;
         WebServiceSoapClient servRef;
-        string meta = string.Empty;
-        string dpi = string.Empty;
         bool lineRemoval = false;
         string strLineRemoval = string.Empty;
-        string ocrType = string.Empty;
+      
 
         public FrmHome(string ClientID, string Secret, WebServiceSoapClient ServRef)
         {
@@ -66,26 +64,14 @@ namespace QuillDigital
                 languages.Items.Add(langRow[0].ToString());
             }
             languages.Text = "NONE";
-            DPI.Items.Add("150");
-            DPI.Items.Add("300");
-            DPI.Text = "300";
-
-            int count = 5000;
-            while (count > 0)
-            {
-                metatoll.Items.Add(count.ToString());
-                count--;
-            }
-            metatoll.Text = "5000";
-
-            ocrtype.Items.Add("Microsoft Cloud");
-            ocrtype.Items.Add("Google Cloud");
-            ocrtype.Items.Add("Quill Cloud");
-            ocrtype.Text = "Microsoft Cloud";
+           
             string pages = servRef.GetPagesLeft(clientID, secret);
             label8.Text = "Pages left: " + pages;
             extractFields.Checked = true;
             savePath.Text = GetConfiguration.GetConfigurationValueSaveLocation();
+            Globals.ocrType = GetConfiguration.GetConfigurationValueOCR();
+            Globals.meta = GetConfiguration.GetConfigurationValueMeta();
+            Globals.dpi = GetConfiguration.GetConfigurationValueDPI();
             ld.Close();
         }
 
@@ -170,37 +156,13 @@ namespace QuillDigital
                     cancelMain = false;
                     translationlang = languages.Text.Trim();
                     languages.Enabled = false;
-                    meta = metatoll.Text.Trim();
-                    dpi = DPI.Text.Trim();
-                    lineRemoval = grayscale.Checked;
                     button5.Enabled = false;
                     button9.Enabled = false;
                     button3.Enabled = false;
                     button12.Enabled = false;
                     savePath.ReadOnly = true;
                     folderPath.ReadOnly = true;
-
-                    if (lineRemoval == true)
-                    {
-                        strLineRemoval = "1";
-                    }
-                    else
-                    {
-                        strLineRemoval = "0";
-                    }
-                    ocrType = ocrtype.Text.Trim();
-                    if (ocrType.Equals("Microsoft Cloud"))
-                    {
-                        ocrType = "1";
-                    }
-                    else if (ocrType.Equals("Google Cloud"))
-                    {
-                        ocrType = "2";
-                    }
-                    else
-                    {
-                        ocrType = "0";
-                    }
+                    
                     button2.Enabled = false;
                     button11.Enabled = false;
                     progressBar.Visible = true;
@@ -319,6 +281,22 @@ namespace QuillDigital
             finishedRun.Columns.Add("Clauses Found");
             DataRow toInsert = finishedRun.NewRow();
             finishedRun.Rows.Add(toInsert);
+            Globals.dpi = GetConfiguration.GetConfigurationValueDPI();
+            Globals.meta = GetConfiguration.GetConfigurationValueMeta();
+            Globals.ocrType = GetConfiguration.GetConfigurationValueOCR();
+            strLineRemoval = GetConfiguration.GetConfigurationValueGrayScale();
+            if (Globals.ocrType.Equals("Microsoft Cloud"))
+            {
+                Globals.ocrType = "1";
+            }
+            else if (Globals.ocrType.Equals("Google Cloud"))
+            {
+                Globals.ocrType = "2";
+            }
+            else
+            {
+                Globals.ocrType = "0";
+            }
 
             //Make sure thread does not send PC to sleep
             Kernel32.SetThreadExecutionState(Kernel32.EXECUTION_STATE.ES_CONTINUOUS |
@@ -414,7 +392,7 @@ namespace QuillDigital
                 
                 #region Check file type
                 Invoke(UpdateStatus, "Native Check..");
-                string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, meta);
+                string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, Globals.meta);
                 if (native.Contains("QuillException: Document Limit Reached"))
                 {
                     MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -454,7 +432,7 @@ namespace QuillDigital
                             break;
                         }
                         Invoke(UpdateProgress, 40);
-                        string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, ocrType, strLineRemoval, dpi, "0");
+                        string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, Globals.ocrType, strLineRemoval, Globals.dpi, "0");
                         if (digitise.Contains("QuillException: Document Limit Reached"))
                         {
                             MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -711,17 +689,7 @@ namespace QuillDigital
 
         }
 
-        private void grayscale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (grayscale.Checked == true)
-            {
-                MessageBox.Show("Grayscaling will add significant time to processing.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-
-            }
-        }
+       
 
         private void folderPath_TextChanged(object sender, EventArgs e)
         {
@@ -783,8 +751,8 @@ namespace QuillDigital
 
         private void button7_Click(object sender, EventArgs e)
         {
-            FrmChangeSecret secretChange = new FrmChangeSecret(clientID, secret, servRef);
-            secretChange.ShowDialog();
+            FrmSettings settings = new FrmSettings(clientID, secret, servRef);
+            settings.ShowDialog();
         }
 
         private void button8_Click(object sender, EventArgs e)

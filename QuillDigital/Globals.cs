@@ -9,7 +9,10 @@ namespace QuillDigital
     class Globals
     {
         public static string sqlCon = "DEFAULT";
-        
+        public static string meta = string.Empty;
+        public static string dpi = string.Empty;
+        public static string ocrType = string.Empty;
+        public static string lineRemoval = string.Empty;
 
     }
      

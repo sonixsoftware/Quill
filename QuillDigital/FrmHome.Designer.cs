@@ -34,17 +34,10 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.grayscale = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.DPI = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.metatoll = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.clauses = new System.Windows.Forms.CheckBox();
-            this.ocrtype = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.extractFields = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
@@ -84,7 +77,6 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -156,8 +148,6 @@
             this.tableLayoutPanel9.ColumnCount = 2;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.grayscale, 1, 0);
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel12, 1, 1);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -169,32 +159,10 @@
             this.tableLayoutPanel9.Size = new System.Drawing.Size(226, 189);
             this.tableLayoutPanel9.TabIndex = 0;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 26);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "DPI";
-            // 
-            // grayscale
-            // 
-            this.grayscale.AutoSize = true;
-            this.grayscale.Location = new System.Drawing.Point(116, 3);
-            this.grayscale.Name = "grayscale";
-            this.grayscale.Size = new System.Drawing.Size(78, 17);
-            this.grayscale.TabIndex = 2;
-            this.grayscale.Text = "Gray Scale";
-            this.grayscale.UseVisualStyleBackColor = true;
-            this.grayscale.CheckedChanged += new System.EventHandler(this.grayscale_CheckedChanged);
-            // 
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 1;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Controls.Add(this.DPI, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel11, 0, 1);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 29);
@@ -205,20 +173,10 @@
             this.tableLayoutPanel10.Size = new System.Drawing.Size(107, 157);
             this.tableLayoutPanel10.TabIndex = 3;
             // 
-            // DPI
-            // 
-            this.DPI.FormattingEnabled = true;
-            this.DPI.Location = new System.Drawing.Point(3, 3);
-            this.DPI.Name = "DPI";
-            this.DPI.Size = new System.Drawing.Size(101, 21);
-            this.DPI.TabIndex = 1;
-            // 
             // tableLayoutPanel11
             // 
             this.tableLayoutPanel11.ColumnCount = 1;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Controls.Add(this.metatoll, 0, 1);
-            this.tableLayoutPanel11.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 50);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 2;
@@ -227,31 +185,11 @@
             this.tableLayoutPanel11.Size = new System.Drawing.Size(101, 83);
             this.tableLayoutPanel11.TabIndex = 4;
             // 
-            // metatoll
-            // 
-            this.metatoll.FormattingEnabled = true;
-            this.metatoll.Location = new System.Drawing.Point(3, 18);
-            this.metatoll.Name = "metatoll";
-            this.metatoll.Size = new System.Drawing.Size(95, 21);
-            this.metatoll.TabIndex = 2;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 15);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Meta Tollerance";
-            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 1;
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel12.Controls.Add(this.clauses, 0, 3);
-            this.tableLayoutPanel12.Controls.Add(this.ocrtype, 0, 1);
-            this.tableLayoutPanel12.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.extractFields, 0, 2);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(116, 29);
@@ -274,25 +212,6 @@
             this.clauses.TabIndex = 3;
             this.clauses.Text = "Check Clauses";
             this.clauses.UseVisualStyleBackColor = true;
-            // 
-            // ocrtype
-            // 
-            this.ocrtype.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ocrtype.FormattingEnabled = true;
-            this.ocrtype.Location = new System.Drawing.Point(3, 22);
-            this.ocrtype.Name = "ocrtype";
-            this.ocrtype.Size = new System.Drawing.Size(101, 21);
-            this.ocrtype.TabIndex = 1;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 19);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "OCR Type";
             // 
             // extractFields
             // 
@@ -527,7 +446,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(102, 101);
             this.button7.TabIndex = 5;
-            this.button7.Text = "Show Secret";
+            this.button7.Text = "Settngs";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -726,10 +645,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel11.ResumeLayout(false);
-            this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.tableLayoutPanel14.ResumeLayout(false);
@@ -780,16 +696,9 @@
         private System.Windows.Forms.ComboBox languages;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox DPI;
-        private System.Windows.Forms.CheckBox grayscale;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
-        private System.Windows.Forms.ComboBox metatoll;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox ocrtype;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.CheckBox extractFields;
