@@ -36,6 +36,7 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.button14 = new System.Windows.Forms.Button();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.clauses = new System.Windows.Forms.CheckBox();
             this.extractFields = new System.Windows.Forms.CheckBox();
@@ -47,7 +48,7 @@
             this.button13 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button14 = new System.Windows.Forms.Button();
+            this.fileType = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.folderPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,6 +78,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -177,6 +179,7 @@
             // 
             this.tableLayoutPanel11.ColumnCount = 1;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Controls.Add(this.button14, 0, 1);
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 50);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 2;
@@ -184,6 +187,17 @@
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.45161F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(101, 83);
             this.tableLayoutPanel11.TabIndex = 4;
+            // 
+            // button14
+            // 
+            this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button14.Location = new System.Drawing.Point(3, 18);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(95, 62);
+            this.button14.TabIndex = 0;
+            this.button14.Text = "Upgrade License";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // tableLayoutPanel12
             // 
@@ -326,7 +340,7 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.button14, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.fileType, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 66);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -336,15 +350,17 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(230, 323);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // button14
+            // fileType
             // 
-            this.button14.Location = new System.Drawing.Point(118, 164);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(70, 46);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Upgrade License";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
+            this.fileType.AutoSize = true;
+            this.fileType.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.fileType.Location = new System.Drawing.Point(118, 303);
+            this.fileType.Name = "fileType";
+            this.fileType.Size = new System.Drawing.Size(109, 17);
+            this.fileType.TabIndex = 0;
+            this.fileType.Text = "Choose Files";
+            this.fileType.UseVisualStyleBackColor = true;
+            this.fileType.CheckedChanged += new System.EventHandler(this.fileType_CheckedChanged);
             // 
             // tableLayoutPanel8
             // 
@@ -646,6 +662,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.tableLayoutPanel14.ResumeLayout(false);
@@ -653,6 +670,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -713,5 +731,6 @@
         private System.Windows.Forms.TextBox savePath;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.CheckBox fileType;
     }
 }

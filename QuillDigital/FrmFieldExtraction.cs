@@ -102,11 +102,11 @@ namespace QuillDigital
             {
                 string fieldName = textBox1.Text.Trim().Replace("'", "").ToUpper();
                 bool findAllIn = findAll.Checked;
-                string temp = "OFF";
+                string temp = "FALSE";
                 string fieldType = types.Text.Trim();
                 if (findAllIn == true)
                 {
-                    temp = "ON";
+                    temp = "TRUE";
                 }
                 if (findAllIn == true)
                 {

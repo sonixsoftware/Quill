@@ -25,7 +25,7 @@ namespace QuillDigital
         WebServiceSoapClient servRef;
         bool lineRemoval = false;
         string strLineRemoval = string.Empty;
-      
+
 
         public FrmHome(string ClientID, string Secret, WebServiceSoapClient ServRef)
         {
@@ -64,7 +64,7 @@ namespace QuillDigital
                 languages.Items.Add(langRow[0].ToString());
             }
             languages.Text = "NONE";
-           
+
             string pages = servRef.GetPagesLeft(clientID, secret);
             label8.Text = "Pages left: " + pages;
             extractFields.Checked = true;
@@ -98,11 +98,26 @@ namespace QuillDigital
 
         private void button11_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog openFileDialog = new FolderBrowserDialog();
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (fileType.Checked == false)
             {
-                folderPath.Text = openFileDialog.SelectedPath;
+                FolderBrowserDialog openFileDialog = new FolderBrowserDialog();
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    folderPath.Text = openFileDialog.SelectedPath;
+                    Globals.files = null;
+                }
+            }
+            else
+            {
+                OpenFileDialog openFolderDialog = new OpenFileDialog();
+                openFolderDialog.Filter = "All files|*.*";
+                openFolderDialog.Multiselect = true;
+                if (openFolderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Globals.files = openFolderDialog.FileNames;
+                    button2.Enabled = true;
+                }
             }
         }
 
@@ -110,11 +125,25 @@ namespace QuillDigital
         {
 
 
-            if (!string.IsNullOrEmpty(folderPath.Text))
+            if (string.IsNullOrEmpty(folderPath.Text) && fileType.Checked == false)
+            {
+                
+                    MessageBox.Show("Please provide a folder path for the files you wish to run.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                
+
+            }
+            else
             {
                 DialogResult run = MessageBox.Show("Run Quill?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (run == DialogResult.Yes)
                 {
+                    if (fileType.Checked == true && Globals.files == null)
+                    {
+                        MessageBox.Show("Please choose some files..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return;
+                    }
                     try
                     {
                         File.WriteAllText(Path.Combine(savePath.Text.Trim(), "#QUILL#_OUTPUTS.txt"), "");
@@ -127,11 +156,11 @@ namespace QuillDigital
                     }
                     if (string.IsNullOrEmpty(savePath.Text.Trim()))
                     {
-                        MessageBox.Show("Please enter a Save directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Please enter a Report directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                         return;
                     }
-                    if (string.IsNullOrEmpty(folderPath.Text.Trim()))
+                    if (string.IsNullOrEmpty(folderPath.Text.Trim()) && fileType.Checked == false)
                     {
                         MessageBox.Show("Please enter a Run directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -144,12 +173,14 @@ namespace QuillDigital
                         button2.Enabled = true;
                         button5.Enabled = true;
                         button9.Enabled = true;
+                        button7.Enabled = true;
                         folderPath.ReadOnly = false;
                         button11.Enabled = true;
                         button12.Enabled = true;
                         savePath.ReadOnly = false;
                         languages.Enabled = true;
                         button12.PerformClick();
+
                         return;
 
                     }
@@ -159,10 +190,11 @@ namespace QuillDigital
                     button5.Enabled = false;
                     button9.Enabled = false;
                     button3.Enabled = false;
+                    button7.Enabled = false;
                     button12.Enabled = false;
                     savePath.ReadOnly = true;
                     folderPath.ReadOnly = true;
-                    
+                    fileType.Enabled = false;
                     button2.Enabled = false;
                     button11.Enabled = false;
                     progressBar.Visible = true;
@@ -176,13 +208,18 @@ namespace QuillDigital
                             {
                                 button3.Enabled = false;
                                 button2.Enabled = true;
+                                button7.Enabled = true;
                                 button5.Enabled = true;
                                 button9.Enabled = true;
-                                folderPath.ReadOnly = false;
+                                if (fileType.Checked == false)
+                                {
+                                    folderPath.ReadOnly = false;
+                                }
                                 button11.Enabled = true;
                                 button12.Enabled = true;
                                 savePath.ReadOnly = false;
                                 languages.Enabled = true;
+                                fileType.Enabled = true;
                                 button6.PerformClick();
                                 return;
                             }
@@ -195,7 +232,9 @@ namespace QuillDigital
                                 button9.Enabled = false;
                                 button12.Enabled = false;
                                 languages.Enabled = false;
+                                button7.Enabled = false;
                                 savePath.ReadOnly = true;
+                                fileType.Enabled = false;
                             }
                         }
                     }
@@ -208,13 +247,18 @@ namespace QuillDigital
                             {
                                 button3.Enabled = false;
                                 button5.Enabled = true;
+                                button7.Enabled = true;
                                 button9.Enabled = true;
                                 button2.Enabled = true;
-                                folderPath.ReadOnly = false;
+                                if (fileType.Checked == false)
+                                {
+                                    folderPath.ReadOnly = false;
+                                }
                                 button11.Enabled = true;
                                 button12.Enabled = true;
                                 savePath.ReadOnly = false;
                                 languages.Enabled = true;
+                                fileType.Enabled = true;
                                 button10.PerformClick();
                                 return;
                             }
@@ -222,11 +266,13 @@ namespace QuillDigital
                             {
                                 clauses.Checked = false;
                                 button2.Enabled = false;
+                                button7.Enabled = false;
                                 button3.Enabled = true;
                                 button5.Enabled = false;
                                 button9.Enabled = false;
                                 button12.Enabled = false;
                                 savePath.ReadOnly = true;
+                                fileType.Enabled = false;
                             }
                         }
                     }
@@ -242,15 +288,14 @@ namespace QuillDigital
                 {
                     return;
                 }
-
-
             }
-            else
-            {
-                MessageBox.Show("Please provide a folder path for the files you wish to run.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+
         }
+
+
+
+
+
 
         private delegate void UpdateProgressTextDelegate(string message);
         public void ProgressLabel(string Message)
@@ -279,7 +324,7 @@ namespace QuillDigital
             finishedRun.Columns.Add("Translated Text");
             finishedRun.Columns.Add("Fields Found");
             finishedRun.Columns.Add("Clauses Found");
-          
+
             Globals.dpi = GetConfiguration.GetConfigurationValueDPI();
             Globals.meta = GetConfiguration.GetConfigurationValueMeta();
             Globals.ocrType = GetConfiguration.GetConfigurationValueOCR();
@@ -302,15 +347,31 @@ namespace QuillDigital
                                            Kernel32.EXECUTION_STATE.ES_SYSTEM_REQUIRED |
                                            Kernel32.EXECUTION_STATE.ES_AWAYMODE_REQUIRED);
             string[] docList = null;
-            try
+            if (fileType.Checked == false)
             {
-                docList = Directory.GetFiles(folderPath.Text.Trim(), "*.*");
-            }
-            catch
-            {
-                MessageBox.Show("Unable to find Run directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    docList = Directory.GetFiles(folderPath.Text.Trim(), "*.*");
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to find Run directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                return;
+                    return;
+                }
+            }
+            else
+            {
+                if (Globals.files != null)
+                {
+                    docList = Globals.files;
+                }
+                else
+                {
+                    MessageBox.Show("Please choose some files..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
             }
 
             if (!Directory.Exists(savePath.Text.Trim()))
@@ -388,7 +449,7 @@ namespace QuillDigital
                 string fileID = servRef.GetFileID(fileName, clientID, secret);
                 Invoke(UpdateProgress, 20);
                 #endregion
-                
+
                 #region Check file type
                 Invoke(UpdateStatus, "Native Check..");
                 string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, Globals.meta);
@@ -417,7 +478,7 @@ namespace QuillDigital
                         return;
                     }
                     fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
-                  
+
                     Invoke(UpdateProgress, 40);
                 }
                 else
@@ -437,7 +498,8 @@ namespace QuillDigital
                             MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
-                        if(digitise.Contains("File Corrupt- unable to convert")){
+                        if (digitise.Contains("File Corrupt- unable to convert"))
+                        {
                             corruptFile = true;
                         }
 
@@ -469,7 +531,7 @@ namespace QuillDigital
                     {
                         fullText = "File Corrupt - unable to convert";
                     }
-                  
+
 
                 }
                 string clausesFound = string.Empty;
@@ -478,7 +540,7 @@ namespace QuillDigital
                 #endregion
                 if (corruptFile == false)
                 {
-                   
+
                     Invoke(UpdateProgress, 50);
                     #region Translate
                     //Translate
@@ -502,7 +564,7 @@ namespace QuillDigital
 
                     }
                     #endregion
-                   
+
                     //extract fields
                     #region Extract Fields
                     if (extractFields.Checked == true)
@@ -543,7 +605,7 @@ namespace QuillDigital
 
                         break;
                     }
-                   
+
                     #region Check Clauses
                     if (clauses.Checked == true)
                     {
@@ -602,14 +664,14 @@ namespace QuillDigital
 
                     #endregion
                 }
-               
-              
+
+
                 Invoke(UpdateProgress, 90);
                 Invoke(UpdateStatus, "Writing Report..");
                 #region Write Report
 
                 string xmlDoc = Path.GetFileNameWithoutExtension(file) + ".xml";
-                WriteXML(fullText, translated, fields, clausesFound,fileName,DateTime.Now.ToString(), translationlang, Path.Combine(savePath.Text, xmlDoc));
+                WriteXML(fullText, translated, fields, clausesFound, fileName, DateTime.Now.ToString(), translationlang, Path.Combine(savePath.Text, xmlDoc));
                 if (file.ToUpper().Trim().Equals(lastFile.ToUpper().Trim()))
                 {
                     break;
@@ -617,7 +679,7 @@ namespace QuillDigital
                 #endregion
                 #endregion
             }
-           
+
             return;
         }
 
@@ -631,7 +693,7 @@ namespace QuillDigital
             public String DateTime;
             public String Language;
         }
-        public static void WriteXML(String DigitisedText, String TranslatedText, String FieldsFound, String ClausesFound,String FileName, String DateTime,String Language, string SavePath)
+        public static void WriteXML(String DigitisedText, String TranslatedText, String FieldsFound, String ClausesFound, String FileName, String DateTime, String Language, string SavePath)
         {
             Run overview = new Run();
             overview.DigitisedText = DigitisedText;
@@ -641,12 +703,12 @@ namespace QuillDigital
             overview.ClausesFound = ClausesFound;
             overview.FileName = FileName;
             overview.DateTime = DateTime;
-            
+
             System.Xml.Serialization.XmlSerializer writer =
                 new System.Xml.Serialization.XmlSerializer(typeof(Run));
 
             var path = SavePath;
-            
+
             System.IO.FileStream file = System.IO.File.Create(path);
 
             writer.Serialize(file, overview);
@@ -655,14 +717,17 @@ namespace QuillDigital
 
         private void Main_Run_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            button7.Enabled = true;
             button3.Enabled = false;
             button5.Enabled = true;
             button9.Enabled = true;
-            button2.Enabled = true;
+            button2.Enabled = false;
             folderPath.ReadOnly = false;
             button11.Enabled = true;
             button12.Enabled = true;
             savePath.ReadOnly = false;
+            fileType.Enabled = true;
+            fileType.Checked = false;
             UpdateProgressTextDelegate UpdateText = ProgressLabel;
             UpdateStatusTextDelegate UpdateStatus = StatusLabel;
             UpdateStatusProgressDelegate UpdateProgress = Progress;
@@ -688,7 +753,7 @@ namespace QuillDigital
 
         }
 
-       
+
 
         private void folderPath_TextChanged(object sender, EventArgs e)
         {
@@ -744,7 +809,7 @@ namespace QuillDigital
         private void button6_Click(object sender, EventArgs e)
         {
             FrmFieldsToExtract fieldstoextract = new FrmFieldsToExtract(clientID, secret, servRef);
-            
+
             fieldstoextract.ShowDialog();
         }
 
@@ -788,12 +853,12 @@ namespace QuillDigital
             }
         }
 
-       
+
 
         private void button13_Click(object sender, EventArgs e)
         {
-           
-          
+
+
             FrmReport report = new FrmReport(GetConfiguration.GetConfigurationValueSaveLocation());
             report.ShowDialog();
 
@@ -802,6 +867,22 @@ namespace QuillDigital
         private void button14_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.quilldigital.co.uk/Login");
+        }
+
+        private void fileType_CheckedChanged(object sender, EventArgs e)
+        {
+            if (fileType.Checked == true)
+            {
+                button11.Text = "Choose Files";
+                folderPath.Text = "";
+                folderPath.ReadOnly = true;
+            }
+            else
+            {
+                button11.Text = "Open Folder";
+                folderPath.Text = "";
+                folderPath.ReadOnly = false;
+            }
         }
     }
 }
