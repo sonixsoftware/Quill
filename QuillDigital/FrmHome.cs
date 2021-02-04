@@ -318,6 +318,7 @@ namespace QuillDigital
         }
         private void Main_Run_DoWork(object sender, DoWorkEventArgs e)
         {
+
             #region Set Up Run
             DataTable finishedRun = new DataTable();
             finishedRun.Columns.Add("Digitised Text");
@@ -717,39 +718,48 @@ namespace QuillDigital
 
         private void Main_Run_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            button7.Enabled = true;
-            button3.Enabled = false;
-            button5.Enabled = true;
-            button9.Enabled = true;
-            button2.Enabled = false;
-            folderPath.ReadOnly = false;
-            button11.Enabled = true;
-            button12.Enabled = true;
-            savePath.ReadOnly = false;
-            fileType.Enabled = true;
-            fileType.Checked = false;
-            UpdateProgressTextDelegate UpdateText = ProgressLabel;
-            UpdateStatusTextDelegate UpdateStatus = StatusLabel;
-            UpdateStatusProgressDelegate UpdateProgress = Progress;
-            if (main.IsBusy)
+            try
             {
-                Invoke(UpdateText, "Stopping..");
-                Invoke(UpdateStatus, "Stopping..");
-            }
-            Invoke(UpdateText, "Complete.");
-            Invoke(UpdateStatus, "");
+                button7.Enabled = true;
+                button3.Enabled = false;
+                button5.Enabled = true;
+                button9.Enabled = true;
+                button2.Enabled = false;
+                folderPath.ReadOnly = false;
+                button11.Enabled = true;
+                button12.Enabled = true;
+                savePath.ReadOnly = false;
+                fileType.Enabled = true;
+                fileType.Checked = false;
+                UpdateProgressTextDelegate UpdateText = ProgressLabel;
+                UpdateStatusTextDelegate UpdateStatus = StatusLabel;
+                UpdateStatusProgressDelegate UpdateProgress = Progress;
+                if (main.IsBusy)
+                {
+                    Invoke(UpdateText, "Stopping..");
+                    Invoke(UpdateStatus, "Stopping..");
+                }
+                Invoke(UpdateText, "Complete.");
+                Invoke(UpdateStatus, "");
 
-            Invoke(UpdateProgress, 0);
-            string pages = servRef.GetPagesLeft(clientID, secret);
-            label8.Text = "Pages left: " + pages;
-            languages.Enabled = true;
-            progressBar.Visible = false;
-            folderPath.Text = "";
-            //reset away mode
-            Kernel32.SetThreadExecutionState(Kernel32.EXECUTION_STATE.None |
-                                           Kernel32.EXECUTION_STATE.None |
-                                           Kernel32.EXECUTION_STATE.None);
-            MessageBox.Show("Run Complete.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Invoke(UpdateProgress, 0);
+                string pages = servRef.GetPagesLeft(clientID, secret);
+                label8.Text = "Pages left: " + pages;
+                languages.Enabled = true;
+                progressBar.Visible = false;
+                folderPath.Text = "";
+                //reset away mode
+                Kernel32.SetThreadExecutionState(Kernel32.EXECUTION_STATE.None |
+                                               Kernel32.EXECUTION_STATE.None |
+                                               Kernel32.EXECUTION_STATE.None);
+                MessageBox.Show("Run Complete.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                //assume worker closed
+                MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
         }
 
