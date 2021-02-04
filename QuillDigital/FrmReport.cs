@@ -115,6 +115,19 @@ namespace QuillDigital
 
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult delete = MessageBox.Show("Are you sure you want to delete all report files? This cannot be undone..", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(delete == DialogResult.Yes){
+                foreach(string item in files.Items)
+                {
+                    string deleteItem = item + ".xml";
+                    string pathDelete = Path.Combine(savePath, deleteItem);
+                    File.Delete(pathDelete);
+                }
+                MessageBox.Show("All report files deleted.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+        }
     }
 }
