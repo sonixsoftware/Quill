@@ -31,13 +31,13 @@ namespace QuillDigital
             }
             catch
             {
-                MessageBox.Show("Unable to find any report files in the save directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find any report files in the Report directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
             if (docList.Length <= 0)
             {
-                MessageBox.Show("Unable to find any report files in the save directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find any report files in the Report directory..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }

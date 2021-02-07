@@ -48,9 +48,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.Fields = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -303,6 +303,17 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(198, 38);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(93, 32);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Delete All";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -324,17 +335,6 @@
             this.label5.Size = new System.Drawing.Size(68, 24);
             this.label5.TabIndex = 7;
             this.label5.Text = "Fields Found:";
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 32);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Delete All";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmReport
             // 

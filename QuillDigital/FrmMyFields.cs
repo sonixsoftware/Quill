@@ -14,6 +14,7 @@ namespace QuillDigital
 {
     public partial class FrmMyFields : Form
     {
+      
         WebServiceSoapClient servRef;
         string clientid = string.Empty;
         string secret = string.Empty;
@@ -35,6 +36,7 @@ namespace QuillDigital
         {
             Loading ld = new Loading();
             ld.Show();
+           
             types.Items.Add("Number");
             types.Items.Add("Currency");
             types.Items.Add("Date");
@@ -110,6 +112,7 @@ namespace QuillDigital
         {
             Loading ld = new Loading();
             ld.Show();
+         
             dgvWords.Rows.Clear();
             dgvPhrases.Rows.Clear();
             string field = Fields.Text;
@@ -130,9 +133,9 @@ namespace QuillDigital
                         richTextBox1.Text = "";
                         richTextBox1.Enabled = false;
                         button1.Enabled = false;
-                        button2.Enabled = false; 
- 
-                         button3.Enabled = false;
+                        button2.Enabled = false;
+
+                        button3.Enabled = false;
                         if (!words["Regex"].ToString().Trim().Contains("No Regex found for"))
                         {
                             if (!string.IsNullOrEmpty(words["Regex"].ToString().Trim()))
@@ -140,6 +143,14 @@ namespace QuillDigital
                                 regex.Checked = true;
                                 strRegex.Text = words["Regex"].ToString().Trim();
                             }
+                        }
+                        if (words["DeDupe"].ToString().Trim().ToUpper().Equals("TRUE"))
+                        {
+                            dedupe.Checked = true;
+                        }
+                        else
+                        {
+                            dedupe.Checked = false;
                         }
                         ld.Close();
                         return;
@@ -195,7 +206,14 @@ namespace QuillDigital
                         {
                             //assume no phrases
                         }
-                            
+                        if (words["DeDupe"].ToString().Trim().ToUpper().Equals("TRUE"))
+                        {
+                            dedupe.Checked = true;
+                        }
+                        else
+                        {
+                            dedupe.Checked = false;
+                        }
                     }
                 }
 
@@ -370,11 +388,11 @@ namespace QuillDigital
         private void button4_Click(object sender, EventArgs e)
         {
             DialogResult delete = MessageBox.Show("Delete Field: " + Fields.Text.Trim() + "?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(delete == DialogResult.Yes)
+            if (delete == DialogResult.Yes)
             {
                 Loading ld = new Loading();
                 ld.Show();
-                string deleteOUT =   servRef.DeleteField(Globals.sqlCon, clientid, secret, Fields.Text.Trim());
+                string deleteOUT = servRef.DeleteField(Globals.sqlCon, clientid, secret, Fields.Text.Trim());
                 dgvWords.Rows.Clear();
                 dgvPhrases.Rows.Clear();
                 Fields.Items.Remove(Fields.Text.Trim());
@@ -392,10 +410,14 @@ namespace QuillDigital
             DialogResult addField = MessageBox.Show("Save field: " + Fields.Text.Trim(), "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (addField == DialogResult.Yes)
             {
-                
+                string depupeIN = "TRUE";
+                if (dedupe.Checked == false)
+                {
+                    depupeIN = "FALSE";
+                }
                 string fieldName = Fields.Text.Trim().Replace("'", "").ToUpper();
                 string delete = servRef.DeleteField(Globals.sqlCon, clientid, secret, fieldName);
-                
+
                 bool findAllIn = findAll.Checked;
                 string temp = "FALSE";
                 string fieldType = types.Text.Trim();
@@ -408,7 +430,10 @@ namespace QuillDigital
                     Loading ld = new Loading();
                     ld.Show();
                     string add = servRef.AddField(Globals.sqlCon, fieldName, fieldType, temp, clientid, secret);
+                    string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
+
                     dtFields = servRef.GetFields(Globals.sqlCon, clientid, secret);
+
                     ld.Close();
                     MessageBox.Show("Field: " + fieldName + " Saved.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -467,10 +492,12 @@ namespace QuillDigital
                             }
                         }
                     }
+                    string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
+
                     dtFields = servRef.GetFields(Globals.sqlCon, clientid, secret);
                     ld.Close();
                     MessageBox.Show("Field Saved.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                  
+
                 }
 
             }
@@ -488,5 +515,8 @@ namespace QuillDigital
                 strRegex.Visible = false;
             }
         }
+
+
+       
     }
 }

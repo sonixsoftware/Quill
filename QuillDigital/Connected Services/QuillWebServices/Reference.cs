@@ -16,13 +16,6 @@ namespace QuillDigital.QuillWebServices {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://quilldigital.co.uk/", ConfigurationName="QuillWebServices.WebServiceSoap")]
     public interface WebServiceSoap {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/PrepareRun", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string PrepareRun(string clientID, string clientSecret, string sqlconn);
@@ -57,27 +50,6 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/Test", ReplyAction="*")]
         System.Threading.Tasks.Task<string> TestAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/SiteRegister", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string SiteRegister(string pword, string FirstName, string LastName, string Email, string CompanyName, string Country, string Address1, string Address2, string City, string PCode, string PhoneNumber);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/SiteRegister", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> SiteRegisterAsync(string pword, string FirstName, string LastName, string Email, string CompanyName, string Country, string Address1, string Address2, string City, string PCode, string PhoneNumber);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/SiteLogin", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string SiteLogin(string pword, string email, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/SiteLogin", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> SiteLoginAsync(string pword, string email, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ResetLogin", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string ResetLogin(string pword, string email, string clientSecret, string newClientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ResetLogin", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> ResetLoginAsync(string pword, string email, string clientSecret, string newClientSecret);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/TestException", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -361,13 +333,6 @@ namespace QuillDigital.QuillWebServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ChecklastRun", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> ChecklastRunAsync(string sqlConnection, string clientID, string clientSecret, string fileName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ResetSecret", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string ResetSecret(string FirstName, string LastName, string email);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ResetSecret", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> ResetSecretAsync(string FirstName, string LastName, string email);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFieldWordPercision", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable GetFieldWordPercision(string sqlConnection, string clientID, string clientSecret, string fieldName);
@@ -402,6 +367,13 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateFieldRegex", ReplyAction="*")]
         System.Threading.Tasks.Task<string> UpdateFieldRegexAsync(string sqlConnection, string fieldName, string regex, string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateFieldDeDupe", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string UpdateFieldDeDupe(string sqlConnection, string fieldName, string dedupe, string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateFieldDeDupe", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> UpdateFieldDeDupeAsync(string sqlConnection, string fieldName, string dedupe, string clientID, string clientSecret);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFieldRegex", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -535,6 +507,13 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetProcessedPageCount", ReplyAction="*")]
         System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -654,14 +633,6 @@ namespace QuillDigital.QuillWebServices {
                 base(binding, remoteAddress) {
         }
         
-        public string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection) {
-            return base.Channel.GetFilePageCount(fileID, clientID, clientSecret, sqlConnection);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection) {
-            return base.Channel.GetFilePageCountAsync(fileID, clientID, clientSecret, sqlConnection);
-        }
-        
         public string PrepareRun(string clientID, string clientSecret, string sqlconn) {
             return base.Channel.PrepareRun(clientID, clientSecret, sqlconn);
         }
@@ -700,30 +671,6 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> TestAsync() {
             return base.Channel.TestAsync();
-        }
-        
-        public string SiteRegister(string pword, string FirstName, string LastName, string Email, string CompanyName, string Country, string Address1, string Address2, string City, string PCode, string PhoneNumber) {
-            return base.Channel.SiteRegister(pword, FirstName, LastName, Email, CompanyName, Country, Address1, Address2, City, PCode, PhoneNumber);
-        }
-        
-        public System.Threading.Tasks.Task<string> SiteRegisterAsync(string pword, string FirstName, string LastName, string Email, string CompanyName, string Country, string Address1, string Address2, string City, string PCode, string PhoneNumber) {
-            return base.Channel.SiteRegisterAsync(pword, FirstName, LastName, Email, CompanyName, Country, Address1, Address2, City, PCode, PhoneNumber);
-        }
-        
-        public string SiteLogin(string pword, string email, string clientSecret) {
-            return base.Channel.SiteLogin(pword, email, clientSecret);
-        }
-        
-        public System.Threading.Tasks.Task<string> SiteLoginAsync(string pword, string email, string clientSecret) {
-            return base.Channel.SiteLoginAsync(pword, email, clientSecret);
-        }
-        
-        public string ResetLogin(string pword, string email, string clientSecret, string newClientSecret) {
-            return base.Channel.ResetLogin(pword, email, clientSecret, newClientSecret);
-        }
-        
-        public System.Threading.Tasks.Task<string> ResetLoginAsync(string pword, string email, string clientSecret, string newClientSecret) {
-            return base.Channel.ResetLoginAsync(pword, email, clientSecret, newClientSecret);
         }
         
         public string TestException() {
@@ -1086,14 +1033,6 @@ namespace QuillDigital.QuillWebServices {
             return base.Channel.ChecklastRunAsync(sqlConnection, clientID, clientSecret, fileName);
         }
         
-        public string ResetSecret(string FirstName, string LastName, string email) {
-            return base.Channel.ResetSecret(FirstName, LastName, email);
-        }
-        
-        public System.Threading.Tasks.Task<string> ResetSecretAsync(string FirstName, string LastName, string email) {
-            return base.Channel.ResetSecretAsync(FirstName, LastName, email);
-        }
-        
         public System.Data.DataTable GetFieldWordPercision(string sqlConnection, string clientID, string clientSecret, string fieldName) {
             return base.Channel.GetFieldWordPercision(sqlConnection, clientID, clientSecret, fieldName);
         }
@@ -1132,6 +1071,14 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> UpdateFieldRegexAsync(string sqlConnection, string fieldName, string regex, string clientID, string clientSecret) {
             return base.Channel.UpdateFieldRegexAsync(sqlConnection, fieldName, regex, clientID, clientSecret);
+        }
+        
+        public string UpdateFieldDeDupe(string sqlConnection, string fieldName, string dedupe, string clientID, string clientSecret) {
+            return base.Channel.UpdateFieldDeDupe(sqlConnection, fieldName, dedupe, clientID, clientSecret);
+        }
+        
+        public System.Threading.Tasks.Task<string> UpdateFieldDeDupeAsync(string sqlConnection, string fieldName, string dedupe, string clientID, string clientSecret) {
+            return base.Channel.UpdateFieldDeDupeAsync(sqlConnection, fieldName, dedupe, clientID, clientSecret);
         }
         
         public string GetFieldRegex(string sqlConnection, string fieldName, string clientID, string clientSecret) {
@@ -1284,6 +1231,14 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret) {
             return base.Channel.GetProcessedPageCountAsync(sqlConnection, fileID, clientID, clientSecret);
+        }
+        
+        public string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection) {
+            return base.Channel.GetFilePageCount(fileID, clientID, clientSecret, sqlConnection);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection) {
+            return base.Channel.GetFilePageCountAsync(fileID, clientID, clientSecret, sqlConnection);
         }
     }
 }

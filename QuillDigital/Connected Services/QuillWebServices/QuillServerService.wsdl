@@ -2,23 +2,6 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://quilldigital.co.uk/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://quilldigital.co.uk/AbstractTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://quilldigital.co.uk/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://quilldigital.co.uk/">
-      <s:element name="GetFilePageCount">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetFilePageCountResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetFilePageCountResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="PrepareRun">
         <s:complexType>
           <s:sequence>
@@ -92,63 +75,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="TestResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SiteRegister">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="pword" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="PCode" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SiteRegisterResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="SiteRegisterResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SiteLogin">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="pword" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SiteLoginResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="SiteLoginResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ResetLogin">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="pword" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="newClientSecret" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ResetLoginResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ResetLoginResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -905,22 +831,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ResetSecret">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ResetSecretResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ResetSecretResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="GetFieldWordPercision">
         <s:complexType>
           <s:sequence>
@@ -1023,6 +933,24 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UpdateFieldRegexResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFieldDeDupe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dedupe" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFieldDeDupeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateFieldDeDupeResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1393,6 +1321,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetFilePageCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilePageCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilePageCountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataTable" nillable="true">
         <s:complexType>
@@ -1417,12 +1362,6 @@
       </s:complexType>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="GetFilePageCountSoapIn">
-    <wsdl:part name="parameters" element="tns:GetFilePageCount" />
-  </wsdl:message>
-  <wsdl:message name="GetFilePageCountSoapOut">
-    <wsdl:part name="parameters" element="tns:GetFilePageCountResponse" />
-  </wsdl:message>
   <wsdl:message name="PrepareRunSoapIn">
     <wsdl:part name="parameters" element="tns:PrepareRun" />
   </wsdl:message>
@@ -1452,24 +1391,6 @@
   </wsdl:message>
   <wsdl:message name="TestSoapOut">
     <wsdl:part name="parameters" element="tns:TestResponse" />
-  </wsdl:message>
-  <wsdl:message name="SiteRegisterSoapIn">
-    <wsdl:part name="parameters" element="tns:SiteRegister" />
-  </wsdl:message>
-  <wsdl:message name="SiteRegisterSoapOut">
-    <wsdl:part name="parameters" element="tns:SiteRegisterResponse" />
-  </wsdl:message>
-  <wsdl:message name="SiteLoginSoapIn">
-    <wsdl:part name="parameters" element="tns:SiteLogin" />
-  </wsdl:message>
-  <wsdl:message name="SiteLoginSoapOut">
-    <wsdl:part name="parameters" element="tns:SiteLoginResponse" />
-  </wsdl:message>
-  <wsdl:message name="ResetLoginSoapIn">
-    <wsdl:part name="parameters" element="tns:ResetLogin" />
-  </wsdl:message>
-  <wsdl:message name="ResetLoginSoapOut">
-    <wsdl:part name="parameters" element="tns:ResetLoginResponse" />
   </wsdl:message>
   <wsdl:message name="TestExceptionSoapIn">
     <wsdl:part name="parameters" element="tns:TestException" />
@@ -1711,12 +1632,6 @@
   <wsdl:message name="ChecklastRunSoapOut">
     <wsdl:part name="parameters" element="tns:ChecklastRunResponse" />
   </wsdl:message>
-  <wsdl:message name="ResetSecretSoapIn">
-    <wsdl:part name="parameters" element="tns:ResetSecret" />
-  </wsdl:message>
-  <wsdl:message name="ResetSecretSoapOut">
-    <wsdl:part name="parameters" element="tns:ResetSecretResponse" />
-  </wsdl:message>
   <wsdl:message name="GetFieldWordPercisionSoapIn">
     <wsdl:part name="parameters" element="tns:GetFieldWordPercision" />
   </wsdl:message>
@@ -1746,6 +1661,12 @@
   </wsdl:message>
   <wsdl:message name="UpdateFieldRegexSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateFieldRegexResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldDeDupeSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFieldDeDupe" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldDeDupeSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFieldDeDupeResponse" />
   </wsdl:message>
   <wsdl:message name="GetFieldRegexSoapIn">
     <wsdl:part name="parameters" element="tns:GetFieldRegex" />
@@ -1861,14 +1782,11 @@
   <wsdl:message name="GetProcessedPageCountSoapOut">
     <wsdl:part name="parameters" element="tns:GetProcessedPageCountResponse" />
   </wsdl:message>
-  <wsdl:message name="GetFilePageCountHttpGetIn">
-    <wsdl:part name="fileID" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="sqlConnection" type="s:string" />
+  <wsdl:message name="GetFilePageCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilePageCount" />
   </wsdl:message>
-  <wsdl:message name="GetFilePageCountHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
+  <wsdl:message name="GetFilePageCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilePageCountResponse" />
   </wsdl:message>
   <wsdl:message name="PrepareRunHttpGetIn">
     <wsdl:part name="clientID" type="s:string" />
@@ -1906,39 +1824,6 @@
   </wsdl:message>
   <wsdl:message name="TestHttpGetIn" />
   <wsdl:message name="TestHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="SiteRegisterHttpGetIn">
-    <wsdl:part name="pword" type="s:string" />
-    <wsdl:part name="FirstName" type="s:string" />
-    <wsdl:part name="LastName" type="s:string" />
-    <wsdl:part name="Email" type="s:string" />
-    <wsdl:part name="CompanyName" type="s:string" />
-    <wsdl:part name="Country" type="s:string" />
-    <wsdl:part name="Address1" type="s:string" />
-    <wsdl:part name="Address2" type="s:string" />
-    <wsdl:part name="City" type="s:string" />
-    <wsdl:part name="PCode" type="s:string" />
-    <wsdl:part name="PhoneNumber" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="SiteRegisterHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="SiteLoginHttpGetIn">
-    <wsdl:part name="pword" type="s:string" />
-    <wsdl:part name="email" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="SiteLoginHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="ResetLoginHttpGetIn">
-    <wsdl:part name="pword" type="s:string" />
-    <wsdl:part name="email" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="newClientSecret" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ResetLoginHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="TestExceptionHttpGetIn" />
@@ -2301,14 +2186,6 @@
   <wsdl:message name="ChecklastRunHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
-  <wsdl:message name="ResetSecretHttpGetIn">
-    <wsdl:part name="FirstName" type="s:string" />
-    <wsdl:part name="LastName" type="s:string" />
-    <wsdl:part name="email" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ResetSecretHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
   <wsdl:message name="GetFieldWordPercisionHttpGetIn">
     <wsdl:part name="sqlConnection" type="s:string" />
     <wsdl:part name="clientID" type="s:string" />
@@ -2358,6 +2235,16 @@
     <wsdl:part name="clientSecret" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateFieldRegexHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldDeDupeHttpGetIn">
+    <wsdl:part name="sqlConnection" type="s:string" />
+    <wsdl:part name="fieldName" type="s:string" />
+    <wsdl:part name="dedupe" type="s:string" />
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldDeDupeHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetFieldRegexHttpGetIn">
@@ -2533,11 +2420,16 @@
   <wsdl:message name="GetProcessedPageCountHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GetFilePageCountHttpGetIn">
+    <wsdl:part name="fileID" type="s:string" />
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+    <wsdl:part name="sqlConnection" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFilePageCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
-    <wsdl:operation name="GetFilePageCount">
-      <wsdl:input message="tns:GetFilePageCountSoapIn" />
-      <wsdl:output message="tns:GetFilePageCountSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <wsdl:input message="tns:PrepareRunSoapIn" />
       <wsdl:output message="tns:PrepareRunSoapOut" />
@@ -2557,18 +2449,6 @@
     <wsdl:operation name="Test">
       <wsdl:input message="tns:TestSoapIn" />
       <wsdl:output message="tns:TestSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="SiteRegister">
-      <wsdl:input message="tns:SiteRegisterSoapIn" />
-      <wsdl:output message="tns:SiteRegisterSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="SiteLogin">
-      <wsdl:input message="tns:SiteLoginSoapIn" />
-      <wsdl:output message="tns:SiteLoginSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ResetLogin">
-      <wsdl:input message="tns:ResetLoginSoapIn" />
-      <wsdl:output message="tns:ResetLoginSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="TestException">
       <wsdl:input message="tns:TestExceptionSoapIn" />
@@ -2730,10 +2610,6 @@
       <wsdl:input message="tns:ChecklastRunSoapIn" />
       <wsdl:output message="tns:ChecklastRunSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ResetSecret">
-      <wsdl:input message="tns:ResetSecretSoapIn" />
-      <wsdl:output message="tns:ResetSecretSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <wsdl:input message="tns:GetFieldWordPercisionSoapIn" />
       <wsdl:output message="tns:GetFieldWordPercisionSoapOut" />
@@ -2753,6 +2629,10 @@
     <wsdl:operation name="UpdateFieldRegex">
       <wsdl:input message="tns:UpdateFieldRegexSoapIn" />
       <wsdl:output message="tns:UpdateFieldRegexSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldDeDupe">
+      <wsdl:input message="tns:UpdateFieldDeDupeSoapIn" />
+      <wsdl:output message="tns:UpdateFieldDeDupeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFieldRegex">
       <wsdl:input message="tns:GetFieldRegexSoapIn" />
@@ -2830,12 +2710,12 @@
       <wsdl:input message="tns:GetProcessedPageCountSoapIn" />
       <wsdl:output message="tns:GetProcessedPageCountSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetFilePageCount">
+      <wsdl:input message="tns:GetFilePageCountSoapIn" />
+      <wsdl:output message="tns:GetFilePageCountSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
-    <wsdl:operation name="GetFilePageCount">
-      <wsdl:input message="tns:GetFilePageCountHttpGetIn" />
-      <wsdl:output message="tns:GetFilePageCountHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <wsdl:input message="tns:PrepareRunHttpGetIn" />
       <wsdl:output message="tns:PrepareRunHttpGetOut" />
@@ -2855,18 +2735,6 @@
     <wsdl:operation name="Test">
       <wsdl:input message="tns:TestHttpGetIn" />
       <wsdl:output message="tns:TestHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="SiteRegister">
-      <wsdl:input message="tns:SiteRegisterHttpGetIn" />
-      <wsdl:output message="tns:SiteRegisterHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="SiteLogin">
-      <wsdl:input message="tns:SiteLoginHttpGetIn" />
-      <wsdl:output message="tns:SiteLoginHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ResetLogin">
-      <wsdl:input message="tns:ResetLoginHttpGetIn" />
-      <wsdl:output message="tns:ResetLoginHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="TestException">
       <wsdl:input message="tns:TestExceptionHttpGetIn" />
@@ -3028,10 +2896,6 @@
       <wsdl:input message="tns:ChecklastRunHttpGetIn" />
       <wsdl:output message="tns:ChecklastRunHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="ResetSecret">
-      <wsdl:input message="tns:ResetSecretHttpGetIn" />
-      <wsdl:output message="tns:ResetSecretHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <wsdl:input message="tns:GetFieldWordPercisionHttpGetIn" />
       <wsdl:output message="tns:GetFieldWordPercisionHttpGetOut" />
@@ -3051,6 +2915,10 @@
     <wsdl:operation name="UpdateFieldRegex">
       <wsdl:input message="tns:UpdateFieldRegexHttpGetIn" />
       <wsdl:output message="tns:UpdateFieldRegexHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldDeDupe">
+      <wsdl:input message="tns:UpdateFieldDeDupeHttpGetIn" />
+      <wsdl:output message="tns:UpdateFieldDeDupeHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFieldRegex">
       <wsdl:input message="tns:GetFieldRegexHttpGetIn" />
@@ -3128,18 +2996,13 @@
       <wsdl:input message="tns:GetProcessedPageCountHttpGetIn" />
       <wsdl:output message="tns:GetProcessedPageCountHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetFilePageCount">
+      <wsdl:input message="tns:GetFilePageCountHttpGetIn" />
+      <wsdl:output message="tns:GetFilePageCountHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetFilePageCount">
-      <soap:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <soap:operation soapAction="http://quilldigital.co.uk/PrepareRun" style="document" />
       <wsdl:input>
@@ -3178,33 +3041,6 @@
     </wsdl:operation>
     <wsdl:operation name="Test">
       <soap:operation soapAction="http://quilldigital.co.uk/Test" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SiteRegister">
-      <soap:operation soapAction="http://quilldigital.co.uk/SiteRegister" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SiteLogin">
-      <soap:operation soapAction="http://quilldigital.co.uk/SiteLogin" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ResetLogin">
-      <soap:operation soapAction="http://quilldigital.co.uk/ResetLogin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3572,15 +3408,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ResetSecret">
-      <soap:operation soapAction="http://quilldigital.co.uk/ResetSecret" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <soap:operation soapAction="http://quilldigital.co.uk/GetFieldWordPercision" style="document" />
       <wsdl:input>
@@ -3619,6 +3446,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldRegex">
       <soap:operation soapAction="http://quilldigital.co.uk/UpdateFieldRegex" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldDeDupe">
+      <soap:operation soapAction="http://quilldigital.co.uk/UpdateFieldDeDupe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3797,18 +3633,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFilePageCount">
+      <soap:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetFilePageCount">
-      <soap12:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <soap12:operation soapAction="http://quilldigital.co.uk/PrepareRun" style="document" />
       <wsdl:input>
@@ -3847,33 +3683,6 @@
     </wsdl:operation>
     <wsdl:operation name="Test">
       <soap12:operation soapAction="http://quilldigital.co.uk/Test" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SiteRegister">
-      <soap12:operation soapAction="http://quilldigital.co.uk/SiteRegister" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SiteLogin">
-      <soap12:operation soapAction="http://quilldigital.co.uk/SiteLogin" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ResetLogin">
-      <soap12:operation soapAction="http://quilldigital.co.uk/ResetLogin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4241,15 +4050,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ResetSecret">
-      <soap12:operation soapAction="http://quilldigital.co.uk/ResetSecret" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetFieldWordPercision" style="document" />
       <wsdl:input>
@@ -4288,6 +4088,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldRegex">
       <soap12:operation soapAction="http://quilldigital.co.uk/UpdateFieldRegex" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldDeDupe">
+      <soap12:operation soapAction="http://quilldigital.co.uk/UpdateFieldDeDupe" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4466,18 +4275,18 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFilePageCount">
+      <soap12:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
-    <wsdl:operation name="GetFilePageCount">
-      <http:operation location="/GetFilePageCount" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <http:operation location="/PrepareRun" />
       <wsdl:input>
@@ -4516,33 +4325,6 @@
     </wsdl:operation>
     <wsdl:operation name="Test">
       <http:operation location="/Test" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SiteRegister">
-      <http:operation location="/SiteRegister" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SiteLogin">
-      <http:operation location="/SiteLogin" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ResetLogin">
-      <http:operation location="/ResetLogin" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -4910,15 +4692,6 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ResetSecret">
-      <http:operation location="/ResetSecret" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <http:operation location="/GetFieldWordPercision" />
       <wsdl:input>
@@ -4957,6 +4730,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldRegex">
       <http:operation location="/UpdateFieldRegex" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldDeDupe">
+      <http:operation location="/UpdateFieldDeDupe" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -5128,6 +4910,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetProcessedPageCount">
       <http:operation location="/GetProcessedPageCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilePageCount">
+      <http:operation location="/GetFilePageCount" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>

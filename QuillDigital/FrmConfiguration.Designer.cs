@@ -370,7 +370,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmConfiguration";
-            this.Text = "Quill Digital 2021.1.3";
+            this.Text = "Quill Digital 2021.1.4";
             this.Load += new System.EventHandler(this.FrmConfiguration_Load);
             this.Shown += new System.EventHandler(this.FrmConfiguration_Shown);
             this.flowLayoutPanel1.ResumeLayout(false);

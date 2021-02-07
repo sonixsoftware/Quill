@@ -40,6 +40,7 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.strRegex = new System.Windows.Forms.RichTextBox();
             this.regex = new System.Windows.Forms.CheckBox();
+            this.dedupe = new System.Windows.Forms.CheckBox();
             this.dgvWords = new System.Windows.Forms.DataGridView();
             this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +109,7 @@
             this.tableLayoutPanel2.Controls.Add(this.findAll, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.richTextBox1, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel9, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.dedupe, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -222,6 +224,16 @@
             this.regex.Text = "Regex";
             this.regex.UseVisualStyleBackColor = true;
             this.regex.CheckedChanged += new System.EventHandler(this.regex_CheckedChanged);
+            // 
+            // dedupe
+            // 
+            this.dedupe.AutoSize = true;
+            this.dedupe.Location = new System.Drawing.Point(215, 193);
+            this.dedupe.Name = "dedupe";
+            this.dedupe.Size = new System.Drawing.Size(85, 17);
+            this.dedupe.TabIndex = 6;
+            this.dedupe.Text = "DeDuplicate";
+            this.dedupe.UseVisualStyleBackColor = true;
             // 
             // dgvWords
             // 
@@ -600,5 +612,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.CheckBox regex;
         private System.Windows.Forms.RichTextBox strRegex;
+        private System.Windows.Forms.CheckBox dedupe;
     }
 }

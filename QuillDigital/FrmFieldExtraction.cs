@@ -108,11 +108,17 @@ namespace QuillDigital
                 {
                     temp = "TRUE";
                 }
+                string depupeIN = "TRUE";
+                if (dedup.Checked == false)
+                {
+                    depupeIN = "FALSE";
+                }
                 if (findAllIn == true)
                 {
                     Loading ld = new Loading();
                     ld.Show();
                     string add = servRef.AddField(Globals.sqlCon, fieldName, fieldType, temp, clientid, secret);
+                   
                     if (regex.Checked == true)
                     {
                         if (!string.IsNullOrEmpty(strRegex.Text.Trim()))
@@ -120,6 +126,7 @@ namespace QuillDigital
                             servRef.UpdateFieldRegex(Globals.sqlCon, fieldName, strRegex.Text.Trim(), clientid, secret);
                         }
                     }
+                    string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
                     ld.Close();
                     MessageBox.Show("Field: " + fieldName + " Added.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -180,10 +187,12 @@ namespace QuillDigital
                     }
                     if (regex.Checked == true)
                     {
-                        if (!string.IsNullOrEmpty(strRegex.Text.Trim())){
+                        if (!string.IsNullOrEmpty(strRegex.Text.Trim()))
+                        {
                             servRef.UpdateFieldRegex(Globals.sqlCon, fieldName, strRegex.Text.Trim(), clientid, secret);
                         }
                     }
+                    string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
                     ld.Close();
                     MessageBox.Show("Field Added.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
@@ -293,7 +302,7 @@ namespace QuillDigital
             }
         }
 
-       
+
 
         private void types_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -323,7 +332,7 @@ namespace QuillDigital
                         //assume cant be updated
                     }
                 }
-            }     
+            }
         }
 
         private void pBack_SelectedIndexChanged(object sender, EventArgs e)
@@ -370,7 +379,7 @@ namespace QuillDigital
 
         private void regex_CheckedChanged(object sender, EventArgs e)
         {
-            if(regex.Checked == true)
+            if (regex.Checked == true)
             {
                 strRegex.Visible = true;
             }
@@ -378,6 +387,14 @@ namespace QuillDigital
             {
                 strRegex.Visible = false;
                 strRegex.Text = "";
+            }
+        }
+
+        private void dedup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (dedup.Checked == true)
+            {
+                MessageBox.Show("This will leave any duplicate entries in any fields that are searched for.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

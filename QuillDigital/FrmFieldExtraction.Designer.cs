@@ -40,6 +40,7 @@
             this.findAll = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.regex = new System.Windows.Forms.CheckBox();
+            this.strRegex = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvPhrases = new System.Windows.Forms.DataGridView();
             this.Phrase = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,7 +68,8 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.precisionIn = new System.Windows.Forms.ComboBox();
-            this.strRegex = new System.Windows.Forms.RichTextBox();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.dedup = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -83,6 +85,7 @@
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -110,8 +113,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.findAll, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel12, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel13, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -125,6 +128,7 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.findAll, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
@@ -193,10 +197,9 @@
             // findAll
             // 
             this.findAll.AutoSize = true;
-            this.findAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.findAll.Location = new System.Drawing.Point(157, 122);
+            this.findAll.Location = new System.Drawing.Point(3, 70);
             this.findAll.Name = "findAll";
-            this.findAll.Size = new System.Drawing.Size(149, 119);
+            this.findAll.Size = new System.Drawing.Size(60, 17);
             this.findAll.TabIndex = 3;
             this.findAll.Text = "Find All";
             this.findAll.UseVisualStyleBackColor = true;
@@ -227,6 +230,16 @@
             this.regex.Text = "Add Regex";
             this.regex.UseVisualStyleBackColor = true;
             this.regex.CheckedChanged += new System.EventHandler(this.regex_CheckedChanged);
+            // 
+            // strRegex
+            // 
+            this.strRegex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strRegex.Location = new System.Drawing.Point(3, 30);
+            this.strRegex.Name = "strRegex";
+            this.strRegex.Size = new System.Drawing.Size(143, 80);
+            this.strRegex.TabIndex = 1;
+            this.strRegex.Text = "";
+            this.strRegex.Visible = false;
             // 
             // tableLayoutPanel5
             // 
@@ -538,15 +551,30 @@
             this.precisionIn.Size = new System.Drawing.Size(124, 21);
             this.precisionIn.TabIndex = 1;
             // 
-            // strRegex
+            // tableLayoutPanel13
             // 
-            this.strRegex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.strRegex.Location = new System.Drawing.Point(3, 30);
-            this.strRegex.Name = "strRegex";
-            this.strRegex.Size = new System.Drawing.Size(143, 80);
-            this.strRegex.TabIndex = 1;
-            this.strRegex.Text = "";
-            this.strRegex.Visible = false;
+            this.tableLayoutPanel13.ColumnCount = 1;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.61074F));
+            this.tableLayoutPanel13.Controls.Add(this.dedup, 0, 1);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(157, 122);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 2;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.17647F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.82353F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(149, 119);
+            this.tableLayoutPanel13.TabIndex = 5;
+            // 
+            // dedup
+            // 
+            this.dedup.AutoSize = true;
+            this.dedup.Location = new System.Drawing.Point(3, 52);
+            this.dedup.Name = "dedup";
+            this.dedup.Size = new System.Drawing.Size(85, 17);
+            this.dedup.TabIndex = 4;
+            this.dedup.Text = "DeDuplicate";
+            this.dedup.UseVisualStyleBackColor = true;
+            this.dedup.CheckedChanged += new System.EventHandler(this.dedup_CheckedChanged);
             // 
             // FrmFieldExtraction
             // 
@@ -561,7 +589,6 @@
             this.Load += new System.EventHandler(this.FrmFieldExtraction_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -580,6 +607,8 @@
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -625,5 +654,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.CheckBox regex;
         private System.Windows.Forms.RichTextBox strRegex;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.CheckBox dedup;
     }
 }
