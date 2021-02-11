@@ -16,6 +16,6 @@ Register at www.quilldigital.co.uk and get your Secret
 
 https://documenter.getpostman.com/view/10628193/TVRoYRr1
 
-# WISDL
+# WSDL
 
 http://quilldigitalservice.co.uk/QuillServerService.asmx?wsdl:80/QuillServerService.asmx
