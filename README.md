@@ -6,7 +6,7 @@ Quill Digital is an extensive API that can digitise audio/scanned documents and 
 
 It can also be used to check for clauses inside larger documents/audio.
 
-Quill is can also be used to translate documents/audio to different languages.
+Quill can also be used to translate documents/audio to different languages.
 
 Code base is C#/Windows Forms
 
