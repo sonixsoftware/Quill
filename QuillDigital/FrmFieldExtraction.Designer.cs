@@ -32,15 +32,17 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.findAll = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.types = new System.Windows.Forms.ComboBox();
-            this.findAll = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.regex = new System.Windows.Forms.CheckBox();
             this.strRegex = new System.Windows.Forms.RichTextBox();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.dedup = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvPhrases = new System.Windows.Forms.DataGridView();
             this.Phrase = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,13 +70,12 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.precisionIn = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.dedup = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
@@ -85,7 +86,6 @@
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
-            this.tableLayoutPanel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -139,6 +139,17 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(148, 113);
             this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // findAll
+            // 
+            this.findAll.AutoSize = true;
+            this.findAll.Location = new System.Drawing.Point(3, 70);
+            this.findAll.Name = "findAll";
+            this.findAll.Size = new System.Drawing.Size(60, 17);
+            this.findAll.TabIndex = 3;
+            this.findAll.Text = "Find All";
+            this.findAll.UseVisualStyleBackColor = true;
+            this.findAll.CheckedChanged += new System.EventHandler(this.findAll_CheckedChanged);
             // 
             // textBox1
             // 
@@ -194,17 +205,6 @@
             this.types.TabIndex = 3;
             this.types.SelectedIndexChanged += new System.EventHandler(this.types_SelectedIndexChanged);
             // 
-            // findAll
-            // 
-            this.findAll.AutoSize = true;
-            this.findAll.Location = new System.Drawing.Point(3, 70);
-            this.findAll.Name = "findAll";
-            this.findAll.Size = new System.Drawing.Size(60, 17);
-            this.findAll.TabIndex = 3;
-            this.findAll.Text = "Find All";
-            this.findAll.UseVisualStyleBackColor = true;
-            this.findAll.CheckedChanged += new System.EventHandler(this.findAll_CheckedChanged);
-            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 1;
@@ -240,6 +240,31 @@
             this.strRegex.TabIndex = 1;
             this.strRegex.Text = "";
             this.strRegex.Visible = false;
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 1;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.61074F));
+            this.tableLayoutPanel13.Controls.Add(this.dedup, 0, 1);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(157, 122);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 2;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.17647F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.82353F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(149, 119);
+            this.tableLayoutPanel13.TabIndex = 5;
+            // 
+            // dedup
+            // 
+            this.dedup.AutoSize = true;
+            this.dedup.Location = new System.Drawing.Point(3, 52);
+            this.dedup.Name = "dedup";
+            this.dedup.Size = new System.Drawing.Size(85, 17);
+            this.dedup.TabIndex = 4;
+            this.dedup.Text = "DeDuplicate";
+            this.dedup.UseVisualStyleBackColor = true;
+            this.dedup.CheckedChanged += new System.EventHandler(this.dedup_CheckedChanged);
             // 
             // tableLayoutPanel5
             // 
@@ -551,31 +576,6 @@
             this.precisionIn.Size = new System.Drawing.Size(124, 21);
             this.precisionIn.TabIndex = 1;
             // 
-            // tableLayoutPanel13
-            // 
-            this.tableLayoutPanel13.ColumnCount = 1;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.61074F));
-            this.tableLayoutPanel13.Controls.Add(this.dedup, 0, 1);
-            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(157, 122);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 2;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.17647F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.82353F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(149, 119);
-            this.tableLayoutPanel13.TabIndex = 5;
-            // 
-            // dedup
-            // 
-            this.dedup.AutoSize = true;
-            this.dedup.Location = new System.Drawing.Point(3, 52);
-            this.dedup.Name = "dedup";
-            this.dedup.Size = new System.Drawing.Size(85, 17);
-            this.dedup.TabIndex = 4;
-            this.dedup.Text = "DeDuplicate";
-            this.dedup.UseVisualStyleBackColor = true;
-            this.dedup.CheckedChanged += new System.EventHandler(this.dedup_CheckedChanged);
-            // 
             // FrmFieldExtraction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -595,6 +595,8 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -607,8 +609,6 @@
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
-            this.tableLayoutPanel13.ResumeLayout(false);
-            this.tableLayoutPanel13.PerformLayout();
             this.ResumeLayout(false);
 
         }

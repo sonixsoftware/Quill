@@ -68,6 +68,8 @@ namespace QuillDigital
             Globals.ocrType = GetConfiguration.GetConfigurationValueOCR();
             Globals.meta = GetConfiguration.GetConfigurationValueMeta();
             Globals.dpi = GetConfiguration.GetConfigurationValueDPI();
+            string refreshDate = servRef.GetRefreshDate(clientID, secret);
+            label5.Text = refreshDate;
             ld.Close();
         }
 
@@ -739,9 +741,10 @@ namespace QuillDigital
                     {
                         break;
                     }
-                    #endregion
-                    #endregion
-                
+                #endregion
+                #endregion
+                string pages = servRef.GetPagesLeft(clientID, secret);
+                label8.Text = "Pages left: " + pages;
             }
 
             return;
