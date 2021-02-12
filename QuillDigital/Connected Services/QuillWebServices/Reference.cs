@@ -16,6 +16,13 @@ namespace QuillDigital.QuillWebServices {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://quilldigital.co.uk/", ConfigurationName="QuillWebServices.WebServiceSoap")]
     public interface WebServiceSoap {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/PrepareRun", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string PrepareRun(string clientID, string clientSecret, string sqlconn);
@@ -162,13 +169,6 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFileID", ReplyAction="*")]
         System.Threading.Tasks.Task<string> GetFileIDAsync(string fileName, string clientID, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/IsFileLocked", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string IsFileLocked(string filename, string clientID, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/IsFileLocked", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> IsFileLockedAsync(string filename, string clientID, string clientSecret);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/DeleteClause", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -326,13 +326,6 @@ namespace QuillDigital.QuillWebServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFiles", ReplyAction="*")]
         System.Threading.Tasks.Task<QuillDigital.QuillWebServices.GetFilesResponse> GetFilesAsync(QuillDigital.QuillWebServices.GetFilesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ChecklastRun", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataTable ChecklastRun(string sqlConnection, string clientID, string clientSecret, string fileName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ChecklastRun", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataTable> ChecklastRunAsync(string sqlConnection, string clientID, string clientSecret, string fileName);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFieldWordPercision", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable GetFieldWordPercision(string sqlConnection, string clientID, string clientSecret, string fieldName);
@@ -346,13 +339,6 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFieldType", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetFieldTypeAsync(string sqlConnection, string clientID, string clientSecret, string fieldName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateRunFile", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string UpdateRunFile(string sqlConnection, string fileName, string dateProcessed, string lastModified, string clientID, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateRunFile", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> UpdateRunFileAsync(string sqlConnection, string fileName, string dateProcessed, string lastModified, string clientID, string clientSecret);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateFieldWords", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -374,6 +360,13 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateFieldDeDupe", ReplyAction="*")]
         System.Threading.Tasks.Task<string> UpdateFieldDeDupeAsync(string sqlConnection, string fieldName, string dedupe, string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateFieldCurrencySymbolOnly", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string UpdateFieldCurrencySymbolOnly(string sqlConnection, string fieldName, string symbolOnly, string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateFieldCurrencySymbolOnly", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> UpdateFieldCurrencySymbolOnlyAsync(string sqlConnection, string fieldName, string symbolOnly, string clientID, string clientSecret);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFieldRegex", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -507,13 +500,6 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetProcessedPageCount", ReplyAction="*")]
         System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -631,6 +617,14 @@ namespace QuillDigital.QuillWebServices {
         
         public WebServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection) {
+            return base.Channel.GetFilePageCount(fileID, clientID, clientSecret, sqlConnection);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection) {
+            return base.Channel.GetFilePageCountAsync(fileID, clientID, clientSecret, sqlConnection);
         }
         
         public string PrepareRun(string clientID, string clientSecret, string sqlconn) {
@@ -799,14 +793,6 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> GetFileIDAsync(string fileName, string clientID, string clientSecret) {
             return base.Channel.GetFileIDAsync(fileName, clientID, clientSecret);
-        }
-        
-        public string IsFileLocked(string filename, string clientID, string clientSecret) {
-            return base.Channel.IsFileLocked(filename, clientID, clientSecret);
-        }
-        
-        public System.Threading.Tasks.Task<string> IsFileLockedAsync(string filename, string clientID, string clientSecret) {
-            return base.Channel.IsFileLockedAsync(filename, clientID, clientSecret);
         }
         
         public string DeleteClause(string sqlConnection, string clientID, string clientSecret, string tagOne) {
@@ -1025,14 +1011,6 @@ namespace QuillDigital.QuillWebServices {
             return ((QuillDigital.QuillWebServices.WebServiceSoap)(this)).GetFilesAsync(inValue);
         }
         
-        public System.Data.DataTable ChecklastRun(string sqlConnection, string clientID, string clientSecret, string fileName) {
-            return base.Channel.ChecklastRun(sqlConnection, clientID, clientSecret, fileName);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataTable> ChecklastRunAsync(string sqlConnection, string clientID, string clientSecret, string fileName) {
-            return base.Channel.ChecklastRunAsync(sqlConnection, clientID, clientSecret, fileName);
-        }
-        
         public System.Data.DataTable GetFieldWordPercision(string sqlConnection, string clientID, string clientSecret, string fieldName) {
             return base.Channel.GetFieldWordPercision(sqlConnection, clientID, clientSecret, fieldName);
         }
@@ -1047,14 +1025,6 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> GetFieldTypeAsync(string sqlConnection, string clientID, string clientSecret, string fieldName) {
             return base.Channel.GetFieldTypeAsync(sqlConnection, clientID, clientSecret, fieldName);
-        }
-        
-        public string UpdateRunFile(string sqlConnection, string fileName, string dateProcessed, string lastModified, string clientID, string clientSecret) {
-            return base.Channel.UpdateRunFile(sqlConnection, fileName, dateProcessed, lastModified, clientID, clientSecret);
-        }
-        
-        public System.Threading.Tasks.Task<string> UpdateRunFileAsync(string sqlConnection, string fileName, string dateProcessed, string lastModified, string clientID, string clientSecret) {
-            return base.Channel.UpdateRunFileAsync(sqlConnection, fileName, dateProcessed, lastModified, clientID, clientSecret);
         }
         
         public string UpdateFieldWords(string sqlConnection, string fieldName, string wordsUpdate, string clientID, string clientSecret, string Pforward, string PBack) {
@@ -1079,6 +1049,14 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> UpdateFieldDeDupeAsync(string sqlConnection, string fieldName, string dedupe, string clientID, string clientSecret) {
             return base.Channel.UpdateFieldDeDupeAsync(sqlConnection, fieldName, dedupe, clientID, clientSecret);
+        }
+        
+        public string UpdateFieldCurrencySymbolOnly(string sqlConnection, string fieldName, string symbolOnly, string clientID, string clientSecret) {
+            return base.Channel.UpdateFieldCurrencySymbolOnly(sqlConnection, fieldName, symbolOnly, clientID, clientSecret);
+        }
+        
+        public System.Threading.Tasks.Task<string> UpdateFieldCurrencySymbolOnlyAsync(string sqlConnection, string fieldName, string symbolOnly, string clientID, string clientSecret) {
+            return base.Channel.UpdateFieldCurrencySymbolOnlyAsync(sqlConnection, fieldName, symbolOnly, clientID, clientSecret);
         }
         
         public string GetFieldRegex(string sqlConnection, string fieldName, string clientID, string clientSecret) {
@@ -1231,14 +1209,6 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret) {
             return base.Channel.GetProcessedPageCountAsync(sqlConnection, fileID, clientID, clientSecret);
-        }
-        
-        public string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection) {
-            return base.Channel.GetFilePageCount(fileID, clientID, clientSecret, sqlConnection);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetFilePageCountAsync(string fileID, string clientID, string clientSecret, string sqlConnection) {
-            return base.Channel.GetFilePageCountAsync(fileID, clientID, clientSecret, sqlConnection);
         }
     }
 }

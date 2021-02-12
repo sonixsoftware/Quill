@@ -113,6 +113,11 @@ namespace QuillDigital
                 {
                     depupeIN = "FALSE";
                 }
+                string currSymbolOnlyIN = "FALSE";
+                if(currSymbol.Checked == true)
+                {
+                    currSymbolOnlyIN = "TRUE";
+                }
                 if (findAllIn == true)
                 {
                     Loading ld = new Loading();
@@ -127,6 +132,10 @@ namespace QuillDigital
                         }
                     }
                     string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
+                    if (currSymbolOnlyIN.Equals("TRUE"))
+                    {
+                        string currSymbolOnly = servRef.UpdateFieldCurrencySymbolOnly(Globals.sqlCon, fieldName, currSymbolOnlyIN, clientid, secret);
+                    }
                     ld.Close();
                     MessageBox.Show("Field: " + fieldName + " Added.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -193,6 +202,10 @@ namespace QuillDigital
                         }
                     }
                     string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
+                    if (currSymbol.Equals("TRUE"))
+                    {
+                        string currSymbolOnly = servRef.UpdateFieldCurrencySymbolOnly(Globals.sqlCon, fieldName, currSymbolOnlyIN, clientid, secret);
+                    }
                     ld.Close();
                     MessageBox.Show("Field Added.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
@@ -306,7 +319,16 @@ namespace QuillDigital
 
         private void types_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (types.Text.Equals("Currency"))
+            {
+                currSymbol.Visible = true;
+                currSymbol.Checked = true;
+            }
+            else
+            {
+                currSymbol.Visible = false;
+                currSymbol.Checked = false;
+            }
         }
 
         private void pForward_SelectedIndexChanged(object sender, EventArgs e)

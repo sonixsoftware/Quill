@@ -37,9 +37,11 @@
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.button14 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.clauses = new System.Windows.Forms.CheckBox();
             this.extractFields = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.button12 = new System.Windows.Forms.Button();
@@ -74,8 +76,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Main_Run = new System.ComponentModel.BackgroundWorker();
             this.Cancel_Main = new System.ComponentModel.BackgroundWorker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -203,6 +203,17 @@
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 26);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Subscription Refresh: ";
+            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 1;
@@ -241,6 +252,17 @@
             this.extractFields.TabIndex = 2;
             this.extractFields.Text = "Extract Fields";
             this.extractFields.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(116, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 26);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "label5";
             // 
             // label7
             // 
@@ -648,28 +670,6 @@
             // Main_Run
             // 
             this.Main_Run.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Main_Run_DoWork);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 26);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Subscription Refresh: ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(116, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 26);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "label5";
             // 
             // FrmHome
             // 

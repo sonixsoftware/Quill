@@ -123,6 +123,19 @@ namespace QuillDigital
             {
                 if (field.ToUpper().Trim().Equals(words["Field_Name"].ToString().ToUpper().Trim()))
                 {
+                    if (words["Field_Type"].ToString().Trim().ToUpper().Equals("CURRENCY"))
+                    {
+                        currSymbol.Visible = true;
+                        if (words["CurrSymbol"].ToString().Trim().ToUpper().Equals("TRUE"))
+                        {
+                            currSymbol.Checked = true;
+                        }
+                    }
+                    else
+                    {
+                        currSymbol.Visible = false;
+                        currSymbol.Checked = false;
+                    }
                     if (words["Check_All"].ToString().Trim().Equals("1"))
                     {
                         findAll.Checked = true;
@@ -415,6 +428,11 @@ namespace QuillDigital
                 {
                     depupeIN = "FALSE";
                 }
+                string currSymbolOnlyIN = "FALSE";
+                if (currSymbol.Checked == true)
+                {
+                    currSymbolOnlyIN = "TRUE";
+                }
                 string fieldName = Fields.Text.Trim().Replace("'", "").ToUpper();
                 string delete = servRef.DeleteField(Globals.sqlCon, clientid, secret, fieldName);
 
@@ -431,7 +449,10 @@ namespace QuillDigital
                     ld.Show();
                     string add = servRef.AddField(Globals.sqlCon, fieldName, fieldType, temp, clientid, secret);
                     string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
-
+                    if (currSymbolOnlyIN.Equals("TRUE"))
+                    {
+                        string currSymbolOnly = servRef.UpdateFieldCurrencySymbolOnly(Globals.sqlCon, fieldName, currSymbolOnlyIN, clientid, secret);
+                    }
                     dtFields = servRef.GetFields(Globals.sqlCon, clientid, secret);
 
                     ld.Close();
@@ -493,7 +514,10 @@ namespace QuillDigital
                         }
                     }
                     string depDupeOut = servRef.UpdateFieldDeDupe(Globals.sqlCon, fieldName, depupeIN, clientid, secret);
-
+                    if (currSymbolOnlyIN.Equals("TRUE"))
+                    {
+                        string currSymbolOnly = servRef.UpdateFieldCurrencySymbolOnly(Globals.sqlCon, fieldName, currSymbolOnlyIN, clientid, secret);
+                    }
                     dtFields = servRef.GetFields(Globals.sqlCon, clientid, secret);
                     ld.Close();
                     MessageBox.Show("Field Saved.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);

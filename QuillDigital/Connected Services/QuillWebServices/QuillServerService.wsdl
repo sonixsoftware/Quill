@@ -2,6 +2,23 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://quilldigital.co.uk/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://quilldigital.co.uk/AbstractTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://quilldigital.co.uk/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://quilldigital.co.uk/">
+      <s:element name="GetFilePageCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilePageCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilePageCountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="PrepareRun">
         <s:complexType>
           <s:sequence>
@@ -359,22 +376,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetFileIDResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="IsFileLocked">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="IsFileLockedResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="IsFileLockedResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -807,30 +808,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ChecklastRun">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ChecklastRunResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ChecklastRunResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="GetFieldWordPercision">
         <s:complexType>
           <s:sequence>
@@ -876,25 +853,6 @@
                 </s:sequence>
               </s:complexType>
             </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateRunFile">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="dateProcessed" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="lastModified" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateRunFileResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UpdateRunFileResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -951,6 +909,24 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UpdateFieldDeDupeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFieldCurrencySymbolOnly">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="symbolOnly" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFieldCurrencySymbolOnlyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateFieldCurrencySymbolOnlyResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1321,23 +1297,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetFilePageCount">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetFilePageCountResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetFilePageCountResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataTable" nillable="true">
         <s:complexType>
@@ -1362,6 +1321,12 @@
       </s:complexType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="GetFilePageCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilePageCount" />
+  </wsdl:message>
+  <wsdl:message name="GetFilePageCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilePageCountResponse" />
+  </wsdl:message>
   <wsdl:message name="PrepareRunSoapIn">
     <wsdl:part name="parameters" element="tns:PrepareRun" />
   </wsdl:message>
@@ -1487,12 +1452,6 @@
   </wsdl:message>
   <wsdl:message name="GetFileIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetFileIDResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsFileLockedSoapIn">
-    <wsdl:part name="parameters" element="tns:IsFileLocked" />
-  </wsdl:message>
-  <wsdl:message name="IsFileLockedSoapOut">
-    <wsdl:part name="parameters" element="tns:IsFileLockedResponse" />
   </wsdl:message>
   <wsdl:message name="DeleteClauseSoapIn">
     <wsdl:part name="parameters" element="tns:DeleteClause" />
@@ -1626,12 +1585,6 @@
   <wsdl:message name="GetFilesSoapOut">
     <wsdl:part name="parameters" element="tns:GetFilesResponse" />
   </wsdl:message>
-  <wsdl:message name="ChecklastRunSoapIn">
-    <wsdl:part name="parameters" element="tns:ChecklastRun" />
-  </wsdl:message>
-  <wsdl:message name="ChecklastRunSoapOut">
-    <wsdl:part name="parameters" element="tns:ChecklastRunResponse" />
-  </wsdl:message>
   <wsdl:message name="GetFieldWordPercisionSoapIn">
     <wsdl:part name="parameters" element="tns:GetFieldWordPercision" />
   </wsdl:message>
@@ -1643,12 +1596,6 @@
   </wsdl:message>
   <wsdl:message name="GetFieldTypeSoapOut">
     <wsdl:part name="parameters" element="tns:GetFieldTypeResponse" />
-  </wsdl:message>
-  <wsdl:message name="UpdateRunFileSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateRunFile" />
-  </wsdl:message>
-  <wsdl:message name="UpdateRunFileSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateRunFileResponse" />
   </wsdl:message>
   <wsdl:message name="UpdateFieldWordsSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateFieldWords" />
@@ -1667,6 +1614,12 @@
   </wsdl:message>
   <wsdl:message name="UpdateFieldDeDupeSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateFieldDeDupeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldCurrencySymbolOnlySoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFieldCurrencySymbolOnly" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldCurrencySymbolOnlySoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFieldCurrencySymbolOnlyResponse" />
   </wsdl:message>
   <wsdl:message name="GetFieldRegexSoapIn">
     <wsdl:part name="parameters" element="tns:GetFieldRegex" />
@@ -1782,11 +1735,14 @@
   <wsdl:message name="GetProcessedPageCountSoapOut">
     <wsdl:part name="parameters" element="tns:GetProcessedPageCountResponse" />
   </wsdl:message>
-  <wsdl:message name="GetFilePageCountSoapIn">
-    <wsdl:part name="parameters" element="tns:GetFilePageCount" />
+  <wsdl:message name="GetFilePageCountHttpGetIn">
+    <wsdl:part name="fileID" type="s:string" />
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+    <wsdl:part name="sqlConnection" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="GetFilePageCountSoapOut">
-    <wsdl:part name="parameters" element="tns:GetFilePageCountResponse" />
+  <wsdl:message name="GetFilePageCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="PrepareRunHttpGetIn">
     <wsdl:part name="clientID" type="s:string" />
@@ -1970,14 +1926,6 @@
     <wsdl:part name="clientSecret" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetFileIDHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="IsFileLockedHttpGetIn">
-    <wsdl:part name="filename" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="IsFileLockedHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="DeleteClauseHttpGetIn">
@@ -2177,15 +2125,6 @@
   <wsdl:message name="GetFilesHttpGetOut">
     <wsdl:part name="Body" element="tns:base64Binary" />
   </wsdl:message>
-  <wsdl:message name="ChecklastRunHttpGetIn">
-    <wsdl:part name="sqlConnection" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="fileName" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ChecklastRunHttpGetOut">
-    <wsdl:part name="Body" element="tns:DataTable" />
-  </wsdl:message>
   <wsdl:message name="GetFieldWordPercisionHttpGetIn">
     <wsdl:part name="sqlConnection" type="s:string" />
     <wsdl:part name="clientID" type="s:string" />
@@ -2203,17 +2142,6 @@
   </wsdl:message>
   <wsdl:message name="GetFieldTypeHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
-  </wsdl:message>
-  <wsdl:message name="UpdateRunFileHttpGetIn">
-    <wsdl:part name="sqlConnection" type="s:string" />
-    <wsdl:part name="fileName" type="s:string" />
-    <wsdl:part name="dateProcessed" type="s:string" />
-    <wsdl:part name="lastModified" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="UpdateRunFileHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="UpdateFieldWordsHttpGetIn">
     <wsdl:part name="sqlConnection" type="s:string" />
@@ -2245,6 +2173,16 @@
     <wsdl:part name="clientSecret" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateFieldDeDupeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldCurrencySymbolOnlyHttpGetIn">
+    <wsdl:part name="sqlConnection" type="s:string" />
+    <wsdl:part name="fieldName" type="s:string" />
+    <wsdl:part name="symbolOnly" type="s:string" />
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldCurrencySymbolOnlyHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetFieldRegexHttpGetIn">
@@ -2420,16 +2358,11 @@
   <wsdl:message name="GetProcessedPageCountHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="GetFilePageCountHttpGetIn">
-    <wsdl:part name="fileID" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="sqlConnection" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="GetFilePageCountHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="GetFilePageCount">
+      <wsdl:input message="tns:GetFilePageCountSoapIn" />
+      <wsdl:output message="tns:GetFilePageCountSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <wsdl:input message="tns:PrepareRunSoapIn" />
       <wsdl:output message="tns:PrepareRunSoapOut" />
@@ -2513,10 +2446,6 @@
     <wsdl:operation name="GetFileID">
       <wsdl:input message="tns:GetFileIDSoapIn" />
       <wsdl:output message="tns:GetFileIDSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="IsFileLocked">
-      <wsdl:input message="tns:IsFileLockedSoapIn" />
-      <wsdl:output message="tns:IsFileLockedSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DeleteClause">
       <wsdl:input message="tns:DeleteClauseSoapIn" />
@@ -2606,10 +2535,6 @@
       <wsdl:input message="tns:GetFilesSoapIn" />
       <wsdl:output message="tns:GetFilesSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ChecklastRun">
-      <wsdl:input message="tns:ChecklastRunSoapIn" />
-      <wsdl:output message="tns:ChecklastRunSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <wsdl:input message="tns:GetFieldWordPercisionSoapIn" />
       <wsdl:output message="tns:GetFieldWordPercisionSoapOut" />
@@ -2617,10 +2542,6 @@
     <wsdl:operation name="GetFieldType">
       <wsdl:input message="tns:GetFieldTypeSoapIn" />
       <wsdl:output message="tns:GetFieldTypeSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRunFile">
-      <wsdl:input message="tns:UpdateRunFileSoapIn" />
-      <wsdl:output message="tns:UpdateRunFileSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldWords">
       <wsdl:input message="tns:UpdateFieldWordsSoapIn" />
@@ -2633,6 +2554,10 @@
     <wsdl:operation name="UpdateFieldDeDupe">
       <wsdl:input message="tns:UpdateFieldDeDupeSoapIn" />
       <wsdl:output message="tns:UpdateFieldDeDupeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldCurrencySymbolOnly">
+      <wsdl:input message="tns:UpdateFieldCurrencySymbolOnlySoapIn" />
+      <wsdl:output message="tns:UpdateFieldCurrencySymbolOnlySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFieldRegex">
       <wsdl:input message="tns:GetFieldRegexSoapIn" />
@@ -2710,12 +2635,12 @@
       <wsdl:input message="tns:GetProcessedPageCountSoapIn" />
       <wsdl:output message="tns:GetProcessedPageCountSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetFilePageCount">
-      <wsdl:input message="tns:GetFilePageCountSoapIn" />
-      <wsdl:output message="tns:GetFilePageCountSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
+    <wsdl:operation name="GetFilePageCount">
+      <wsdl:input message="tns:GetFilePageCountHttpGetIn" />
+      <wsdl:output message="tns:GetFilePageCountHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <wsdl:input message="tns:PrepareRunHttpGetIn" />
       <wsdl:output message="tns:PrepareRunHttpGetOut" />
@@ -2799,10 +2724,6 @@
     <wsdl:operation name="GetFileID">
       <wsdl:input message="tns:GetFileIDHttpGetIn" />
       <wsdl:output message="tns:GetFileIDHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="IsFileLocked">
-      <wsdl:input message="tns:IsFileLockedHttpGetIn" />
-      <wsdl:output message="tns:IsFileLockedHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="DeleteClause">
       <wsdl:input message="tns:DeleteClauseHttpGetIn" />
@@ -2892,10 +2813,6 @@
       <wsdl:input message="tns:GetFilesHttpGetIn" />
       <wsdl:output message="tns:GetFilesHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="ChecklastRun">
-      <wsdl:input message="tns:ChecklastRunHttpGetIn" />
-      <wsdl:output message="tns:ChecklastRunHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <wsdl:input message="tns:GetFieldWordPercisionHttpGetIn" />
       <wsdl:output message="tns:GetFieldWordPercisionHttpGetOut" />
@@ -2903,10 +2820,6 @@
     <wsdl:operation name="GetFieldType">
       <wsdl:input message="tns:GetFieldTypeHttpGetIn" />
       <wsdl:output message="tns:GetFieldTypeHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRunFile">
-      <wsdl:input message="tns:UpdateRunFileHttpGetIn" />
-      <wsdl:output message="tns:UpdateRunFileHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldWords">
       <wsdl:input message="tns:UpdateFieldWordsHttpGetIn" />
@@ -2919,6 +2832,10 @@
     <wsdl:operation name="UpdateFieldDeDupe">
       <wsdl:input message="tns:UpdateFieldDeDupeHttpGetIn" />
       <wsdl:output message="tns:UpdateFieldDeDupeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldCurrencySymbolOnly">
+      <wsdl:input message="tns:UpdateFieldCurrencySymbolOnlyHttpGetIn" />
+      <wsdl:output message="tns:UpdateFieldCurrencySymbolOnlyHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFieldRegex">
       <wsdl:input message="tns:GetFieldRegexHttpGetIn" />
@@ -2996,13 +2913,18 @@
       <wsdl:input message="tns:GetProcessedPageCountHttpGetIn" />
       <wsdl:output message="tns:GetProcessedPageCountHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetFilePageCount">
-      <wsdl:input message="tns:GetFilePageCountHttpGetIn" />
-      <wsdl:output message="tns:GetFilePageCountHttpGetOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFilePageCount">
+      <soap:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <soap:operation soapAction="http://quilldigital.co.uk/PrepareRun" style="document" />
       <wsdl:input>
@@ -3185,15 +3107,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetFileID">
       <soap:operation soapAction="http://quilldigital.co.uk/GetFileID" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsFileLocked">
-      <soap:operation soapAction="http://quilldigital.co.uk/IsFileLocked" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3399,15 +3312,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChecklastRun">
-      <soap:operation soapAction="http://quilldigital.co.uk/ChecklastRun" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <soap:operation soapAction="http://quilldigital.co.uk/GetFieldWordPercision" style="document" />
       <wsdl:input>
@@ -3419,15 +3323,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetFieldType">
       <soap:operation soapAction="http://quilldigital.co.uk/GetFieldType" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRunFile">
-      <soap:operation soapAction="http://quilldigital.co.uk/UpdateRunFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3455,6 +3350,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldDeDupe">
       <soap:operation soapAction="http://quilldigital.co.uk/UpdateFieldDeDupe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldCurrencySymbolOnly">
+      <soap:operation soapAction="http://quilldigital.co.uk/UpdateFieldCurrencySymbolOnly" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3633,18 +3537,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetFilePageCount">
-      <soap:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFilePageCount">
+      <soap12:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <soap12:operation soapAction="http://quilldigital.co.uk/PrepareRun" style="document" />
       <wsdl:input>
@@ -3827,15 +3731,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetFileID">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetFileID" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsFileLocked">
-      <soap12:operation soapAction="http://quilldigital.co.uk/IsFileLocked" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4041,15 +3936,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChecklastRun">
-      <soap12:operation soapAction="http://quilldigital.co.uk/ChecklastRun" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetFieldWordPercision" style="document" />
       <wsdl:input>
@@ -4061,15 +3947,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetFieldType">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetFieldType" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRunFile">
-      <soap12:operation soapAction="http://quilldigital.co.uk/UpdateRunFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4097,6 +3974,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldDeDupe">
       <soap12:operation soapAction="http://quilldigital.co.uk/UpdateFieldDeDupe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldCurrencySymbolOnly">
+      <soap12:operation soapAction="http://quilldigital.co.uk/UpdateFieldCurrencySymbolOnly" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4275,18 +4161,18 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetFilePageCount">
-      <soap12:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
+    <wsdl:operation name="GetFilePageCount">
+      <http:operation location="/GetFilePageCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="PrepareRun">
       <http:operation location="/PrepareRun" />
       <wsdl:input>
@@ -4469,15 +4355,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetFileID">
       <http:operation location="/GetFileID" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsFileLocked">
-      <http:operation location="/IsFileLocked" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -4683,15 +4560,6 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChecklastRun">
-      <http:operation location="/ChecklastRun" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <http:operation location="/GetFieldWordPercision" />
       <wsdl:input>
@@ -4703,15 +4571,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetFieldType">
       <http:operation location="/GetFieldType" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRunFile">
-      <http:operation location="/UpdateRunFile" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -4739,6 +4598,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFieldDeDupe">
       <http:operation location="/UpdateFieldDeDupe" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldCurrencySymbolOnly">
+      <http:operation location="/UpdateFieldCurrencySymbolOnly" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -4910,15 +4778,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetProcessedPageCount">
       <http:operation location="/GetProcessedPageCount" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFilePageCount">
-      <http:operation location="/GetFilePageCount" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>

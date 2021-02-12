@@ -44,6 +44,18 @@ namespace QuillDigital
                 return;
             }
             string[] fieldArr = fields.Split(',');
+            if (fields.Length == 1)
+            {
+                if (fieldArr[0].ToString().Trim().Equals("0"))
+                {
+                    MessageBox.Show("No Fields to show..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ld.Close();
+
+                    this.Close();
+                    return;
+                }
+            }
+           
 
             foreach(string field in fieldArr)
             {

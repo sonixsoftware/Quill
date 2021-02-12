@@ -70,6 +70,7 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.precisionIn = new System.Windows.Forms.ComboBox();
+            this.currSymbol = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -246,6 +247,7 @@
             this.tableLayoutPanel13.ColumnCount = 1;
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.61074F));
             this.tableLayoutPanel13.Controls.Add(this.dedup, 0, 1);
+            this.tableLayoutPanel13.Controls.Add(this.currSymbol, 0, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(157, 122);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
@@ -576,6 +578,18 @@
             this.precisionIn.Size = new System.Drawing.Size(124, 21);
             this.precisionIn.TabIndex = 1;
             // 
+            // currSymbol
+            // 
+            this.currSymbol.AutoSize = true;
+            this.currSymbol.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.currSymbol.Location = new System.Drawing.Point(3, 29);
+            this.currSymbol.Name = "currSymbol";
+            this.currSymbol.Size = new System.Drawing.Size(143, 17);
+            this.currSymbol.TabIndex = 5;
+            this.currSymbol.Text = "Only with Symbols";
+            this.currSymbol.UseVisualStyleBackColor = true;
+            this.currSymbol.Visible = false;
+            // 
             // FrmFieldExtraction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -656,5 +670,6 @@
         private System.Windows.Forms.RichTextBox strRegex;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.CheckBox dedup;
+        private System.Windows.Forms.CheckBox currSymbol;
     }
 }

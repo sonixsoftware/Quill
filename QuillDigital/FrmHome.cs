@@ -309,6 +309,14 @@ namespace QuillDigital
 
             status.Text = Message;
         }
+
+        private delegate void UpdatePagesTextDelegate(string message);
+        public void PagesLabel(string Message)
+        {
+            status.Text = "setting...";
+
+            status.Text = Message;
+        }
         private delegate void UpdateStatusProgressDelegate(int percent);
         public void Progress(int percent)
         {
@@ -402,128 +410,177 @@ namespace QuillDigital
             string lastFile = docList[docList.Length - 1];
             foreach (string file in docList)
             {
-                
 
 
-                    UpdateStatusProgressDelegate UpdateProgress = Progress;
-                    UpdateProgressTextDelegate UpdateText = ProgressLabel;
-                    UpdateStatusTextDelegate UpdateStatus = StatusLabel;
-                    bool convertedFile = false;
-                    string runFile = file;
-                    string tempFile = file;
-                    bool corruptFile = false;
-                    if (Path.GetExtension(file).ToUpper().Trim().Equals(".DOCX"))
+
+                UpdateStatusProgressDelegate UpdateProgress = Progress;
+                UpdateProgressTextDelegate UpdateText = ProgressLabel;
+                UpdateStatusTextDelegate UpdateStatus = StatusLabel;
+                UpdatePagesTextDelegate UpdatePages = PagesLabel;
+                bool convertedFile = false;
+                string runFile = file;
+                string tempFile = file;
+                bool corruptFile = false;
+                if (Path.GetExtension(file).ToUpper().Trim().Equals(".DOCX"))
+                {
+                    Invoke(UpdateStatus, "Resaving Word Document as PDF");
+                    try
                     {
-                        Invoke(UpdateStatus, "Resaving Word Document as PDF");
-                        try
+                        //check for mixed media
+                        var wordApplication = new Microsoft.Office.Interop.Word.Application();
+                        wordApplication.Visible = false;
+
+                        var document = wordApplication.Documents.Open(file, false, true);
+                        Guid strGuid = Guid.NewGuid();
+                        //convert to pdf
+                        string tempPath = Path.GetDirectoryName(file);
+                        string tempFileName = Path.GetFileNameWithoutExtension(file);
+                        document.ExportAsFixedFormat(System.IO.Path.Combine(tempPath, strGuid + ".pdf"), WdExportFormat.wdExportFormatPDF);
+                        runFile = System.IO.Path.Combine(tempPath, strGuid + ".pdf");
+                        convertedFile = true;
+
+                        // Close word
+                        wordApplication.Quit();
+                        document = null;
+                        wordApplication = null;
+                        GC.Collect();
+
+                    }
+                    catch
+                    {
+                        if (wordWarning == false)
                         {
-                            //check for mixed media
-                            var wordApplication = new Microsoft.Office.Interop.Word.Application();
-                            wordApplication.Visible = false;
-
-                            var document = wordApplication.Documents.Open(file, false, true);
-                            Guid strGuid = Guid.NewGuid();
-                            //convert to pdf
-                            string tempPath = Path.GetDirectoryName(file);
-                            string tempFileName = Path.GetFileNameWithoutExtension(file);
-                            document.ExportAsFixedFormat(System.IO.Path.Combine(tempPath, strGuid + ".pdf"), WdExportFormat.wdExportFormatPDF);
-                            runFile = System.IO.Path.Combine(tempPath, strGuid + ".pdf");
-                            convertedFile = true;
-
-                            // Close word
-                            wordApplication.Quit();
-                            document = null;
-                            wordApplication = null;
-                            GC.Collect();
-
-                        }
-                        catch
-                        {
-                            if (wordWarning == false)
-                            {
-                                MessageBox.Show("Without Microsoft Word on this machine we will only be able to use the native text these types of document(.DOCX) document. To digitise any pictures in the document, please install Microsoft Word. Alternatively convert it to a .pdf and rerun Quill.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                wordWarning = true;
-                            }
+                            MessageBox.Show("Without Microsoft Word on this machine we will only be able to use the native text these types of document(.DOCX) document. To digitise any pictures in the document, please install Microsoft Word. Alternatively convert it to a .pdf and rerun Quill.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            wordWarning = true;
                         }
                     }
+                }
 
-                    #region Loop Files
+                #region Loop Files
+                if (cancelMain == true)
+                {
+
+                    break;
+                }
+
+                string fileName = Path.GetFileName(runFile);
+                Invoke(UpdateProgress, 0);
+                if (!string.IsNullOrEmpty(tempFile))
+                {
+                    Invoke(UpdateText, "Working on file: " + Path.GetFileName(tempFile));
+                }
+                else
+                {
+                    Invoke(UpdateText, "Working on file: " + fileName);
+                }
+
+                Invoke(UpdateStatus, "Transmitting File..");
+                #region Send File
+                //Convert to Bytes
+                FileInfo fi = new FileInfo(runFile);
+                long numBytes = fi.Length;
+                FileStream fs = new FileStream(runFile, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                byte[] fileArray = br.ReadBytes((int)numBytes);
+                br.Close();
+                fs.Close();
+                fs.Dispose();
+                Invoke(UpdateStatus, "Transmitting");
+                //Transmit File
+                Invoke(UpdateProgress, 10);
+                if (cancelMain == true)
+                {
+
+                    return;
+                }
+                string transmit = servRef.SaveClientFile(fileArray, runFile, clientID, secret);
+                if (!transmit.ToUpper().Equals("SUCCESS"))
+                {
+                    MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cancelMain = true;
+                    break;
+                }
+                if (cancelMain == true)
+                {
+
+                    break;
+                }
+                #endregion
+                #region Get File ID
+                Invoke(UpdateStatus, "Get File ID");
+                string fileID = servRef.GetFileID(fileName, clientID, secret);
+                Invoke(UpdateProgress, 20);
+                #endregion
+
+                #region Check file type
+                Invoke(UpdateStatus, "Native Check..");
+                string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, Globals.meta);
+                if (native.Contains("QuillException: Document Limit Reached"))
+                {
+                    MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                Invoke(UpdateProgress, 30);
+                //Digitise
+                string fullText = string.Empty;
+                #endregion
+                #region Digitise
+                if (native.ToUpper().Equals("TRUE"))
+                {
                     if (cancelMain == true)
                     {
 
                         break;
                     }
-
-                    string fileName = Path.GetFileName(runFile);
-                    Invoke(UpdateProgress, 0);
-                    if (!string.IsNullOrEmpty(tempFile))
-                    {
-                        Invoke(UpdateText, "Working on file: " + Path.GetFileName(tempFile));
-                    }
-                    else
-                    {
-                        Invoke(UpdateText, "Working on file: " + fileName);
-                    }
-
-                    Invoke(UpdateStatus, "Transmitting File..");
-                    #region Send File
-                    //Convert to Bytes
-                    FileInfo fi = new FileInfo(runFile);
-                    long numBytes = fi.Length;
-                    FileStream fs = new FileStream(runFile, FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    byte[] fileArray = br.ReadBytes((int)numBytes);
-                    br.Close();
-                    fs.Close();
-                    fs.Dispose();
-                    Invoke(UpdateStatus, "Transmitting");
-                    //Transmit File
-                    Invoke(UpdateProgress, 10);
-                    if (cancelMain == true)
-                    {
-
-                        return;
-                    }
-                    string transmit = servRef.SaveClientFile(fileArray, runFile, clientID, secret);
-                    if (!transmit.ToUpper().Equals("SUCCESS"))
-                    {
-                        MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        cancelMain = true;
-                        break;
-                    }
-                    if (cancelMain == true)
-                    {
-
-                        break;
-                    }
-                    #endregion
-                    #region Get File ID
-                    Invoke(UpdateStatus, "Get File ID");
-                    string fileID = servRef.GetFileID(fileName, clientID, secret);
-                    Invoke(UpdateProgress, 20);
-                    #endregion
-
-                    #region Check file type
-                    Invoke(UpdateStatus, "Native Check..");
-                    string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, Globals.meta);
-                    if (native.Contains("QuillException: Document Limit Reached"))
+                    Invoke(UpdateStatus, "Getting Text..");
+                    fullText = servRef.GetFullTextByID(fileID, clientID, secret);
+                    if (fullText.Contains("QuillException: Document Limit Reached"))
                     {
                         MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    Invoke(UpdateProgress, 30);
-                    //Digitise
-                    string fullText = string.Empty;
-                    #endregion
-                    #region Digitise
-                    if (native.ToUpper().Equals("TRUE"))
+                    fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
+
+                    Invoke(UpdateProgress, 40);
+                }
+                else
+                {
+                    Invoke(UpdateStatus, "Digitising..");
+                    try
                     {
                         if (cancelMain == true)
                         {
 
                             break;
                         }
-                        Invoke(UpdateStatus, "Getting Text..");
+                        Invoke(UpdateProgress, 40);
+                        string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, Globals.ocrType, strLineRemoval, Globals.dpi, "0");
+                        if (digitise.Contains("QuillException: Document Limit Reached"))
+                        {
+                            MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        if (digitise.Contains("File Corrupt- unable to convert"))
+                        {
+                            corruptFile = true;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        break;
+                    }
+                    Invoke(UpdateProgress, 50);
+                    Invoke(UpdateStatus, "Getting Text..");
+                    if (cancelMain == true)
+                    {
+
+                        break;
+                    }
+                    if (corruptFile == false)
+                    {
                         fullText = servRef.GetFullTextByID(fileID, clientID, secret);
                         if (fullText.Contains("QuillException: Document Limit Reached"))
                         {
@@ -531,220 +588,174 @@ namespace QuillDigital
                             return;
                         }
                         fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
-
-                        Invoke(UpdateProgress, 40);
                     }
                     else
                     {
-                        Invoke(UpdateStatus, "Digitising..");
-                        try
-                        {
-                            if (cancelMain == true)
-                            {
+                        fullText = "File Corrupt - unable to convert";
+                    }
 
-                                break;
-                            }
-                            Invoke(UpdateProgress, 40);
-                            string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, Globals.ocrType, strLineRemoval, Globals.dpi, "0");
-                            if (digitise.Contains("QuillException: Document Limit Reached"))
-                            {
-                                MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-                            if (digitise.Contains("File Corrupt- unable to convert"))
-                            {
-                                corruptFile = true;
-                            }
 
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                string clausesFound = string.Empty;
+                string fields = string.Empty;
+                string translated = string.Empty;
+                #endregion
+                if (corruptFile == false)
+                {
 
-                            break;
-                        }
-                        Invoke(UpdateProgress, 50);
-                        Invoke(UpdateStatus, "Getting Text..");
+                    Invoke(UpdateProgress, 50);
+                    #region Translate
+                    //Translate
+                    if (!translationlang.ToUpper().Trim().Equals("NONE"))
+                    {
+                        Invoke(UpdateProgress, 60);
+                        Invoke(UpdateStatus, "Translating..");
                         if (cancelMain == true)
                         {
 
                             break;
                         }
-                        if (corruptFile == false)
+                        translated = servRef.Translate(clientID, secret, Globals.sqlCon, fullText, translationlang);
+                        if (translated.Contains("QuillException: Document Limit Reached"))
                         {
-                            fullText = servRef.GetFullTextByID(fileID, clientID, secret);
-                            if (fullText.Contains("QuillException: Document Limit Reached"))
-                            {
-                                MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-                            fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
+                            MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        translated = Regex.Replace(translated, @"(\r\n){2,}", Environment.NewLine);
+
+
+                    }
+                    #endregion
+
+                    //extract fields
+                    #region Extract Fields
+                    if (extractFields.Checked == true)
+                    {
+
+                        if (cancelMain == true)
+                        {
+
+                            break;
+                        }
+
+
+
+                        Invoke(UpdateProgress, 70);
+                        Invoke(UpdateStatus, "Extracting Fields..");
+
+
+
+                        if (cancelMain == true)
+                        {
+
+                            break;
+                        }
+                        fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", GetConfiguration.GetConfigurationValueFields(), "0");
+                        if (fields.Contains("QuillException: Document Limit Reached"))
+                        {
+                            MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        fields = Regex.Replace(fields, @"(\r\n){1,}", Environment.NewLine);
+
+
+
+                    }
+                    #endregion
+                    if (cancelMain == true)
+                    {
+
+                        break;
+                    }
+
+                    #region Check Clauses
+                    if (clauses.Checked == true)
+                    {
+                        Invoke(UpdateProgress, 80);
+                        Invoke(UpdateStatus, "Extracting Clauses..");
+                        clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, GetConfiguration.GetConfigurationValueClauses());
+                        if (clausesFound.Contains("QuillException: Document Limit Reached"))
+                        {
+                            MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        DataTable dtclausesFound = servRef.GetFoundClausesByID(clientID, secret, Globals.sqlCon, fileID);
+                        if (dtclausesFound.Rows.Count <= 0)
+                        {
+                            clausesFound = "No Clauses Found.";
                         }
                         else
                         {
-                            fullText = "File Corrupt - unable to convert";
-                        }
-
-
-                    }
-                    string clausesFound = string.Empty;
-                    string fields = string.Empty;
-                    string translated = string.Empty;
-                    #endregion
-                    if (corruptFile == false)
-                    {
-
-                        Invoke(UpdateProgress, 50);
-                        #region Translate
-                        //Translate
-                        if (!translationlang.ToUpper().Trim().Equals("NONE"))
-                        {
-                            Invoke(UpdateProgress, 60);
-                            Invoke(UpdateStatus, "Translating..");
-                            if (cancelMain == true)
+                            clausesFound = string.Empty;
+                            foreach (DataRow row in dtclausesFound.Rows)
                             {
-
-                                break;
-                            }
-                            translated = servRef.Translate(clientID, secret, Globals.sqlCon, fullText, translationlang);
-                            if (translated.Contains("QuillException: Document Limit Reached"))
-                            {
-                                MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-                            translated = Regex.Replace(translated, @"(\r\n){2,}", Environment.NewLine);
-
-
-                        }
-                        #endregion
-
-                        //extract fields
-                        #region Extract Fields
-                        if (extractFields.Checked == true)
-                        {
-
-                            if (cancelMain == true)
-                            {
-
-                                break;
-                            }
-
-
-
-                            Invoke(UpdateProgress, 70);
-                            Invoke(UpdateStatus, "Extracting Fields..");
-
-
-
-                            if (cancelMain == true)
-                            {
-
-                                break;
-                            }
-                            fields = servRef.ExtractFieldsByFileID(fileID, fileName, clientID, secret, Globals.sqlCon, "0", GetConfiguration.GetConfigurationValueFields(), "0");
-                            if (fields.Contains("QuillException: Document Limit Reached"))
-                            {
-                                MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-                            fields = Regex.Replace(fields, @"(\r\n){1,}", Environment.NewLine);
-
-
-
-                        }
-                        #endregion
-                        if (cancelMain == true)
-                        {
-
-                            break;
-                        }
-
-                        #region Check Clauses
-                        if (clauses.Checked == true)
-                        {
-                            Invoke(UpdateProgress, 80);
-                            Invoke(UpdateStatus, "Extracting Clauses..");
-                            clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, GetConfiguration.GetConfigurationValueClauses());
-                            if (clausesFound.Contains("QuillException: Document Limit Reached"))
-                            {
-                                MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-                            DataTable dtclausesFound = servRef.GetFoundClausesByID(clientID, secret, Globals.sqlCon, fileID);
-                            if (dtclausesFound.Rows.Count <= 0)
-                            {
-                                clausesFound = "No Clauses Found.";
-                            }
-                            else
-                            {
-                                clausesFound = string.Empty;
-                                foreach (DataRow row in dtclausesFound.Rows)
+                                string tagOne = row["TagOne"].ToString();
+                                if (string.IsNullOrEmpty(tagOne))
                                 {
-                                    string tagOne = row["TagOne"].ToString();
-                                    if (string.IsNullOrEmpty(tagOne))
-                                    {
-                                        tagOne = "Tag One not found..";
-                                    }
-                                    string tagTwo = row["TagTwo"].ToString();
-                                    if (string.IsNullOrEmpty(tagTwo))
-                                    {
-                                        tagTwo = "Tag Two not found..";
-                                    }
-                                    string tagThree = row["TagThree"].ToString();
-                                    if (string.IsNullOrEmpty(tagThree))
-                                    {
-                                        tagThree = "Tag Three not found..";
-                                    }
-                                    string tagFour = row["TagFour"].ToString();
-                                    if (string.IsNullOrEmpty(tagFour))
-                                    {
-                                        tagFour = "Tag Four not found..";
-                                    }
-                                    string tagFive = row["TagFive"].ToString();
-                                    if (string.IsNullOrEmpty(tagFive))
-                                    {
-                                        tagFive = "Tag Five not found..";
-                                    }
-                                    string clauseFound = row["ClauseFound"].ToString();
-                                    string probablility = row["Probablility"].ToString();
-                                    clausesFound = clausesFound + Environment.NewLine + tagOne + Environment.NewLine + tagTwo + Environment.NewLine + tagThree + Environment.NewLine + tagFour
-                                        + Environment.NewLine + tagFive + Environment.NewLine + "Levenstein Distance: " + probablility + Environment.NewLine + Environment.NewLine;
+                                    tagOne = "Tag One not found..";
                                 }
+                                string tagTwo = row["TagTwo"].ToString();
+                                if (string.IsNullOrEmpty(tagTwo))
+                                {
+                                    tagTwo = "Tag Two not found..";
+                                }
+                                string tagThree = row["TagThree"].ToString();
+                                if (string.IsNullOrEmpty(tagThree))
+                                {
+                                    tagThree = "Tag Three not found..";
+                                }
+                                string tagFour = row["TagFour"].ToString();
+                                if (string.IsNullOrEmpty(tagFour))
+                                {
+                                    tagFour = "Tag Four not found..";
+                                }
+                                string tagFive = row["TagFive"].ToString();
+                                if (string.IsNullOrEmpty(tagFive))
+                                {
+                                    tagFive = "Tag Five not found..";
+                                }
+                                string clauseFound = row["ClauseFound"].ToString();
+                                string probablility = row["Probablility"].ToString();
+                                clausesFound = clausesFound + Environment.NewLine + tagOne + Environment.NewLine + tagTwo + Environment.NewLine + tagThree + Environment.NewLine + tagFour
+                                    + Environment.NewLine + tagFive + Environment.NewLine + "Levenstein Distance: " + probablility + Environment.NewLine + Environment.NewLine;
                             }
-                            clausesFound = Regex.Replace(clausesFound, @"(\r\n){2,}", Environment.NewLine);
-                            //need to extract clauses
                         }
-
-                        #endregion
+                        clausesFound = Regex.Replace(clausesFound, @"(\r\n){2,}", Environment.NewLine);
+                        //need to extract clauses
                     }
 
+                    #endregion
+                }
 
-                    Invoke(UpdateProgress, 90);
-                    Invoke(UpdateStatus, "Writing Report..");
-                    #region Write Report
 
-                    string xmlDoc = Path.GetFileNameWithoutExtension(file) + ".xml";
+                Invoke(UpdateProgress, 90);
+                Invoke(UpdateStatus, "Writing Report..");
+                #region Write Report
+
+                string xmlDoc = Path.GetFileNameWithoutExtension(file) + ".xml";
                 if (string.IsNullOrEmpty(tempFile))
                 {
                     WriteXML(fullText, translated, fields, clausesFound, fileName, DateTime.Now.ToString(), translationlang, Path.Combine(savePath.Text, xmlDoc));
 
                 }
-                else{
+                else
+                {
                     WriteXML(fullText, translated, fields, clausesFound, Path.GetFileName(tempFile), DateTime.Now.ToString(), translationlang, Path.Combine(savePath.Text, xmlDoc));
 
                 }
                 if (convertedFile == true)
-                    {
-                        File.Delete(runFile);
-                    }
-                    if (file.ToUpper().Trim().Equals(lastFile.ToUpper().Trim()) | tempFile.ToUpper().Trim().Equals(lastFile.ToUpper().Trim()))
-                    {
-                        break;
-                    }
+                {
+                    File.Delete(runFile);
+                }
+                if (file.ToUpper().Trim().Equals(lastFile.ToUpper().Trim()) | tempFile.ToUpper().Trim().Equals(lastFile.ToUpper().Trim()))
+                {
+                    break;
+                }
                 #endregion
                 #endregion
                 string pages = servRef.GetPagesLeft(clientID, secret);
-                label8.Text = "Pages left: " + pages;
+                Invoke(UpdatePages, "Pages left: " + pages);
+
             }
 
             return;
