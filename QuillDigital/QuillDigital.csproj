@@ -14,21 +14,29 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>C:\Users\Info\Desktop\</PublishUrl>
-    <Install>false</Install>
+    <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
+    <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://www.quilldigital.co.uk/</InstallUrl>
+    <SupportUrl>https://www.quilldigital.co.uk</SupportUrl>
+    <ErrorReportUrl>https://www.quilldigital.co.uk</ErrorReportUrl>
+    <ProductName>Quill Digital</ProductName>
+    <PublisherName>Sonix Software</PublisherName>
+    <SuiteName>Quill</SuiteName>
+    <MinimumRequiredVersion>2021.1.5.4</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2021.1.0.0</ApplicationVersion>
+    <DisallowUrlActivation>true</DisallowUrlActivation>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>2021.1.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
