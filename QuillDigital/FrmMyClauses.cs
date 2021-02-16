@@ -93,8 +93,17 @@ namespace QuillDigital
                 Tag3.Text = "";
                 Tag4.Text = "";
                 Tag5.Text = "";
-                clause.SelectedIndex = 0;
-                MessageBox.Show(Tag1.Text + " Deleted", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    clause.SelectedIndex = 0;
+                    MessageBox.Show(Tag1.Text + " Deleted", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+                    //none to show
+                    MessageBox.Show(Tag1.Text + " Deleted", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
         }
 
