@@ -142,6 +142,13 @@ namespace QuillDigital.QuillWebServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/Translate", ReplyAction="*")]
         System.Threading.Tasks.Task<string> TranslateAsync(string clientID, string clientSecret, string sqlCon, string textIN, string language);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/TranslateByFileID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string TranslateByFileID(string clientID, string clientSecret, string sqlCon, string fileID, string language);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/TranslateByFileID", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> TranslateByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string language);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/Digitise", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string Digitise(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string removeLines, string DPI, string keepAlive);
@@ -205,27 +212,6 @@ namespace QuillDigital.QuillWebServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateOCRThreshold", ReplyAction="*")]
         System.Threading.Tasks.Task<string> UpdateOCRThresholdAsync(string sqlConnection, string clientID, string clientSecret, string threshold);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/DeleteExtractionRecord", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string DeleteExtractionRecord(string sqlConnection, string clientID, string clientSecret, string extractionID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/DeleteExtractionRecord", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> DeleteExtractionRecordAsync(string sqlConnection, string clientID, string clientSecret, string extractionID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateExtractionRecord", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string UpdateExtractionRecord(string sqlConnection, string clientID, string clientSecret, string ExtractionID, string fieldName, string editedValue);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateExtractionRecord", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> UpdateExtractionRecordAsync(string sqlConnection, string clientID, string clientSecret, string ExtractionID, string fieldName, string editedValue);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateActiveStatus", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string UpdateActiveStatus(string sqlConnection, string clientID, string clientSecret, string ExtractionIds, bool active);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/UpdateActiveStatus", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> UpdateActiveStatusAsync(string sqlConnection, string clientID, string clientSecret, string ExtractionIds, bool active);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetClausesByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable GetClausesByID(string clientID, string clientSecret, string sqlCon, string ID);
@@ -282,6 +268,13 @@ namespace QuillDigital.QuillWebServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/CheckForClausesByFileID", ReplyAction="*")]
         System.Threading.Tasks.Task<string> CheckForClausesByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetReportByID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetReportByID(string clientID, string clientSecret, string fileID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetReportByID", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> GetReportByIDAsync(string clientID, string clientSecret, string fileID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFoundClausesByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable GetFoundClausesByID(string clientID, string clientSecret, string sqlCon, string fileID);
@@ -332,6 +325,13 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFieldWordPercision", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetFieldWordPercisionAsync(string sqlConnection, string clientID, string clientSecret, string fieldName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/CancelSubscription", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string CancelSubscription(string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/CancelSubscription", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> CancelSubscriptionAsync(string clientID, string clientSecret);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFieldType", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -763,6 +763,14 @@ namespace QuillDigital.QuillWebServices {
             return base.Channel.TranslateAsync(clientID, clientSecret, sqlCon, textIN, language);
         }
         
+        public string TranslateByFileID(string clientID, string clientSecret, string sqlCon, string fileID, string language) {
+            return base.Channel.TranslateByFileID(clientID, clientSecret, sqlCon, fileID, language);
+        }
+        
+        public System.Threading.Tasks.Task<string> TranslateByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string language) {
+            return base.Channel.TranslateByFileIDAsync(clientID, clientSecret, sqlCon, fileID, language);
+        }
+        
         public string Digitise(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string removeLines, string DPI, string keepAlive) {
             return base.Channel.Digitise(fileName, fileID, clientID, clientSecret, sqlCon, OCRType, removeLines, DPI, keepAlive);
         }
@@ -835,30 +843,6 @@ namespace QuillDigital.QuillWebServices {
             return base.Channel.UpdateOCRThresholdAsync(sqlConnection, clientID, clientSecret, threshold);
         }
         
-        public string DeleteExtractionRecord(string sqlConnection, string clientID, string clientSecret, string extractionID) {
-            return base.Channel.DeleteExtractionRecord(sqlConnection, clientID, clientSecret, extractionID);
-        }
-        
-        public System.Threading.Tasks.Task<string> DeleteExtractionRecordAsync(string sqlConnection, string clientID, string clientSecret, string extractionID) {
-            return base.Channel.DeleteExtractionRecordAsync(sqlConnection, clientID, clientSecret, extractionID);
-        }
-        
-        public string UpdateExtractionRecord(string sqlConnection, string clientID, string clientSecret, string ExtractionID, string fieldName, string editedValue) {
-            return base.Channel.UpdateExtractionRecord(sqlConnection, clientID, clientSecret, ExtractionID, fieldName, editedValue);
-        }
-        
-        public System.Threading.Tasks.Task<string> UpdateExtractionRecordAsync(string sqlConnection, string clientID, string clientSecret, string ExtractionID, string fieldName, string editedValue) {
-            return base.Channel.UpdateExtractionRecordAsync(sqlConnection, clientID, clientSecret, ExtractionID, fieldName, editedValue);
-        }
-        
-        public string UpdateActiveStatus(string sqlConnection, string clientID, string clientSecret, string ExtractionIds, bool active) {
-            return base.Channel.UpdateActiveStatus(sqlConnection, clientID, clientSecret, ExtractionIds, active);
-        }
-        
-        public System.Threading.Tasks.Task<string> UpdateActiveStatusAsync(string sqlConnection, string clientID, string clientSecret, string ExtractionIds, bool active) {
-            return base.Channel.UpdateActiveStatusAsync(sqlConnection, clientID, clientSecret, ExtractionIds, active);
-        }
-        
         public System.Data.DataTable GetClausesByID(string clientID, string clientSecret, string sqlCon, string ID) {
             return base.Channel.GetClausesByID(clientID, clientSecret, sqlCon, ID);
         }
@@ -921,6 +905,14 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> CheckForClausesByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes) {
             return base.Channel.CheckForClausesByFileIDAsync(clientID, clientSecret, sqlCon, fileID, fileName, tagOnes);
+        }
+        
+        public string GetReportByID(string clientID, string clientSecret, string fileID) {
+            return base.Channel.GetReportByID(clientID, clientSecret, fileID);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetReportByIDAsync(string clientID, string clientSecret, string fileID) {
+            return base.Channel.GetReportByIDAsync(clientID, clientSecret, fileID);
         }
         
         public System.Data.DataTable GetFoundClausesByID(string clientID, string clientSecret, string sqlCon, string fileID) {
@@ -1017,6 +1009,14 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> GetFieldWordPercisionAsync(string sqlConnection, string clientID, string clientSecret, string fieldName) {
             return base.Channel.GetFieldWordPercisionAsync(sqlConnection, clientID, clientSecret, fieldName);
+        }
+        
+        public string CancelSubscription(string clientID, string clientSecret) {
+            return base.Channel.CancelSubscription(clientID, clientSecret);
+        }
+        
+        public System.Threading.Tasks.Task<string> CancelSubscriptionAsync(string clientID, string clientSecret) {
+            return base.Channel.CancelSubscriptionAsync(clientID, clientSecret);
         }
         
         public System.Data.DataTable GetFieldType(string sqlConnection, string clientID, string clientSecret, string fieldName) {

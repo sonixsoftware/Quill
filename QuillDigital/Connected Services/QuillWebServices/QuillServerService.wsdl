@@ -300,6 +300,24 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TranslateByFileID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sqlCon" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslateByFileIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslateByFileIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Digitise">
         <s:complexType>
           <s:sequence>
@@ -459,60 +477,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UpdateOCRThresholdResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DeleteExtractionRecord">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="extractionID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DeleteExtractionRecordResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="DeleteExtractionRecordResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateExtractionRecord">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ExtractionID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="editedValue" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateExtractionRecordResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UpdateExtractionRecordResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateActiveStatus">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ExtractionIds" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="active" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateActiveStatusResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UpdateActiveStatusResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -700,6 +664,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetReportByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportByIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetFoundClausesByID">
         <s:complexType>
           <s:sequence>
@@ -829,6 +809,21 @@
                 </s:sequence>
               </s:complexType>
             </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelSubscription">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelSubscriptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelSubscriptionResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1429,6 +1424,12 @@
   <wsdl:message name="TranslateSoapOut">
     <wsdl:part name="parameters" element="tns:TranslateResponse" />
   </wsdl:message>
+  <wsdl:message name="TranslateByFileIDSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslateByFileID" />
+  </wsdl:message>
+  <wsdl:message name="TranslateByFileIDSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslateByFileIDResponse" />
+  </wsdl:message>
   <wsdl:message name="DigitiseSoapIn">
     <wsdl:part name="parameters" element="tns:Digitise" />
   </wsdl:message>
@@ -1483,24 +1484,6 @@
   <wsdl:message name="UpdateOCRThresholdSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateOCRThresholdResponse" />
   </wsdl:message>
-  <wsdl:message name="DeleteExtractionRecordSoapIn">
-    <wsdl:part name="parameters" element="tns:DeleteExtractionRecord" />
-  </wsdl:message>
-  <wsdl:message name="DeleteExtractionRecordSoapOut">
-    <wsdl:part name="parameters" element="tns:DeleteExtractionRecordResponse" />
-  </wsdl:message>
-  <wsdl:message name="UpdateExtractionRecordSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateExtractionRecord" />
-  </wsdl:message>
-  <wsdl:message name="UpdateExtractionRecordSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateExtractionRecordResponse" />
-  </wsdl:message>
-  <wsdl:message name="UpdateActiveStatusSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateActiveStatus" />
-  </wsdl:message>
-  <wsdl:message name="UpdateActiveStatusSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateActiveStatusResponse" />
-  </wsdl:message>
   <wsdl:message name="GetClausesByIDSoapIn">
     <wsdl:part name="parameters" element="tns:GetClausesByID" />
   </wsdl:message>
@@ -1549,6 +1532,12 @@
   <wsdl:message name="CheckForClausesByFileIDSoapOut">
     <wsdl:part name="parameters" element="tns:CheckForClausesByFileIDResponse" />
   </wsdl:message>
+  <wsdl:message name="GetReportByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportByID" />
+  </wsdl:message>
+  <wsdl:message name="GetReportByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportByIDResponse" />
+  </wsdl:message>
   <wsdl:message name="GetFoundClausesByIDSoapIn">
     <wsdl:part name="parameters" element="tns:GetFoundClausesByID" />
   </wsdl:message>
@@ -1590,6 +1579,12 @@
   </wsdl:message>
   <wsdl:message name="GetFieldWordPercisionSoapOut">
     <wsdl:part name="parameters" element="tns:GetFieldWordPercisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelSubscriptionSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelSubscription" />
+  </wsdl:message>
+  <wsdl:message name="CancelSubscriptionSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelSubscriptionResponse" />
   </wsdl:message>
   <wsdl:message name="GetFieldTypeSoapIn">
     <wsdl:part name="parameters" element="tns:GetFieldType" />
@@ -1886,6 +1881,16 @@
   <wsdl:message name="TranslateHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="TranslateByFileIDHttpGetIn">
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+    <wsdl:part name="sqlCon" type="s:string" />
+    <wsdl:part name="fileID" type="s:string" />
+    <wsdl:part name="language" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TranslateByFileIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="DigitiseHttpGetIn">
     <wsdl:part name="fileName" type="s:string" />
     <wsdl:part name="fileID" type="s:string" />
@@ -1971,36 +1976,6 @@
   <wsdl:message name="UpdateOCRThresholdHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="DeleteExtractionRecordHttpGetIn">
-    <wsdl:part name="sqlConnection" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="extractionID" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="DeleteExtractionRecordHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="UpdateExtractionRecordHttpGetIn">
-    <wsdl:part name="sqlConnection" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="ExtractionID" type="s:string" />
-    <wsdl:part name="fieldName" type="s:string" />
-    <wsdl:part name="editedValue" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="UpdateExtractionRecordHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="UpdateActiveStatusHttpGetIn">
-    <wsdl:part name="sqlConnection" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="ExtractionIds" type="s:string" />
-    <wsdl:part name="active" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="UpdateActiveStatusHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
   <wsdl:message name="GetClausesByIDHttpGetIn">
     <wsdl:part name="clientID" type="s:string" />
     <wsdl:part name="clientSecret" type="s:string" />
@@ -2072,6 +2047,14 @@
   <wsdl:message name="CheckForClausesByFileIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GetReportByIDHttpGetIn">
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+    <wsdl:part name="fileID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReportByIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="GetFoundClausesByIDHttpGetIn">
     <wsdl:part name="clientID" type="s:string" />
     <wsdl:part name="clientSecret" type="s:string" />
@@ -2133,6 +2116,13 @@
   </wsdl:message>
   <wsdl:message name="GetFieldWordPercisionHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="CancelSubscriptionHttpGetIn">
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelSubscriptionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetFieldTypeHttpGetIn">
     <wsdl:part name="sqlConnection" type="s:string" />
@@ -2431,6 +2421,10 @@
       <wsdl:input message="tns:TranslateSoapIn" />
       <wsdl:output message="tns:TranslateSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="TranslateByFileID">
+      <wsdl:input message="tns:TranslateByFileIDSoapIn" />
+      <wsdl:output message="tns:TranslateByFileIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Digitise">
       <wsdl:input message="tns:DigitiseSoapIn" />
       <wsdl:output message="tns:DigitiseSoapOut" />
@@ -2467,18 +2461,6 @@
       <wsdl:input message="tns:UpdateOCRThresholdSoapIn" />
       <wsdl:output message="tns:UpdateOCRThresholdSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteExtractionRecord">
-      <wsdl:input message="tns:DeleteExtractionRecordSoapIn" />
-      <wsdl:output message="tns:DeleteExtractionRecordSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateExtractionRecord">
-      <wsdl:input message="tns:UpdateExtractionRecordSoapIn" />
-      <wsdl:output message="tns:UpdateExtractionRecordSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateActiveStatus">
-      <wsdl:input message="tns:UpdateActiveStatusSoapIn" />
-      <wsdl:output message="tns:UpdateActiveStatusSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetClausesByID">
       <wsdl:input message="tns:GetClausesByIDSoapIn" />
       <wsdl:output message="tns:GetClausesByIDSoapOut" />
@@ -2511,6 +2493,10 @@
       <wsdl:input message="tns:CheckForClausesByFileIDSoapIn" />
       <wsdl:output message="tns:CheckForClausesByFileIDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetReportByID">
+      <wsdl:input message="tns:GetReportByIDSoapIn" />
+      <wsdl:output message="tns:GetReportByIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetFoundClausesByID">
       <wsdl:input message="tns:GetFoundClausesByIDSoapIn" />
       <wsdl:output message="tns:GetFoundClausesByIDSoapOut" />
@@ -2538,6 +2524,10 @@
     <wsdl:operation name="GetFieldWordPercision">
       <wsdl:input message="tns:GetFieldWordPercisionSoapIn" />
       <wsdl:output message="tns:GetFieldWordPercisionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelSubscription">
+      <wsdl:input message="tns:CancelSubscriptionSoapIn" />
+      <wsdl:output message="tns:CancelSubscriptionSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFieldType">
       <wsdl:input message="tns:GetFieldTypeSoapIn" />
@@ -2709,6 +2699,10 @@
       <wsdl:input message="tns:TranslateHttpGetIn" />
       <wsdl:output message="tns:TranslateHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="TranslateByFileID">
+      <wsdl:input message="tns:TranslateByFileIDHttpGetIn" />
+      <wsdl:output message="tns:TranslateByFileIDHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="Digitise">
       <wsdl:input message="tns:DigitiseHttpGetIn" />
       <wsdl:output message="tns:DigitiseHttpGetOut" />
@@ -2745,18 +2739,6 @@
       <wsdl:input message="tns:UpdateOCRThresholdHttpGetIn" />
       <wsdl:output message="tns:UpdateOCRThresholdHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteExtractionRecord">
-      <wsdl:input message="tns:DeleteExtractionRecordHttpGetIn" />
-      <wsdl:output message="tns:DeleteExtractionRecordHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateExtractionRecord">
-      <wsdl:input message="tns:UpdateExtractionRecordHttpGetIn" />
-      <wsdl:output message="tns:UpdateExtractionRecordHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateActiveStatus">
-      <wsdl:input message="tns:UpdateActiveStatusHttpGetIn" />
-      <wsdl:output message="tns:UpdateActiveStatusHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetClausesByID">
       <wsdl:input message="tns:GetClausesByIDHttpGetIn" />
       <wsdl:output message="tns:GetClausesByIDHttpGetOut" />
@@ -2789,6 +2771,10 @@
       <wsdl:input message="tns:CheckForClausesByFileIDHttpGetIn" />
       <wsdl:output message="tns:CheckForClausesByFileIDHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetReportByID">
+      <wsdl:input message="tns:GetReportByIDHttpGetIn" />
+      <wsdl:output message="tns:GetReportByIDHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetFoundClausesByID">
       <wsdl:input message="tns:GetFoundClausesByIDHttpGetIn" />
       <wsdl:output message="tns:GetFoundClausesByIDHttpGetOut" />
@@ -2816,6 +2802,10 @@
     <wsdl:operation name="GetFieldWordPercision">
       <wsdl:input message="tns:GetFieldWordPercisionHttpGetIn" />
       <wsdl:output message="tns:GetFieldWordPercisionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelSubscription">
+      <wsdl:input message="tns:CancelSubscriptionHttpGetIn" />
+      <wsdl:output message="tns:CancelSubscriptionHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFieldType">
       <wsdl:input message="tns:GetFieldTypeHttpGetIn" />
@@ -3078,6 +3068,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TranslateByFileID">
+      <soap:operation soapAction="http://quilldigital.co.uk/TranslateByFileID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Digitise">
       <soap:operation soapAction="http://quilldigital.co.uk/Digitise" style="document" />
       <wsdl:input>
@@ -3159,33 +3158,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteExtractionRecord">
-      <soap:operation soapAction="http://quilldigital.co.uk/DeleteExtractionRecord" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateExtractionRecord">
-      <soap:operation soapAction="http://quilldigital.co.uk/UpdateExtractionRecord" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateActiveStatus">
-      <soap:operation soapAction="http://quilldigital.co.uk/UpdateActiveStatus" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetClausesByID">
       <soap:operation soapAction="http://quilldigital.co.uk/GetClausesByID" style="document" />
       <wsdl:input>
@@ -3258,6 +3230,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetReportByID">
+      <soap:operation soapAction="http://quilldigital.co.uk/GetReportByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetFoundClausesByID">
       <soap:operation soapAction="http://quilldigital.co.uk/GetFoundClausesByID" style="document" />
       <wsdl:input>
@@ -3314,6 +3295,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <soap:operation soapAction="http://quilldigital.co.uk/GetFieldWordPercision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelSubscription">
+      <soap:operation soapAction="http://quilldigital.co.uk/CancelSubscription" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3702,6 +3692,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TranslateByFileID">
+      <soap12:operation soapAction="http://quilldigital.co.uk/TranslateByFileID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Digitise">
       <soap12:operation soapAction="http://quilldigital.co.uk/Digitise" style="document" />
       <wsdl:input>
@@ -3783,33 +3782,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteExtractionRecord">
-      <soap12:operation soapAction="http://quilldigital.co.uk/DeleteExtractionRecord" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateExtractionRecord">
-      <soap12:operation soapAction="http://quilldigital.co.uk/UpdateExtractionRecord" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateActiveStatus">
-      <soap12:operation soapAction="http://quilldigital.co.uk/UpdateActiveStatus" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetClausesByID">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetClausesByID" style="document" />
       <wsdl:input>
@@ -3882,6 +3854,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetReportByID">
+      <soap12:operation soapAction="http://quilldigital.co.uk/GetReportByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetFoundClausesByID">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetFoundClausesByID" style="document" />
       <wsdl:input>
@@ -3938,6 +3919,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetFieldWordPercision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelSubscription">
+      <soap12:operation soapAction="http://quilldigital.co.uk/CancelSubscription" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4326,6 +4316,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TranslateByFileID">
+      <http:operation location="/TranslateByFileID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Digitise">
       <http:operation location="/Digitise" />
       <wsdl:input>
@@ -4407,33 +4406,6 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteExtractionRecord">
-      <http:operation location="/DeleteExtractionRecord" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateExtractionRecord">
-      <http:operation location="/UpdateExtractionRecord" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateActiveStatus">
-      <http:operation location="/UpdateActiveStatus" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetClausesByID">
       <http:operation location="/GetClausesByID" />
       <wsdl:input>
@@ -4506,6 +4478,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetReportByID">
+      <http:operation location="/GetReportByID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetFoundClausesByID">
       <http:operation location="/GetFoundClausesByID" />
       <wsdl:input>
@@ -4562,6 +4543,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFieldWordPercision">
       <http:operation location="/GetFieldWordPercision" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelSubscription">
+      <http:operation location="/CancelSubscription" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>

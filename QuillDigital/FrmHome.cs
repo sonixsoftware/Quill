@@ -627,7 +627,7 @@ namespace QuillDigital
 
                                 break;
                             }
-                            translated = servRef.Translate(clientID, secret, Globals.sqlCon, fullText, translationlang);
+                            translated = servRef.TranslateByFileID(clientID, secret, Globals.sqlCon, fileID, translationlang);
                             if (translated.Contains("QuillException: Document Limit Reached"))
                             {
                                 MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -744,15 +744,19 @@ namespace QuillDigital
                     Invoke(UpdateStatus, "Writing Report..");
                     #region Write Report
 
-                    string xmlDoc = Path.GetFileNameWithoutExtension(file) + ".xml";
+                    string xmlDoc = string.Empty;
+                    string xmlReport = servRef.GetReportByID(clientID, secret, fileID);
+
                     if (string.IsNullOrEmpty(tempFile))
                     {
-                        WriteXML(fullText, translated, fields, clausesFound, fileName, DateTime.Now.ToString(), translationlang, Path.Combine(savePath.Text, xmlDoc));
+                        xmlDoc = Path.GetFileNameWithoutExtension(file) + ".xml";
+                        System.IO.File.WriteAllText(Path.Combine(savePath.Text, xmlDoc), xmlReport);
 
                     }
                     else
                     {
-                        WriteXML(fullText, translated, fields, clausesFound, Path.GetFileName(tempFile), DateTime.Now.ToString(), translationlang, Path.Combine(savePath.Text, xmlDoc));
+                        xmlDoc= Path.GetFileNameWithoutExtension(tempFile) + ".xml";
+                        System.IO.File.WriteAllText(Path.Combine(savePath.Text, xmlDoc), xmlReport);
 
                     }
                     if (convertedFile == true)
@@ -774,38 +778,7 @@ namespace QuillDigital
             return;
         }
 
-        public class Run
-        {
-            public String DigitisedText;
-            public String TranslatedText;
-            public String FieldsFound;
-            public String ClausesFound;
-            public String FileName;
-            public String DateTime;
-            public String Language;
-        }
-        public static void WriteXML(String DigitisedText, String TranslatedText, String FieldsFound, String ClausesFound, String FileName, String DateTime, String Language, string SavePath)
-        {
-            Run overview = new Run();
-            overview.DigitisedText = DigitisedText;
-            overview.TranslatedText = TranslatedText;
-            overview.Language = Language;
-            overview.FieldsFound = FieldsFound;
-            overview.ClausesFound = ClausesFound;
-            overview.FileName = FileName;
-            overview.DateTime = DateTime;
-
-            System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(Run));
-
-            var path = SavePath;
-
-            System.IO.FileStream file = System.IO.File.Create(path);
-
-            writer.Serialize(file, overview);
-            file.Close();
-        }
-
+      
         private void Main_Run_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
