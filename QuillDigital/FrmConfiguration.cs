@@ -39,16 +39,7 @@ namespace QuillDigital
                     //assume no client id
                 }
             }
-            ((BasicHttpBinding)servRef.Endpoint.Binding).MaxReceivedMessageSize = int.MaxValue;
-            ((BasicHttpBinding)servRef.Endpoint.Binding).MaxBufferSize = int.MaxValue;
-            foreach (OperationDescription op in servRef.Endpoint.Contract.Operations)
-            {
-                var dataContractBehavior = op.Behaviors.Find<DataContractSerializerOperationBehavior>();
-                if (dataContractBehavior != null)
-                {
-                    dataContractBehavior.MaxItemsInObjectGraph = int.MaxValue;
-                }
-            }
+          
             servRef.Endpoint.Binding.SendTimeout = new TimeSpan(0, 30, 0);
             if (string.IsNullOrEmpty(textBox1.Text.Trim()))
             {

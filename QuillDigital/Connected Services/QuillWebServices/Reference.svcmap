@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3e68d8fe-65e3-4d61-b92d-c7931e738a1c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="72dee779-331d-453d-94c4-a95d0c336753" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://quilldigitalservice.co.uk/QuillServerService.asmx?wsdl:80" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://quilldigitalservice.co.uk/QuillServerService.asmx?wsdl:443/QuillServerService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="QuillServerService.disco" MetadataType="Disco" ID="609ad7ab-fe4c-4f66-a296-542d8f572e74" SourceId="1" SourceUrl="http://quilldigitalservice.co.uk/QuillServerService.asmx?disco" />
-    <MetadataFile FileName="QuillServerService.wsdl" MetadataType="Wsdl" ID="5ea2d61d-62bf-45aa-a545-8fa6888273bc" SourceId="1" SourceUrl="http://quilldigitalservice.co.uk/QuillServerService.asmx?wsdl" />
+    <MetadataFile FileName="QuillServerService.disco" MetadataType="Disco" ID="a0d90679-e657-4a61-ae0a-c4c2c7301648" SourceId="1" SourceUrl="https://quilldigitalservice.co.uk/QuillServerService.asmx?disco" />
+    <MetadataFile FileName="QuillServerService.wsdl" MetadataType="Wsdl" ID="2e42dcbb-8c22-480d-8e25-1b1469f16058" SourceId="1" SourceUrl="https://quilldigitalservice.co.uk/QuillServerService.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

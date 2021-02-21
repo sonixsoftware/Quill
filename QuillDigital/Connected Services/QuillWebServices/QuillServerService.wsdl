@@ -4778,13 +4778,13 @@
   </wsdl:binding>
   <wsdl:service name="WebService">
     <wsdl:port name="WebServiceSoap" binding="tns:WebServiceSoap">
-      <soap:address location="http://quilldigitalservice.co.uk/QuillServerService.asmx" />
+      <soap:address location="https://quilldigitalservice.co.uk/QuillServerService.asmx" />
     </wsdl:port>
     <wsdl:port name="WebServiceSoap12" binding="tns:WebServiceSoap12">
-      <soap12:address location="http://quilldigitalservice.co.uk/QuillServerService.asmx" />
+      <soap12:address location="https://quilldigitalservice.co.uk/QuillServerService.asmx" />
     </wsdl:port>
     <wsdl:port name="WebServiceHttpGet" binding="tns:WebServiceHttpGet">
-      <http:address location="http://quilldigitalservice.co.uk/QuillServerService.asmx" />
+      <http:address location="https://quilldigitalservice.co.uk/QuillServerService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

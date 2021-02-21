@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>C:\Users\Info\Desktop\</PublishUrl>
-    <Install>true</Install>
+    <Install>false</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>2021.1.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -294,24 +294,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\QuillWebServices\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\QuillWebServices\QuillServerService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\QuillWebServices\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\QuillWebServices\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\QuillWebServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\tenor.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +306,13 @@
     <None Include="Resources\quill-digital-logo-burnt-sienna-alizarin-crimson.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\QuillWebServices\QuillServerService.disco" />
+    <None Include="Connected Services\QuillWebServices\configuration91.svcinfo" />
+    <None Include="Connected Services\QuillWebServices\configuration.svcinfo" />
+    <None Include="Connected Services\QuillWebServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="quill-digital-logo-alizarin-crimson-white - Copy.ico" />
     <Content Include="Quill_icon.ico" />
   </ItemGroup>
@@ -338,6 +327,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\QuillWebServices\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
