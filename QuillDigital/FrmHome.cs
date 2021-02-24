@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
 using DataTable = System.Data.DataTable;
+using System.Reflection;
 
 namespace QuillDigital
 {
@@ -433,7 +434,12 @@ namespace QuillDigital
                         var document = wordApplication.Documents.Open(file, false, true);
                         Guid strGuid = Guid.NewGuid();
                         //convert to pdf
-                        string tempPath = Path.GetDirectoryName(file);
+                        string tempPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                        tempPath = Path.Combine(tempPath, "temps");
+                        if (!Directory.Exists(tempPath))
+                        {
+                            Directory.CreateDirectory(tempPath);
+                        }
                         string tempFileName = Path.GetFileNameWithoutExtension(file);
                         document.ExportAsFixedFormat(System.IO.Path.Combine(tempPath, strGuid + ".pdf"), WdExportFormat.wdExportFormatPDF);
                         runFile = System.IO.Path.Combine(tempPath, strGuid + ".pdf");
@@ -446,7 +452,7 @@ namespace QuillDigital
                         GC.Collect();
 
                     }
-                    catch
+                    catch(Exception exe)
                     {
                         if (wordWarning == false)
                         {
@@ -594,7 +600,7 @@ namespace QuillDigital
                         if (corruptFile == false)
                         {
                             fullText = servRef.GetFullTextByID(fileID, clientID, secret);
-                            if (fullText.Contains("QuillException: Document Limit Reached"))
+                            if (fullText.Contains("QuillException: Document limit reached"))
                             {
                                 MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
