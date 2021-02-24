@@ -566,9 +566,9 @@ namespace QuillDigital
                             }
                             Invoke(UpdateProgress, 40);
                             string digitise = servRef.Digitise(fileName, fileID, clientID, secret, Globals.sqlCon, Globals.ocrType, strLineRemoval, Globals.dpi, "0");
-                            if (digitise.Contains("QuillException: Document Limit Reached"))
+                            if (digitise.Contains("QuillException: Document limit reached"))
                             {
-                                MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Document Limit Reached. You must purchase a license or more pages to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
                             if (digitise.Contains("File Corrupt- unable to convert"))
