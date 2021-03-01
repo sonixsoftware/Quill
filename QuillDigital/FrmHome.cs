@@ -531,7 +531,7 @@ namespace QuillDigital
 
                     #region Check file type
                     Invoke(UpdateStatus, "Native Check..");
-                    string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, Globals.meta);
+                    string native = servRef.NativeTextCheck(fileName, Globals.sqlCon, false, clientID, secret, fileID, Globals.meta, Globals.ignoreMeta);
                     if (native.Contains("QuillException: Document Limit Reached"))
                     {
                         MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -218,7 +218,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ocemetaT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ocrMetaCount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ignoreMeta" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -327,7 +328,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="sqlCon" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="OCRType" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="removeLines" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="grayScale" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="DPI" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="keepAlive" type="s:string" />
           </s:sequence>
@@ -1837,7 +1838,8 @@
     <wsdl:part name="clientID" type="s:string" />
     <wsdl:part name="clientSecret" type="s:string" />
     <wsdl:part name="fileID" type="s:string" />
-    <wsdl:part name="ocemetaT" type="s:string" />
+    <wsdl:part name="ocrMetaCount" type="s:string" />
+    <wsdl:part name="ignoreMeta" type="s:string" />
   </wsdl:message>
   <wsdl:message name="NativeTextCheckHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -1898,7 +1900,7 @@
     <wsdl:part name="clientSecret" type="s:string" />
     <wsdl:part name="sqlCon" type="s:string" />
     <wsdl:part name="OCRType" type="s:string" />
-    <wsdl:part name="removeLines" type="s:string" />
+    <wsdl:part name="grayScale" type="s:string" />
     <wsdl:part name="DPI" type="s:string" />
     <wsdl:part name="keepAlive" type="s:string" />
   </wsdl:message>

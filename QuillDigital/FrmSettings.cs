@@ -27,6 +27,7 @@ namespace QuillDigital
 
         private void FrmSettings_Load(object sender, EventArgs e)
         {
+            ignoreMeta.Checked = true;
             richTextBox1.Text = "Client ID: " + clientID;
             label3.Text = secret;
             DPI.Items.Add("150");
@@ -94,6 +95,18 @@ namespace QuillDigital
         {
             System.Diagnostics.Process.Start("https://www.quilldigital.co.uk/Login");
             
+        }
+
+        private void ignoreMeta_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ignoreMeta.Checked == true)
+            {
+                Globals.ignoreMeta = "TRUE";
+            }
+            else
+            {
+                Globals.ignoreMeta = "FALSE";
+            }
         }
     }
 }

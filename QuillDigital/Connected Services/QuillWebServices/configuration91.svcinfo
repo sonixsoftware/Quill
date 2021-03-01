@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="ubhub5HH1i7ue1YHWzIzgCH/Z/MnCmEX7jkOpEDfFXY=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="5bkaez2jih1ZOewFB0LzsMWf9FDE3wCgsxiQIdOq0dc=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="WebServiceSoap">
+    <bindingConfiguration bindingType="basicHttpBinding" name="WebServiceSoap1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WebServiceSoap</serializedValue>
+          <serializedValue>WebServiceSoap1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -110,10 +110,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="basicHttpBinding" name="WebServiceSoap1">
+    <bindingConfiguration bindingType="basicHttpBinding" name="WebServiceSoap2">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WebServiceSoap1</serializedValue>
+          <serializedValue>WebServiceSoap2</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -375,7 +375,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WebServiceSoap" contract="QuillWebServices.WebServiceSoap" bindingType="basicHttpBinding" address="https://quilldigitalservice.co.uk/QuillServerService.asmx" bindingConfiguration="WebServiceSoap">
+    <endpoint name="WebServiceSoap1" contract="QuillWebServices.WebServiceSoap" bindingType="basicHttpBinding" address="https://quilldigitalservice.co.uk/QuillServerService.asmx" bindingConfiguration="WebServiceSoap1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>https://quilldigitalservice.co.uk/QuillServerService.asmx</serializedValue>
@@ -387,7 +387,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WebServiceSoap</serializedValue>
+          <serializedValue>WebServiceSoap1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>QuillWebServices.WebServiceSoap</serializedValue>
@@ -450,7 +450,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WebServiceSoap</serializedValue>
+          <serializedValue>WebServiceSoap1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

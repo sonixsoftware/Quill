@@ -109,10 +109,10 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/NativeTextCheck", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string NativeTextCheck(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocemetaT);
+        string NativeTextCheck(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocrMetaCount, string ignoreMeta);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/NativeTextCheck", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> NativeTextCheckAsync(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocemetaT);
+        System.Threading.Tasks.Task<string> NativeTextCheckAsync(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocrMetaCount, string ignoreMeta);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetStatus", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -151,10 +151,10 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/Digitise", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string Digitise(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string removeLines, string DPI, string keepAlive);
+        string Digitise(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string grayScale, string DPI, string keepAlive);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/Digitise", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> DigitiseAsync(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string removeLines, string DPI, string keepAlive);
+        System.Threading.Tasks.Task<string> DigitiseAsync(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string grayScale, string DPI, string keepAlive);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/InsertFieldData", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -723,12 +723,12 @@ namespace QuillDigital.QuillWebServices {
             return base.Channel.GetFieldNamesAsync(sqlConnection, clientID, clientSecret);
         }
         
-        public string NativeTextCheck(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocemetaT) {
-            return base.Channel.NativeTextCheck(fileName, sqlcon, keepMetaData, clientID, clientSecret, fileID, ocemetaT);
+        public string NativeTextCheck(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocrMetaCount, string ignoreMeta) {
+            return base.Channel.NativeTextCheck(fileName, sqlcon, keepMetaData, clientID, clientSecret, fileID, ocrMetaCount, ignoreMeta);
         }
         
-        public System.Threading.Tasks.Task<string> NativeTextCheckAsync(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocemetaT) {
-            return base.Channel.NativeTextCheckAsync(fileName, sqlcon, keepMetaData, clientID, clientSecret, fileID, ocemetaT);
+        public System.Threading.Tasks.Task<string> NativeTextCheckAsync(string fileName, string sqlcon, bool keepMetaData, string clientID, string clientSecret, string fileID, string ocrMetaCount, string ignoreMeta) {
+            return base.Channel.NativeTextCheckAsync(fileName, sqlcon, keepMetaData, clientID, clientSecret, fileID, ocrMetaCount, ignoreMeta);
         }
         
         public string GetStatus(string clientID, string clientSecret, string fileID) {
@@ -771,12 +771,12 @@ namespace QuillDigital.QuillWebServices {
             return base.Channel.TranslateByFileIDAsync(clientID, clientSecret, sqlCon, fileID, language);
         }
         
-        public string Digitise(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string removeLines, string DPI, string keepAlive) {
-            return base.Channel.Digitise(fileName, fileID, clientID, clientSecret, sqlCon, OCRType, removeLines, DPI, keepAlive);
+        public string Digitise(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string grayScale, string DPI, string keepAlive) {
+            return base.Channel.Digitise(fileName, fileID, clientID, clientSecret, sqlCon, OCRType, grayScale, DPI, keepAlive);
         }
         
-        public System.Threading.Tasks.Task<string> DigitiseAsync(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string removeLines, string DPI, string keepAlive) {
-            return base.Channel.DigitiseAsync(fileName, fileID, clientID, clientSecret, sqlCon, OCRType, removeLines, DPI, keepAlive);
+        public System.Threading.Tasks.Task<string> DigitiseAsync(string fileName, string fileID, string clientID, string clientSecret, string sqlCon, string OCRType, string grayScale, string DPI, string keepAlive) {
+            return base.Channel.DigitiseAsync(fileName, fileID, clientID, clientSecret, sqlCon, OCRType, grayScale, DPI, keepAlive);
         }
         
         public string InsertFieldData(string[] arrStrAssociations, string sqlCon, string clientID, string clientSecret, string fileID, string Value) {
