@@ -66,6 +66,20 @@ namespace QuillDigital
             label8.Text = "Pages left: " + pages;
             extractFields.Checked = true;
             savePath.Text = GetConfiguration.GetConfigurationValueSaveLocation();
+            if (string.IsNullOrEmpty(savePath.Text.Trim()))
+            {
+                string runDir = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+                if (!Directory.Exists(Path.Combine(runDir, "TEMPS"))){
+                    Directory.CreateDirectory(Path.Combine(runDir, "TEMPS"));
+                }
+             savePath.Text = Path.Combine(runDir, "TEMPS");
+             GetConfiguration.ConfigurationValueSaveLocation(Path.Combine(runDir, "TEMPS"));
+            }
+            else
+            {
+                savePath.Text = GetConfiguration.GetConfigurationValueSaveLocation();
+            }
+           
             Globals.ocrType = GetConfiguration.GetConfigurationValueOCR();
             Globals.meta = GetConfiguration.GetConfigurationValueMeta();
             Globals.dpi = GetConfiguration.GetConfigurationValueDPI();
@@ -122,7 +136,7 @@ namespace QuillDigital
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            
 
             if (string.IsNullOrEmpty(folderPath.Text) && fileType.Checked == false)
             {

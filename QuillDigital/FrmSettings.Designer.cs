@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.grayscale = new System.Windows.Forms.CheckBox();
             this.ocrtype = new System.Windows.Forms.ComboBox();
             this.metatoll = new System.Windows.Forms.ComboBox();
             this.DPI = new System.Windows.Forms.ComboBox();
@@ -39,6 +38,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.ignoreMeta = new System.Windows.Forms.CheckBox();
+            this.grayscale = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,15 +49,13 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.ignoreMeta = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -99,17 +99,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.62702F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(167, 341);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // grayscale
-            // 
-            this.grayscale.AutoSize = true;
-            this.grayscale.Location = new System.Drawing.Point(3, 3);
-            this.grayscale.Name = "grayscale";
-            this.grayscale.Size = new System.Drawing.Size(78, 17);
-            this.grayscale.TabIndex = 8;
-            this.grayscale.Text = "Gray Scale";
-            this.grayscale.UseVisualStyleBackColor = true;
-            this.grayscale.CheckedChanged += new System.EventHandler(this.grayscale_CheckedChanged);
             // 
             // ocrtype
             // 
@@ -176,6 +165,42 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.ignoreMeta, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.grayscale, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 158);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(161, 65);
+            this.tableLayoutPanel6.TabIndex = 10;
+            // 
+            // ignoreMeta
+            // 
+            this.ignoreMeta.AutoSize = true;
+            this.ignoreMeta.Location = new System.Drawing.Point(3, 35);
+            this.ignoreMeta.Name = "ignoreMeta";
+            this.ignoreMeta.Size = new System.Drawing.Size(109, 17);
+            this.ignoreMeta.TabIndex = 9;
+            this.ignoreMeta.Text = "Ignore Meta Data";
+            this.ignoreMeta.UseVisualStyleBackColor = true;
+            this.ignoreMeta.CheckedChanged += new System.EventHandler(this.ignoreMeta_CheckedChanged);
+            // 
+            // grayscale
+            // 
+            this.grayscale.AutoSize = true;
+            this.grayscale.Location = new System.Drawing.Point(3, 3);
+            this.grayscale.Name = "grayscale";
+            this.grayscale.Size = new System.Drawing.Size(78, 17);
+            this.grayscale.TabIndex = 8;
+            this.grayscale.Text = "Gray Scale";
+            this.grayscale.UseVisualStyleBackColor = true;
+            this.grayscale.CheckedChanged += new System.EventHandler(this.grayscale_CheckedChanged);
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -201,11 +226,12 @@
             this.tableLayoutPanel4.Controls.Add(this.richTextBox1, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 4;
+            this.tableLayoutPanel4.RowCount = 5;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(161, 280);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
@@ -277,31 +303,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.ignoreMeta, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.grayscale, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 158);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(161, 65);
-            this.tableLayoutPanel6.TabIndex = 10;
-            // 
-            // ignoreMeta
-            // 
-            this.ignoreMeta.AutoSize = true;
-            this.ignoreMeta.Location = new System.Drawing.Point(3, 35);
-            this.ignoreMeta.Name = "ignoreMeta";
-            this.ignoreMeta.Size = new System.Drawing.Size(109, 17);
-            this.ignoreMeta.TabIndex = 9;
-            this.ignoreMeta.Text = "Ignore Meta Data";
-            this.ignoreMeta.UseVisualStyleBackColor = true;
-            this.ignoreMeta.CheckedChanged += new System.EventHandler(this.ignoreMeta_CheckedChanged);
-            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,12 +318,12 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
