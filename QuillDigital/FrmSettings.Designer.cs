@@ -184,9 +184,9 @@
             this.ignoreMeta.AutoSize = true;
             this.ignoreMeta.Location = new System.Drawing.Point(3, 35);
             this.ignoreMeta.Name = "ignoreMeta";
-            this.ignoreMeta.Size = new System.Drawing.Size(109, 17);
+            this.ignoreMeta.Size = new System.Drawing.Size(132, 17);
             this.ignoreMeta.TabIndex = 9;
-            this.ignoreMeta.Text = "Ignore Meta Data";
+            this.ignoreMeta.Text = "Over Ride Native Text";
             this.ignoreMeta.UseVisualStyleBackColor = true;
             this.ignoreMeta.CheckedChanged += new System.EventHandler(this.ignoreMeta_CheckedChanged);
             // 

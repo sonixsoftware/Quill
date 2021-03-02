@@ -61,6 +61,15 @@ namespace QuillDigital
         {
             Loading ld = new Loading();
             ld.Show();
+
+            tagOneTemp = string.Empty;
+            Tag1.Text = string.Empty;
+            Tag2.Text = string.Empty;
+            Tag3.Text = string.Empty;
+            Tag4.Text = string.Empty;
+            Tag5.Text = string.Empty;
+            richTextBox1.Text = string.Empty;
+            threshold.Text = string.Empty;
             string tagOne = clause.Text;
             foreach (DataRow row in clauses.Rows)
             {
@@ -113,8 +122,8 @@ namespace QuillDigital
             DialogResult updateClause = MessageBox.Show("Update Clause: " + Tag1.Text + "?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (updateClause == DialogResult.Yes)
             {
-                string outPut = servRef.DeleteClause(Globals.sqlCon, clientID, secret, tagOneTemp);
 
+                string tempTagOne = clause.Text;
                 if (string.IsNullOrEmpty(richTextBox1.Text.Trim()))
                 {
                     MessageBox.Show("Please enter a clause..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -133,40 +142,25 @@ namespace QuillDigital
                 }
                 Loading ld = new Loading();
                 ld.Show();
+                string outPut = servRef.DeleteClause(Globals.sqlCon, clientID, secret, tagOneTemp);
                 string clauseSend = servRef.CreateClause(Globals.sqlCon, clientID, secret, richTextBox1.Text.Trim(), Tag1.Text.Trim(), Tag2.Text.Trim(), Tag3.Text.Trim(), Tag4.Text.Trim(), Tag5.Text.Trim(), thresholdOut);
                 int counter = 0;
                 foreach (DataRow row in clauses.Rows)
                 {
                     if (tagOneTemp.Equals(row["TagOne"].ToString()))
                     {
-                        foreach (DataRow dgvrow in clauses.Rows)
-                        {
-                            string tag1 = dgvrow["TagOne"].ToString();
-                            string tag2 = dgvrow["TagTwo"].ToString();
-                            string tag3 = dgvrow["TagThree"].ToString();
-                            string tag4 = dgvrow["TagFour"].ToString();
-                            string tag5 = dgvrow["TagFive"].ToString();
-                            string clauseTemp = dgvrow["Letter"].ToString();
-                            string threshold = dgvrow["P(A)"].ToString();
+                        clauses.Rows[counter]["TagOne"] = Tag1.Text.Trim();
+                        clauses.Rows[counter]["TagTwo"] = Tag2.Text.Trim();
+                        clauses.Rows[counter]["TagThree"] = Tag3.Text.Trim();
+                        clauses.Rows[counter]["TagFour"] = Tag4.Text.Trim();
+                        clauses.Rows[counter]["TagFive"] = Tag5.Text.Trim();
+                        clauses.Rows[counter]["Letter"] = richTextBox1.Text.Trim();
+                        clauses.Rows[counter]["P(A)"] = thresholdOut;
 
-                            clauses.Rows[counter]["TagOne"] = tag1;
-                            clauses.Rows[counter]["TagTwo"] = tag2;
-                            clauses.Rows[counter]["TagThree"] = tag3;
-                            clauses.Rows[counter]["TagFour"] = tag4;
-                            clauses.Rows[counter]["TagFive"] = tag5;
-                            clauses.Rows[counter]["Letter"] = clauseTemp;
-                            clauses.Rows[counter]["P(A)"] = threshold;
-
-                            clause.Items.Remove(tagOneTemp);
-                            clause.Items.Add(tag1);
-                            clause.Text = tag1;
-
-
-                        }
                     }
                     counter++;
                 }
-                MessageBox.Show(Tag1.Text + " Updated", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(tempTagOne + " Updated", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ld.Close();
             }
         }

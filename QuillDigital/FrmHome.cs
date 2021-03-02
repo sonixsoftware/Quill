@@ -705,7 +705,8 @@ namespace QuillDigital
                         {
                             Invoke(UpdateProgress, 80);
                             Invoke(UpdateStatus, "Extracting Clauses..");
-                            clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, GetConfiguration.GetConfigurationValueClauses());
+                            string clausesOUT = GetConfiguration.GetConfigurationValueClauses();
+                            clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, clausesOUT);
                             if (clausesFound.Contains("QuillException: Document Limit Reached"))
                             {
                                 MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -747,7 +748,7 @@ namespace QuillDigital
                                         tagFive = "Tag Five not found..";
                                     }
                                     string clauseFound = row["ClauseFound"].ToString();
-                                    string probablility = row["Probablility"].ToString();
+                                    string probablility = row["Probability"].ToString();
                                     clausesFound = clausesFound + Environment.NewLine + tagOne + Environment.NewLine + tagTwo + Environment.NewLine + tagThree + Environment.NewLine + tagFour
                                         + Environment.NewLine + tagFive + Environment.NewLine + "Levenstein Distance: " + probablility + Environment.NewLine + Environment.NewLine;
                                 }

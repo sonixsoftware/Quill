@@ -44,6 +44,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.button12 = new System.Windows.Forms.Button();
+            this.savePath = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -74,8 +76,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Main_Run = new System.ComponentModel.BackgroundWorker();
             this.Cancel_Main = new System.ComponentModel.BackgroundWorker();
-            this.savePath = new System.Windows.Forms.TextBox();
-            this.button12 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -291,6 +291,26 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel14.Size = new System.Drawing.Size(226, 77);
             this.tableLayoutPanel14.TabIndex = 2;
+            // 
+            // button12
+            // 
+            this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.Location = new System.Drawing.Point(3, 41);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(54, 33);
+            this.button12.TabIndex = 1;
+            this.button12.Text = "Report Folder";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // savePath
+            // 
+            this.savePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.savePath.Location = new System.Drawing.Point(63, 41);
+            this.savePath.Name = "savePath";
+            this.savePath.Size = new System.Drawing.Size(160, 20);
+            this.savePath.TabIndex = 2;
             // 
             // label8
             // 
@@ -650,26 +670,6 @@
             // Main_Run
             // 
             this.Main_Run.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Main_Run_DoWork);
-            // 
-            // savePath
-            // 
-            this.savePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.savePath.Location = new System.Drawing.Point(63, 41);
-            this.savePath.Name = "savePath";
-            this.savePath.Size = new System.Drawing.Size(160, 20);
-            this.savePath.TabIndex = 2;
-            // 
-            // button12
-            // 
-            this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(3, 41);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(54, 33);
-            this.button12.TabIndex = 1;
-            this.button12.Text = "Report Folder";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // FrmHome
             // 

@@ -27,7 +27,7 @@ namespace QuillDigital
 
         private void FrmSettings_Load(object sender, EventArgs e)
         {
-            ignoreMeta.Checked = true;
+            
             richTextBox1.Text = "Client ID: " + clientID;
             label3.Text = secret;
             DPI.Items.Add("150");
