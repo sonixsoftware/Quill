@@ -40,7 +40,9 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.strRegex = new System.Windows.Forms.RichTextBox();
             this.regex = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.dedupe = new System.Windows.Forms.CheckBox();
+            this.currSymbol = new System.Windows.Forms.CheckBox();
             this.dgvWords = new System.Windows.Forms.DataGridView();
             this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Forward = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,12 +70,11 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.currSymbol = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
@@ -81,7 +82,6 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -228,6 +228,20 @@
             this.regex.UseVisualStyleBackColor = true;
             this.regex.CheckedChanged += new System.EventHandler(this.regex_CheckedChanged);
             // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.72973F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.27027F));
+            this.tableLayoutPanel10.Controls.Add(this.dedupe, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.currSymbol, 1, 0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(224, 194);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(185, 25);
+            this.tableLayoutPanel10.TabIndex = 6;
+            // 
             // dedupe
             // 
             this.dedupe.AutoSize = true;
@@ -237,6 +251,17 @@
             this.dedupe.TabIndex = 6;
             this.dedupe.Text = "DeDuplicate";
             this.dedupe.UseVisualStyleBackColor = true;
+            // 
+            // currSymbol
+            // 
+            this.currSymbol.AutoSize = true;
+            this.currSymbol.Location = new System.Drawing.Point(94, 3);
+            this.currSymbol.Name = "currSymbol";
+            this.currSymbol.Size = new System.Drawing.Size(60, 17);
+            this.currSymbol.TabIndex = 7;
+            this.currSymbol.Text = "Symbol";
+            this.currSymbol.UseVisualStyleBackColor = true;
+            this.currSymbol.Visible = false;
             // 
             // dgvWords
             // 
@@ -544,31 +569,6 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.72973F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.27027F));
-            this.tableLayoutPanel10.Controls.Add(this.dedupe, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.currSymbol, 1, 0);
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(224, 194);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(185, 25);
-            this.tableLayoutPanel10.TabIndex = 6;
-            // 
-            // currSymbol
-            // 
-            this.currSymbol.AutoSize = true;
-            this.currSymbol.Location = new System.Drawing.Point(94, 3);
-            this.currSymbol.Name = "currSymbol";
-            this.currSymbol.Size = new System.Drawing.Size(60, 17);
-            this.currSymbol.TabIndex = 7;
-            this.currSymbol.Text = "Symbol";
-            this.currSymbol.UseVisualStyleBackColor = true;
-            this.currSymbol.Visible = false;
-            // 
             // FrmMyFields
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,6 +587,8 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhrases)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -596,8 +598,6 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel10.PerformLayout();
             this.ResumeLayout(false);
 
         }

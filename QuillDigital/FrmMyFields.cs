@@ -96,6 +96,9 @@ namespace QuillDigital
                 precisionIn.Enabled = false;
                 richTextBox1.Enabled = false;
                 types.Items.Remove("Text (Generic)");
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
             }
             else
             {
@@ -105,6 +108,10 @@ namespace QuillDigital
                 precisionIn.Enabled = true;
                 richTextBox1.Enabled = true;
                 types.Items.Add("Text (Generic)");
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
+
             }
         }
 
