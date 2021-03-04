@@ -571,7 +571,7 @@ namespace QuillDigital
                             return;
                         }
                         fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
-
+                       
                         Invoke(UpdateProgress, 40);
                     }
                     else

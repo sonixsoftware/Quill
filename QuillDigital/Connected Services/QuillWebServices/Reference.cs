@@ -16,6 +16,13 @@ namespace QuillDigital.QuillWebServices {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://quilldigital.co.uk/", ConfigurationName="QuillWebServices.WebServiceSoap")]
     public interface WebServiceSoap {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetProcessedPageCount", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetProcessedPageCount(string sqlConnection, string fileID, string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetProcessedPageCount", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFilePageCount", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection);
@@ -120,6 +127,13 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetStatus", ReplyAction="*")]
         System.Threading.Tasks.Task<string> GetStatusAsync(string clientID, string clientSecret, string fileID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ProcessQuillNLP", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string ProcessQuillNLP(string fileID, string token, string clientID, string clientSecret);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/ProcessQuillNLP", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> ProcessQuillNLPAsync(string fileID, string token, string clientID, string clientSecret);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFullTextByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -493,13 +507,6 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetNativePageCount", ReplyAction="*")]
         System.Threading.Tasks.Task<string> GetNativePageCountAsync(string fileID, string clientID, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetProcessedPageCount", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string GetProcessedPageCount(string sqlConnection, string fileID, string clientID, string clientSecret);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetProcessedPageCount", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -617,6 +624,14 @@ namespace QuillDigital.QuillWebServices {
         
         public WebServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string GetProcessedPageCount(string sqlConnection, string fileID, string clientID, string clientSecret) {
+            return base.Channel.GetProcessedPageCount(sqlConnection, fileID, clientID, clientSecret);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret) {
+            return base.Channel.GetProcessedPageCountAsync(sqlConnection, fileID, clientID, clientSecret);
         }
         
         public string GetFilePageCount(string fileID, string clientID, string clientSecret, string sqlConnection) {
@@ -737,6 +752,14 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> GetStatusAsync(string clientID, string clientSecret, string fileID) {
             return base.Channel.GetStatusAsync(clientID, clientSecret, fileID);
+        }
+        
+        public string ProcessQuillNLP(string fileID, string token, string clientID, string clientSecret) {
+            return base.Channel.ProcessQuillNLP(fileID, token, clientID, clientSecret);
+        }
+        
+        public System.Threading.Tasks.Task<string> ProcessQuillNLPAsync(string fileID, string token, string clientID, string clientSecret) {
+            return base.Channel.ProcessQuillNLPAsync(fileID, token, clientID, clientSecret);
         }
         
         public string GetFullTextByID(string fileID, string clientID, string clientSecret) {
@@ -1201,14 +1224,6 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> GetNativePageCountAsync(string fileID, string clientID, string clientSecret) {
             return base.Channel.GetNativePageCountAsync(fileID, clientID, clientSecret);
-        }
-        
-        public string GetProcessedPageCount(string sqlConnection, string fileID, string clientID, string clientSecret) {
-            return base.Channel.GetProcessedPageCount(sqlConnection, fileID, clientID, clientSecret);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetProcessedPageCountAsync(string sqlConnection, string fileID, string clientID, string clientSecret) {
-            return base.Channel.GetProcessedPageCountAsync(sqlConnection, fileID, clientID, clientSecret);
         }
     }
 }

@@ -306,6 +306,7 @@
     <None Include="Resources\quill-digital-logo-burnt-sienna-alizarin-crimson.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\mainPortal.jpg" />
     <None Include="Connected Services\QuillWebServices\QuillServerService.disco" />
     <None Include="Connected Services\QuillWebServices\configuration91.svcinfo" />
     <None Include="Connected Services\QuillWebServices\configuration.svcinfo" />

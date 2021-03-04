@@ -460,6 +460,11 @@ namespace QuillDigital
                     {
                         string currSymbolOnly = servRef.UpdateFieldCurrencySymbolOnly(Globals.sqlCon, fieldName, currSymbolOnlyIN, clientid, secret);
                     }
+                    if (regex.Checked == true)
+                    {
+                        string regexIN = strRegex.Text.Trim();
+                        servRef.UpdateFieldRegex(Globals.sqlCon, fieldName, regexIN, clientid, secret);
+                    }
                     dtFields = servRef.GetFields(Globals.sqlCon, clientid, secret);
 
                     ld.Close();
@@ -524,6 +529,11 @@ namespace QuillDigital
                     if (currSymbolOnlyIN.Equals("TRUE"))
                     {
                         string currSymbolOnly = servRef.UpdateFieldCurrencySymbolOnly(Globals.sqlCon, fieldName, currSymbolOnlyIN, clientid, secret);
+                    }
+                    if (regex.Checked == true)
+                    {
+                        string regexIN = strRegex.Text.Trim();
+                        servRef.UpdateFieldRegex(Globals.sqlCon, fieldName, regexIN, clientid, secret);
                     }
                     dtFields = servRef.GetFields(Globals.sqlCon, clientid, secret);
                     ld.Close();

@@ -2,6 +2,23 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://quilldigital.co.uk/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://quilldigital.co.uk/AbstractTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://quilldigital.co.uk/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://quilldigital.co.uk/">
+      <s:element name="GetProcessedPageCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProcessedPageCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProcessedPageCountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetFilePageCount">
         <s:complexType>
           <s:sequence>
@@ -243,6 +260,23 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessQuillNLP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessQuillNLPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcessQuillNLPResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1276,23 +1310,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetProcessedPageCount">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sqlConnection" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetProcessedPageCountResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetProcessedPageCountResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataTable" nillable="true">
         <s:complexType>
@@ -1317,6 +1334,12 @@
       </s:complexType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="GetProcessedPageCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProcessedPageCount" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessedPageCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProcessedPageCountResponse" />
+  </wsdl:message>
   <wsdl:message name="GetFilePageCountSoapIn">
     <wsdl:part name="parameters" element="tns:GetFilePageCount" />
   </wsdl:message>
@@ -1406,6 +1429,12 @@
   </wsdl:message>
   <wsdl:message name="GetStatusSoapOut">
     <wsdl:part name="parameters" element="tns:GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessQuillNLPSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcessQuillNLP" />
+  </wsdl:message>
+  <wsdl:message name="ProcessQuillNLPSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcessQuillNLPResponse" />
   </wsdl:message>
   <wsdl:message name="GetFullTextByIDSoapIn">
     <wsdl:part name="parameters" element="tns:GetFullTextByID" />
@@ -1725,11 +1754,14 @@
   <wsdl:message name="GetNativePageCountSoapOut">
     <wsdl:part name="parameters" element="tns:GetNativePageCountResponse" />
   </wsdl:message>
-  <wsdl:message name="GetProcessedPageCountSoapIn">
-    <wsdl:part name="parameters" element="tns:GetProcessedPageCount" />
+  <wsdl:message name="GetProcessedPageCountHttpGetIn">
+    <wsdl:part name="sqlConnection" type="s:string" />
+    <wsdl:part name="fileID" type="s:string" />
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="GetProcessedPageCountSoapOut">
-    <wsdl:part name="parameters" element="tns:GetProcessedPageCountResponse" />
+  <wsdl:message name="GetProcessedPageCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetFilePageCountHttpGetIn">
     <wsdl:part name="fileID" type="s:string" />
@@ -1850,6 +1882,15 @@
     <wsdl:part name="fileID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcessQuillNLPHttpGetIn">
+    <wsdl:part name="fileID" type="s:string" />
+    <wsdl:part name="token" type="s:string" />
+    <wsdl:part name="clientID" type="s:string" />
+    <wsdl:part name="clientSecret" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcessQuillNLPHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetFullTextByIDHttpGetIn">
@@ -2341,16 +2382,11 @@
   <wsdl:message name="GetNativePageCountHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="GetProcessedPageCountHttpGetIn">
-    <wsdl:part name="sqlConnection" type="s:string" />
-    <wsdl:part name="fileID" type="s:string" />
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="GetProcessedPageCountHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="GetProcessedPageCount">
+      <wsdl:input message="tns:GetProcessedPageCountSoapIn" />
+      <wsdl:output message="tns:GetProcessedPageCountSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetFilePageCount">
       <wsdl:input message="tns:GetFilePageCountSoapIn" />
       <wsdl:output message="tns:GetFilePageCountSoapOut" />
@@ -2410,6 +2446,10 @@
     <wsdl:operation name="GetStatus">
       <wsdl:input message="tns:GetStatusSoapIn" />
       <wsdl:output message="tns:GetStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessQuillNLP">
+      <wsdl:input message="tns:ProcessQuillNLPSoapIn" />
+      <wsdl:output message="tns:ProcessQuillNLPSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFullTextByID">
       <wsdl:input message="tns:GetFullTextByIDSoapIn" />
@@ -2623,12 +2663,12 @@
       <wsdl:input message="tns:GetNativePageCountSoapIn" />
       <wsdl:output message="tns:GetNativePageCountSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetProcessedPageCount">
-      <wsdl:input message="tns:GetProcessedPageCountSoapIn" />
-      <wsdl:output message="tns:GetProcessedPageCountSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
+    <wsdl:operation name="GetProcessedPageCount">
+      <wsdl:input message="tns:GetProcessedPageCountHttpGetIn" />
+      <wsdl:output message="tns:GetProcessedPageCountHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetFilePageCount">
       <wsdl:input message="tns:GetFilePageCountHttpGetIn" />
       <wsdl:output message="tns:GetFilePageCountHttpGetOut" />
@@ -2688,6 +2728,10 @@
     <wsdl:operation name="GetStatus">
       <wsdl:input message="tns:GetStatusHttpGetIn" />
       <wsdl:output message="tns:GetStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessQuillNLP">
+      <wsdl:input message="tns:ProcessQuillNLPHttpGetIn" />
+      <wsdl:output message="tns:ProcessQuillNLPHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFullTextByID">
       <wsdl:input message="tns:GetFullTextByIDHttpGetIn" />
@@ -2901,13 +2945,18 @@
       <wsdl:input message="tns:GetNativePageCountHttpGetIn" />
       <wsdl:output message="tns:GetNativePageCountHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetProcessedPageCount">
-      <wsdl:input message="tns:GetProcessedPageCountHttpGetIn" />
-      <wsdl:output message="tns:GetProcessedPageCountHttpGetOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProcessedPageCount">
+      <soap:operation soapAction="http://quilldigital.co.uk/GetProcessedPageCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetFilePageCount">
       <soap:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
       <wsdl:input>
@@ -3036,6 +3085,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetStatus">
       <soap:operation soapAction="http://quilldigital.co.uk/GetStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessQuillNLP">
+      <soap:operation soapAction="http://quilldigital.co.uk/ProcessQuillNLP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3520,18 +3578,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetProcessedPageCount">
-      <soap:operation soapAction="http://quilldigital.co.uk/GetProcessedPageCount" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProcessedPageCount">
+      <soap12:operation soapAction="http://quilldigital.co.uk/GetProcessedPageCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetFilePageCount">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetFilePageCount" style="document" />
       <wsdl:input>
@@ -3660,6 +3718,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetStatus">
       <soap12:operation soapAction="http://quilldigital.co.uk/GetStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessQuillNLP">
+      <soap12:operation soapAction="http://quilldigital.co.uk/ProcessQuillNLP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4144,18 +4211,18 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetProcessedPageCount">
-      <soap12:operation soapAction="http://quilldigital.co.uk/GetProcessedPageCount" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
+    <wsdl:operation name="GetProcessedPageCount">
+      <http:operation location="/GetProcessedPageCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetFilePageCount">
       <http:operation location="/GetFilePageCount" />
       <wsdl:input>
@@ -4284,6 +4351,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetStatus">
       <http:operation location="/GetStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessQuillNLP">
+      <http:operation location="/ProcessQuillNLP" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -4761,15 +4837,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetNativePageCount">
       <http:operation location="/GetNativePageCount" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetProcessedPageCount">
-      <http:operation location="/GetProcessedPageCount" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>

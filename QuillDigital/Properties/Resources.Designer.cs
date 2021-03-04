@@ -63,6 +63,16 @@ namespace QuillDigital.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mainPortal {
+            get {
+                object obj = ResourceManager.GetObject("mainPortal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap quill_digital_logo_alizarin_crimson_white {
             get {
                 object obj = ResourceManager.GetObject("quill-digital-logo-alizarin-crimson-white", resourceCulture);
