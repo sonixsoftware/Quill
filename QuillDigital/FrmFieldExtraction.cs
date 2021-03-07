@@ -97,6 +97,13 @@ namespace QuillDigital
                 MessageBox.Show("Please enter a field name..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if(regex.Checked == true){
+                if(!types.Text.Trim().Equals("Text (Generic)"))
+                {
+                    MessageBox.Show("You cannot have a Custom Regex for any other Field Type than Text (Generic)", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
             DialogResult addField = MessageBox.Show("Add field: " + textBox1.Text.Trim(), "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (addField == DialogResult.Yes)
             {

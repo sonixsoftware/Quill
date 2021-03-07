@@ -695,7 +695,14 @@
       <s:element name="CheckForClausesByFileIDResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CheckForClausesByFileIDResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckForClausesByFileIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -712,30 +719,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetReportByIDResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetFoundClausesByID">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clientSecret" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="sqlCon" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetFoundClausesByIDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetFoundClausesByIDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1568,12 +1551,6 @@
   <wsdl:message name="GetReportByIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetReportByIDResponse" />
   </wsdl:message>
-  <wsdl:message name="GetFoundClausesByIDSoapIn">
-    <wsdl:part name="parameters" element="tns:GetFoundClausesByID" />
-  </wsdl:message>
-  <wsdl:message name="GetFoundClausesByIDSoapOut">
-    <wsdl:part name="parameters" element="tns:GetFoundClausesByIDResponse" />
-  </wsdl:message>
   <wsdl:message name="IsNegativeSoapIn">
     <wsdl:part name="parameters" element="tns:IsNegative" />
   </wsdl:message>
@@ -2088,7 +2065,7 @@
     <wsdl:part name="tagOnes" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CheckForClausesByFileIDHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
+    <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="GetReportByIDHttpGetIn">
     <wsdl:part name="clientID" type="s:string" />
@@ -2097,15 +2074,6 @@
   </wsdl:message>
   <wsdl:message name="GetReportByIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="GetFoundClausesByIDHttpGetIn">
-    <wsdl:part name="clientID" type="s:string" />
-    <wsdl:part name="clientSecret" type="s:string" />
-    <wsdl:part name="sqlCon" type="s:string" />
-    <wsdl:part name="fileID" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="GetFoundClausesByIDHttpGetOut">
-    <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="IsNegativeHttpGetIn">
     <wsdl:part name="Input" type="s:string" />
@@ -2539,10 +2507,6 @@
       <wsdl:input message="tns:GetReportByIDSoapIn" />
       <wsdl:output message="tns:GetReportByIDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetFoundClausesByID">
-      <wsdl:input message="tns:GetFoundClausesByIDSoapIn" />
-      <wsdl:output message="tns:GetFoundClausesByIDSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="IsNegative">
       <wsdl:input message="tns:IsNegativeSoapIn" />
       <wsdl:output message="tns:IsNegativeSoapOut" />
@@ -2820,10 +2784,6 @@
     <wsdl:operation name="GetReportByID">
       <wsdl:input message="tns:GetReportByIDHttpGetIn" />
       <wsdl:output message="tns:GetReportByIDHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetFoundClausesByID">
-      <wsdl:input message="tns:GetFoundClausesByIDHttpGetIn" />
-      <wsdl:output message="tns:GetFoundClausesByIDHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="IsNegative">
       <wsdl:input message="tns:IsNegativeHttpGetIn" />
@@ -3292,15 +3252,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetReportByID">
       <soap:operation soapAction="http://quilldigital.co.uk/GetReportByID" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFoundClausesByID">
-      <soap:operation soapAction="http://quilldigital.co.uk/GetFoundClausesByID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3932,15 +3883,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetFoundClausesByID">
-      <soap12:operation soapAction="http://quilldigital.co.uk/GetFoundClausesByID" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="IsNegative">
       <soap12:operation soapAction="http://quilldigital.co.uk/IsNegative" style="document" />
       <wsdl:input>
@@ -4558,15 +4500,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetReportByID">
       <http:operation location="/GetReportByID" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFoundClausesByID">
-      <http:operation location="/GetFoundClausesByID" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>

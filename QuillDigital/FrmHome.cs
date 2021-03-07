@@ -706,13 +706,13 @@ namespace QuillDigital
                             Invoke(UpdateProgress, 80);
                             Invoke(UpdateStatus, "Extracting Clauses..");
                             string clausesOUT = GetConfiguration.GetConfigurationValueClauses();
-                            clausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, clausesOUT);
+                            DataTable dtclausesFound = servRef.CheckForClausesByFileID(clientID, secret, Globals.sqlCon, fileID, fileName, clausesOUT);
                             if (clausesFound.Contains("QuillException: Document Limit Reached"))
                             {
                                 MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
-                            DataTable dtclausesFound = servRef.GetFoundClausesByID(clientID, secret, Globals.sqlCon, fileID);
+                           
                             if (dtclausesFound.Rows.Count <= 0)
                             {
                                 clausesFound = "No Clauses Found.";
@@ -759,6 +759,21 @@ namespace QuillDigital
 
                         #endregion
                     }
+                    #region NLP
+                    if (Globals.nlpAnns != null)
+                    {
+                        Invoke(UpdateProgress, 90);
+                        Invoke(UpdateStatus, "Running NLP..");
+                        foreach(string anns in Globals.nlpAnns)
+                        {
+                            if (!string.IsNullOrEmpty(anns.Trim()))
+                            {
+                                Invoke(UpdateStatus, "Running " + anns + "..");
+                                string nlpOUT = servRef.ProcessQuillNLP(fileID, anns.ToLower().Trim(), clientID, secret);
+                               }
+                        }
+                    }
+                    #endregion
 
 
                     Invoke(UpdateProgress, 90);
@@ -863,29 +878,9 @@ namespace QuillDigital
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            DialogResult stop = MessageBox.Show("Stop Quill?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (DialogResult.Yes == stop)
-            {
-                button3.Enabled = false;
-                try
-                {
-
-                    string stopOps = servRef.AbortOperation(clientID, secret);
-                }
-                catch
-                {
-                    //this is OK - if fails, abort has been logged
-                }
-
-                UpdateProgressTextDelegate UpdateText = ProgressLabel;
-                UpdateStatusTextDelegate UpdateStatus = StatusLabel;
-                UpdateStatusProgressDelegate UpdateProgress = Progress;
-
-                Invoke(UpdateText, "Stopping...");
-                Invoke(UpdateStatus, "Stopping...");
-
-            }
+            FrmNLP nlp = new FrmNLP();
+            nlp.ShowDialog();
+           
         }
 
         private void button4_Click(object sender, EventArgs e)

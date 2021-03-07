@@ -52,8 +52,11 @@ namespace QuillDigital
 
         private void files_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Loading ld = new Loading();
+            ld.Show();
             try
             {
+               
                 string xmlPath = Path.Combine(savePath, files.Text + ".xml");
                 XmlDataDocument xmldoc = new XmlDataDocument();
                 XmlNodeList xmlnode;
@@ -61,6 +64,7 @@ namespace QuillDigital
                 string digitisedText = string.Empty;
                 string translatedText = string.Empty;
                 string language = string.Empty;
+                string nlpData = string.Empty;
                 FileStream fs = new FileStream(xmlPath, FileMode.Open, FileAccess.Read);
                 xmldoc.Load(fs);
                 xmlnode = xmldoc.GetElementsByTagName("Run");
@@ -73,27 +77,43 @@ namespace QuillDigital
                     TranslatedText.Text = translatedText;
                     Fields.Text = xmlnode[i].ChildNodes.Item(2).InnerText.Trim();
                     Clauses.Text = xmlnode[i].ChildNodes.Item(3).InnerText.Trim();
-                    label3.Text = "Language: "+xmlnode[i].ChildNodes.Item(6).InnerText.Trim();
+                    label3.Text = "Language: " + xmlnode[i].ChildNodes.Item(6).InnerText.Trim();
                     string type = Path.GetExtension(xmlnode[i].ChildNodes.Item(4).InnerText.Trim());
                     label8.Text = "File Extension: " + type + " Date Run: " + xmlnode[i].ChildNodes.Item(5).InnerText.Trim();
 
+                    //NLP
+                    nlpData = "ner: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(7).InnerText.Trim() + Environment.NewLine +
+                              "tokenize: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(8).InnerText.Trim() + Environment.NewLine +
+                              "ssplit: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(10).InnerText.Trim() + Environment.NewLine +
+                              "pos: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(11).InnerText.Trim() + Environment.NewLine +
+                              "lemma: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(12).InnerText.Trim() + Environment.NewLine +
+                              "regexner: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(13).InnerText.Trim() + Environment.NewLine +
+                              "parse: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(14).InnerText.Trim() + Environment.NewLine +
+                              "natlog: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(17).InnerText.Trim() + Environment.NewLine +
+                              "entitylink: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(18).InnerText.Trim() + Environment.NewLine +
+                              "kbp: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(19).InnerText.Trim() + Environment.NewLine +
+                              "relation: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(20).InnerText.Trim() + Environment.NewLine +
+                              "quote: " + Environment.NewLine + xmlnode[i].ChildNodes.Item(21).InnerText.Trim();
+                    NLPData.Text = nlpData;
                 }
                 fs.Close();
+                ld.Close();
             }
             catch
             {
+                ld.Close();
                 MessageBox.Show("Unable to load report..", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult deleteAll = MessageBox.Show("Are you sure you want to delete: "+files.Text+"? You will be unable to view this file again.", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if(deleteAll == DialogResult.Yes)
+            DialogResult deleteAll = MessageBox.Show("Are you sure you want to delete: " + files.Text + "? You will be unable to view this file again.", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (deleteAll == DialogResult.Yes)
             {
                 string fileName = files.Text;
-               string[] docList = Directory.GetFiles(savePath, "*.xml");
-                foreach(string delete in docList)
+                string[] docList = Directory.GetFiles(savePath, "*.xml");
+                foreach (string delete in docList)
                 {
                     if (Path.GetFileName(delete).Equals(fileName + ".xml"))
                     {
@@ -111,15 +131,16 @@ namespace QuillDigital
                 }
 
             }
-            
+
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult delete = MessageBox.Show("Are you sure you want to delete all report files? This cannot be undone..", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(delete == DialogResult.Yes){
-                foreach(string item in files.Items)
+            if (delete == DialogResult.Yes)
+            {
+                foreach (string item in files.Items)
                 {
                     string deleteItem = item + ".xml";
                     string pathDelete = Path.Combine(savePath, deleteItem);

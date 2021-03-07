@@ -191,6 +191,12 @@
     <Compile Include="FrmMyFields.Designer.cs">
       <DependentUpon>FrmMyFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmNLP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNLP.Designer.cs">
+      <DependentUpon>FrmNLP.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMyFields.resx">
       <DependentUpon>FrmMyFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNLP.resx">
+      <DependentUpon>FrmNLP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmReport.resx">
       <DependentUpon>FrmReport.cs</DependentUpon>

@@ -277,10 +277,10 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/CheckForClausesByFileID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string CheckForClausesByFileID(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes);
+        System.Data.DataTable CheckForClausesByFileID(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/CheckForClausesByFileID", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> CheckForClausesByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes);
+        System.Threading.Tasks.Task<System.Data.DataTable> CheckForClausesByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetReportByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -288,13 +288,6 @@ namespace QuillDigital.QuillWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetReportByID", ReplyAction="*")]
         System.Threading.Tasks.Task<string> GetReportByIDAsync(string clientID, string clientSecret, string fileID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFoundClausesByID", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataTable GetFoundClausesByID(string clientID, string clientSecret, string sqlCon, string fileID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/GetFoundClausesByID", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataTable> GetFoundClausesByIDAsync(string clientID, string clientSecret, string sqlCon, string fileID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://quilldigital.co.uk/IsNegative", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -922,11 +915,11 @@ namespace QuillDigital.QuillWebServices {
             return base.Channel.GetOCRSettingAsync(clientID, clientSecret, sqlCon);
         }
         
-        public string CheckForClausesByFileID(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes) {
+        public System.Data.DataTable CheckForClausesByFileID(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes) {
             return base.Channel.CheckForClausesByFileID(clientID, clientSecret, sqlCon, fileID, fileName, tagOnes);
         }
         
-        public System.Threading.Tasks.Task<string> CheckForClausesByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes) {
+        public System.Threading.Tasks.Task<System.Data.DataTable> CheckForClausesByFileIDAsync(string clientID, string clientSecret, string sqlCon, string fileID, string fileName, string tagOnes) {
             return base.Channel.CheckForClausesByFileIDAsync(clientID, clientSecret, sqlCon, fileID, fileName, tagOnes);
         }
         
@@ -936,14 +929,6 @@ namespace QuillDigital.QuillWebServices {
         
         public System.Threading.Tasks.Task<string> GetReportByIDAsync(string clientID, string clientSecret, string fileID) {
             return base.Channel.GetReportByIDAsync(clientID, clientSecret, fileID);
-        }
-        
-        public System.Data.DataTable GetFoundClausesByID(string clientID, string clientSecret, string sqlCon, string fileID) {
-            return base.Channel.GetFoundClausesByID(clientID, clientSecret, sqlCon, fileID);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataTable> GetFoundClausesByIDAsync(string clientID, string clientSecret, string sqlCon, string fileID) {
-            return base.Channel.GetFoundClausesByIDAsync(clientID, clientSecret, sqlCon, fileID);
         }
         
         public string IsNegative(string Input, string clientID, string clientSecret) {

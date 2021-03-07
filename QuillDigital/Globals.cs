@@ -15,7 +15,7 @@ namespace QuillDigital
         public static string ocrType = string.Empty;
         public static string lineRemoval = string.Empty;
         public static string [] files = null;
-
+        public static string[] nlpAnns = null;
     }
      
 }
