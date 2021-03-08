@@ -51,6 +51,7 @@
             this.NLPList.Name = "NLPList";
             this.NLPList.Size = new System.Drawing.Size(179, 319);
             this.NLPList.TabIndex = 1;
+            this.NLPList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.NLPList_ItemCheck);
             // 
             // label1
             // 

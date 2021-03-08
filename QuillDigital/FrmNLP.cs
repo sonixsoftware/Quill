@@ -19,7 +19,7 @@ namespace QuillDigital
 
         private void FrmNLP_Load(object sender, EventArgs e)
         {
-            NLPList.Items.Add("NER");
+           
             NLPList.Items.Add("tokenize");          
             NLPList.Items.Add("ssplit");
             NLPList.Items.Add("POS");
@@ -31,6 +31,7 @@ namespace QuillDigital
             NLPList.Items.Add("kbp");
             NLPList.Items.Add("relation");
             NLPList.Items.Add("quote");
+            NLPList.Items.Add("ner");
             if (Globals.nlpAnns != null)
             {
                 foreach (string anns in Globals.nlpAnns)
@@ -74,6 +75,15 @@ namespace QuillDigital
                 MessageBox.Show("Saved NLP data for this run.", "Quill NLP", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             this.Close();
+        }
+
+        private void NLPList_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            for (int ix = 0; ix < NLPList.Items.Count; ++ix)
+            {
+                if (ix != e.Index) NLPList.SetItemChecked(ix, false);
+            }
+
         }
     }
 }

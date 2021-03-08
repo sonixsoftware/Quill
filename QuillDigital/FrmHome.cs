@@ -20,7 +20,7 @@ namespace QuillDigital
         public string clientID;
         public string secret;
         WebServiceSoapClient servRef;
-        bool lineRemoval = false;
+
         string strLineRemoval = string.Empty;
         bool wordWarning = false;
 
@@ -69,17 +69,18 @@ namespace QuillDigital
             if (string.IsNullOrEmpty(savePath.Text.Trim()))
             {
                 string runDir = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-                if (!Directory.Exists(Path.Combine(runDir, "TEMPS"))){
+                if (!Directory.Exists(Path.Combine(runDir, "TEMPS")))
+                {
                     Directory.CreateDirectory(Path.Combine(runDir, "TEMPS"));
                 }
-             savePath.Text = Path.Combine(runDir, "TEMPS");
-             GetConfiguration.ConfigurationValueSaveLocation(Path.Combine(runDir, "TEMPS"));
+                savePath.Text = Path.Combine(runDir, "TEMPS");
+                GetConfiguration.ConfigurationValueSaveLocation(Path.Combine(runDir, "TEMPS"));
             }
             else
             {
                 savePath.Text = GetConfiguration.GetConfigurationValueSaveLocation();
             }
-           
+
             Globals.ocrType = GetConfiguration.GetConfigurationValueOCR();
             Globals.meta = GetConfiguration.GetConfigurationValueMeta();
             Globals.dpi = GetConfiguration.GetConfigurationValueDPI();
@@ -136,7 +137,7 @@ namespace QuillDigital
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
 
             if (string.IsNullOrEmpty(folderPath.Text) && fileType.Checked == false)
             {
@@ -182,7 +183,7 @@ namespace QuillDigital
                     if (savePath.Text.Trim().ToUpper().Equals(folderPath.Text.ToUpper().Trim()))
                     {
                         MessageBox.Show("The Run Folder and Report Folder are the same. You need to create a Report Folder or browse to a different location", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        button3.Enabled = false;
+
                         button2.Enabled = true;
                         button5.Enabled = true;
                         button9.Enabled = true;
@@ -202,7 +203,7 @@ namespace QuillDigital
                     languages.Enabled = false;
                     button5.Enabled = false;
                     button9.Enabled = false;
-                    button3.Enabled = false;
+
                     button7.Enabled = false;
                     button12.Enabled = false;
                     savePath.ReadOnly = true;
@@ -211,7 +212,7 @@ namespace QuillDigital
                     button2.Enabled = false;
                     button11.Enabled = false;
                     progressBar.Visible = true;
-                    button3.Enabled = true;
+
                     if (extractFields.Checked == true)
                     {
                         if (GetConfiguration.GetConfigurationValueFields().Equals(string.Empty))
@@ -219,7 +220,7 @@ namespace QuillDigital
                             DialogResult extract = MessageBox.Show("You have not selected any fields to extract.. Click Fields To Extract to choose saved fields, or OK to continue with no extraction.", "Quill", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                             if (DialogResult.Cancel == extract)
                             {
-                                button3.Enabled = false;
+
                                 button2.Enabled = true;
                                 button7.Enabled = true;
                                 button5.Enabled = true;
@@ -240,7 +241,7 @@ namespace QuillDigital
                             {
                                 extractFields.Checked = false;
                                 button2.Enabled = false;
-                                button3.Enabled = true;
+
                                 button5.Enabled = false;
                                 button9.Enabled = false;
                                 button12.Enabled = false;
@@ -258,7 +259,7 @@ namespace QuillDigital
                             DialogResult extract = MessageBox.Show("You have not selected any clauses to extract.. Click Clauses To Extract to choose saved clauses, or OK to continue with no extraction.", "Quill", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                             if (DialogResult.Cancel == extract)
                             {
-                                button3.Enabled = false;
+
                                 button5.Enabled = true;
                                 button7.Enabled = true;
                                 button9.Enabled = true;
@@ -280,13 +281,21 @@ namespace QuillDigital
                                 clauses.Checked = false;
                                 button2.Enabled = false;
                                 button7.Enabled = false;
-                                button3.Enabled = true;
+
                                 button5.Enabled = false;
                                 button9.Enabled = false;
                                 button12.Enabled = false;
                                 savePath.ReadOnly = true;
                                 fileType.Enabled = false;
                             }
+                        }
+                    }
+                    if (Globals.nlpAnns != null)
+                    {
+                        DialogResult anns = MessageBox.Show("You have chosed to extract the following NLP data: " + Globals.nlpAnns[0] + " This can add time to processing. Would you like to extract NLP data?", "Quill NLP", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (anns == DialogResult.No)
+                        {
+                            Globals.nlpAnns = null;
                         }
                     }
                     main = new BackgroundWorker();
@@ -418,7 +427,7 @@ namespace QuillDigital
             if (!prepare.ToUpper().Equals("SUCCESS"))
             {
                 MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
+
                 return;
             }
             #endregion
@@ -466,7 +475,7 @@ namespace QuillDigital
                         GC.Collect();
 
                     }
-                    catch(Exception exe)
+                    catch (Exception exe)
                     {
                         if (wordWarning == false)
                         {
@@ -517,8 +526,8 @@ namespace QuillDigital
                 bool invalidTypeContinue = false;
                 if (!transmit.ToUpper().Equals("SUCCESS"))
                 {
-                   
-                   DialogResult type = MessageBox.Show("Oops. Quill Can't convert: "+ runFile +" Would you like to continue?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+
+                    DialogResult type = MessageBox.Show("Oops. Quill Can't convert: " + runFile + " Would you like to continue?", "Quill", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                     if (DialogResult.No == type)
                     {
                         cancelMain = true;
@@ -571,7 +580,7 @@ namespace QuillDigital
                             return;
                         }
                         fullText = Regex.Replace(fullText, @"(\r\n){2,}", Environment.NewLine);
-                       
+
                         Invoke(UpdateProgress, 40);
                     }
                     else
@@ -599,7 +608,7 @@ namespace QuillDigital
                         }
                         catch (Exception ex)
                         {
-                            
+
                             MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             break;
@@ -712,7 +721,7 @@ namespace QuillDigital
                                 MessageBox.Show("Document Limit Reached. You must purchase a license to continue, please visit www.QuillDigital.co.uk", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
-                           
+
                             if (dtclausesFound.Rows.Count <= 0)
                             {
                                 clausesFound = "No Clauses Found.";
@@ -764,13 +773,13 @@ namespace QuillDigital
                     {
                         Invoke(UpdateProgress, 90);
                         Invoke(UpdateStatus, "Running NLP..");
-                        foreach(string anns in Globals.nlpAnns)
+                        foreach (string anns in Globals.nlpAnns)
                         {
                             if (!string.IsNullOrEmpty(anns.Trim()))
                             {
                                 Invoke(UpdateStatus, "Running " + anns + "..");
                                 string nlpOUT = servRef.ProcessQuillNLP(fileID, anns.ToLower().Trim(), clientID, secret);
-                               }
+                            }
                         }
                     }
                     #endregion
@@ -791,7 +800,7 @@ namespace QuillDigital
                     }
                     else
                     {
-                        xmlDoc= Path.GetFileNameWithoutExtension(tempFile) + ".xml";
+                        xmlDoc = Path.GetFileNameWithoutExtension(tempFile) + ".xml";
                         System.IO.File.WriteAllText(Path.Combine(savePath.Text, xmlDoc), xmlReport);
 
                     }
@@ -814,13 +823,13 @@ namespace QuillDigital
             return;
         }
 
-      
+
         private void Main_Run_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
             {
                 button7.Enabled = true;
-                button3.Enabled = false;
+
                 button5.Enabled = true;
                 button9.Enabled = true;
                 button2.Enabled = false;
@@ -880,7 +889,7 @@ namespace QuillDigital
         {
             FrmNLP nlp = new FrmNLP();
             nlp.ShowDialog();
-           
+
         }
 
         private void button4_Click(object sender, EventArgs e)
