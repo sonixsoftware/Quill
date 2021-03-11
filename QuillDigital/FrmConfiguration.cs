@@ -163,7 +163,7 @@ namespace QuillDigital
 
         private void button2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.quilldigital.co.uk/Login");
+            System.Diagnostics.Process.Start("https://quilldigital.co.uk/account/registerpage");
         }
 
       

@@ -607,11 +607,9 @@ namespace QuillDigital
 
                         }
                         catch (Exception ex)
-                        {
+                          {
 
-                            MessageBox.Show("Oops. Something went wrong.", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                            break;
+                           //wait here for retort
                         }
                         Invoke(UpdateProgress, 50);
                         Invoke(UpdateStatus, "Getting Text..");
@@ -964,7 +962,7 @@ namespace QuillDigital
 
         private void button14_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.quilldigital.co.uk/Login");
+            System.Diagnostics.Process.Start("https://quilldigital.co.uk/Home/Pricing");
         }
 
         private void fileType_CheckedChanged(object sender, EventArgs e)
