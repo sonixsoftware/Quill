@@ -14,6 +14,7 @@ namespace QuillDigital
 {
     public partial class FrmHome : Form
     {
+        bool searchSubDirects = false;
         BackgroundWorker main = new BackgroundWorker();
         bool cancelMain = false;
         public string translationlang = string.Empty;
@@ -185,6 +186,7 @@ namespace QuillDigital
                         MessageBox.Show("The Run Folder and Report Folder are the same. You need to create a Report Folder or browse to a different location", "Quill", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                         button2.Enabled = true;
+                        searchSubs.Enabled = true;
                         button5.Enabled = true;
                         button9.Enabled = true;
                         button7.Enabled = true;
@@ -203,7 +205,7 @@ namespace QuillDigital
                     languages.Enabled = false;
                     button5.Enabled = false;
                     button9.Enabled = false;
-
+                    searchSubs.Enabled = false;
                     button7.Enabled = false;
                     button12.Enabled = false;
                     savePath.ReadOnly = true;
@@ -220,7 +222,7 @@ namespace QuillDigital
                             DialogResult extract = MessageBox.Show("You have not selected any fields to extract.. Click Fields To Extract to choose saved fields, or OK to continue with no extraction.", "Quill", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                             if (DialogResult.Cancel == extract)
                             {
-
+                                searchSubs.Enabled = true;
                                 button2.Enabled = true;
                                 button7.Enabled = true;
                                 button5.Enabled = true;
@@ -241,7 +243,7 @@ namespace QuillDigital
                             {
                                 extractFields.Checked = false;
                                 button2.Enabled = false;
-
+                                searchSubs.Enabled = false;
                                 button5.Enabled = false;
                                 button9.Enabled = false;
                                 button12.Enabled = false;
@@ -260,6 +262,7 @@ namespace QuillDigital
                             if (DialogResult.Cancel == extract)
                             {
 
+                                searchSubs.Enabled = true;
                                 button5.Enabled = true;
                                 button7.Enabled = true;
                                 button9.Enabled = true;
@@ -281,7 +284,7 @@ namespace QuillDigital
                                 clauses.Checked = false;
                                 button2.Enabled = false;
                                 button7.Enabled = false;
-
+                                searchSubs.Enabled = false;
                                 button5.Enabled = false;
                                 button9.Enabled = false;
                                 button12.Enabled = false;
@@ -386,7 +389,14 @@ namespace QuillDigital
             {
                 try
                 {
-                    docList = Directory.GetFiles(folderPath.Text.Trim(), "*.*");
+                    if (searchSubDirects == true)
+                    {
+                        docList = Directory.GetFiles(folderPath.Text.Trim(), "*.*", SearchOption.AllDirectories);
+                    }
+                    else
+                    {
+                        docList = Directory.GetFiles(folderPath.Text.Trim(), "*.*");
+                    }
                 }
                 catch
                 {
@@ -827,7 +837,7 @@ namespace QuillDigital
             try
             {
                 button7.Enabled = true;
-
+                searchSubs.Enabled = true;
                 button5.Enabled = true;
                 button9.Enabled = true;
                 button2.Enabled = false;
@@ -972,13 +982,33 @@ namespace QuillDigital
                 button11.Text = "Choose Files";
                 folderPath.Text = "";
                 folderPath.ReadOnly = true;
+                searchSubs.Checked = false;
+                searchSubs.Visible = false;
             }
             else
             {
                 button11.Text = "Open Folder";
                 folderPath.Text = "";
                 folderPath.ReadOnly = false;
+                searchSubs.Visible = true;
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(searchSubs.Checked == true)
+            {
+                searchSubDirects = true;
+            }
+            else
+            {
+                searchSubDirects = false;
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.quilldigital.co.uk/Login");
         }
     }
 }
