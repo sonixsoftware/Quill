@@ -45,6 +45,7 @@ namespace QuillDigital
             ocrtype.Items.Add("Microsoft Cloud");
             ocrtype.Items.Add("Google Cloud");
             ocrtype.Items.Add("Quill Cloud");
+            ocrtype.Items.Add("AWS Textract");
             ocrtype.Text = GetConfiguration.GetConfigurationValueOCR();
             string grayScale = GetConfiguration.GetConfigurationValueGrayScale();
 
@@ -107,6 +108,11 @@ namespace QuillDigital
             {
                 Globals.ignoreMeta = "FALSE";
             }
+        }
+
+        private void ocrtype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

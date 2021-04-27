@@ -375,6 +375,10 @@ namespace QuillDigital
             {
                 Globals.ocrType = "2";
             }
+            else if (Globals.ocrType.Equals("AWS Textract"))
+            {
+                Globals.ocrType = "3";
+            }
             else
             {
                 Globals.ocrType = "0";

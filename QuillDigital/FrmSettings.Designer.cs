@@ -108,6 +108,7 @@
             this.ocrtype.Name = "ocrtype";
             this.ocrtype.Size = new System.Drawing.Size(161, 21);
             this.ocrtype.TabIndex = 7;
+            this.ocrtype.SelectedIndexChanged += new System.EventHandler(this.ocrtype_SelectedIndexChanged);
             // 
             // metatoll
             // 
